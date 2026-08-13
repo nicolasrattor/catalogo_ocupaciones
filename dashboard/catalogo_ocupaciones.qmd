@@ -1,0 +1,2258 @@
+---
+title: "Catálogo de Ocupaciones para Chile"
+format:
+  dashboard:
+    theme: [cosmo, custom.scss]
+    nav-buttons:
+      - icon: github
+        href: https://github.com/nicolasrattor/catalogo_ocupaciones
+        aria-label: Repositorio en GitHub
+    scrolling: false
+    embed-resources: true
+---
+
+```{r setup}
+#| include: false
+Sys.setlocale("LC_ALL", "C.UTF-8")
+options(encoding = "UTF-8")
+
+library(dplyr)
+library(readr)
+library(stringr)
+library(tidyr)
+library(ggplot2)
+library(plotly)
+library(DT)
+library(scales)
+library(crosstalk)
+library(htmltools)
+
+ocup <- read_csv("../data/processed/casen_2024_agregado_ocupacion.csv", show_col_types = FALSE)
+gg   <- read_csv("../data/processed/casen_2024_agregado_gran_grupo.csv", show_col_types = FALSE)
+panel_ocup <- read_csv("../data/processed/panel_ocupacion_anual.csv", show_col_types = FALSE)
+panel_gg   <- read_csv("../data/processed/panel_gran_grupo_anual.csv", show_col_types = FALSE)
+
+orden_gg <- gg |> arrange(desc(personas_estimadas)) |> pull(gran_grupo_nombre)
+gg <- gg |> mutate(gran_grupo_nombre = factor(gran_grupo_nombre, levels = rev(orden_gg)))
+ocup <- ocup |> mutate(gran_grupo_nombre = factor(gran_grupo_nombre, levels = orden_gg))
+
+fmt_clp <- function(x) paste0("$", format(round(x), big.mark = ".", scientific = FALSE))
+fmt_pct <- function(x) paste0(round(x * 100, 1), "%")
+fmt_n   <- function(x) format(round(x), big.mark = ".", scientific = FALSE)
+
+n_ocupados_total   <- sum(ocup$personas_estimadas, na.rm = TRUE)
+ingreso_nacional    <- weighted.mean(ocup$ingreso_trabajo_prom, ocup$personas_estimadas, na.rm = TRUE)
+formalidad_nacional <- weighted.mean(ocup$tasa_formalidad, ocup$personas_estimadas, na.rm = TRUE)
+pct_mujeres_nacional<- weighted.mean(ocup$pct_mujeres, ocup$personas_estimadas, na.rm = TRUE)
+n_ocupaciones       <- n_distinct(ocup$codigo_ciuo08)
+
+# --- Identidad visual: tinta / papel / cobre / andino / salvia -------------
+tinta   <- "#1C2321"
+papel   <- "#F6F4EE"
+cobre   <- "#B5622A"
+andino  <- "#2E5266"
+salvia  <- "#6B8F71"
+gris    <- "#8A8578"
+
+paleta_gg <- c(
+  "Directores, gerentes y administradores" = tinta,
+  "Profesionales, científicos e intelectuales" = andino,
+  "Técnicos y profesionales de nivel medio" = "#4C7C8C",
+  "Personal de apoyo administrativo" = "#7BA098",
+  "Trabajadores de los servicios y vendedores de comercios y mercados" = salvia,
+  "Agricultores y trabajadores calificados agropecuarios, forestales y pesqueros" = "#9C8F4A",
+  "Artesanos y operarios de oficios" = cobre,
+  "Operadores de instalaciones, máquinas y ensambladores" = "#8C4A2E",
+  "Ocupaciones elementales" = gris,
+  "Ocupaciones de las fuerzas armadas" = "#5C4A42"
+)
+
+etiqueta_corta <- c(
+  "Directores, gerentes y administradores" = "Directores y gerentes",
+  "Profesionales, científicos e intelectuales" = "Profesionales",
+  "Técnicos y profesionales de nivel medio" = "Técnicos nivel medio",
+  "Personal de apoyo administrativo" = "Apoyo administrativo",
+  "Trabajadores de los servicios y vendedores de comercios y mercados" = "Servicios y ventas",
+  "Agricultores y trabajadores calificados agropecuarios, forestales y pesqueros" = "Agricultores",
+  "Artesanos y operarios de oficios" = "Artesanos y oficios",
+  "Operadores de instalaciones, máquinas y ensambladores" = "Operadores de máquinas",
+  "Ocupaciones elementales" = "Ocup. elementales",
+  "Ocupaciones de las fuerzas armadas" = "Fuerzas armadas"
+)
+
+gg <- gg |> mutate(etiqueta_corta = factor(etiqueta_corta[as.character(gran_grupo_nombre)],
+                                            levels = etiqueta_corta[orden_gg]))
+
+tema_catalogo <- function(base_size = 12) {
+  theme_minimal(base_size = base_size, base_family = "IBM Plex Sans") +
+    theme(
+      panel.grid.minor = element_blank(),
+      panel.grid.major.y = element_blank(),
+      axis.title = element_text(color = tinta, size = rel(0.85)),
+      axis.text = element_text(color = tinta),
+      plot.title = element_text(family = "Space Grotesk", face = "bold", color = tinta),
+      legend.position = "none"
+    )
+}
+```
+
+
+# Resumen general
+
+## Fila KPIs {height="13%"}
+
+```{r}
+#| content: valuebox
+#| title: "Ocupados estimados (país)"
+list(icon = "people-fill", color = "#8B7BB0", value = fmt_n(n_ocupados_total))
+```
+
+```{r}
+#| content: valuebox
+#| title: "Ingreso del trabajo promedio"
+list(icon = "cash-coin", color = "#8B7BB0", value = fmt_clp(ingreso_nacional))
+```
+
+```{r}
+#| content: valuebox
+#| title: "Tasa de formalidad"
+list(icon = "shield-check", color = "#8B7BB0", value = fmt_pct(formalidad_nacional))
+```
+
+```{r}
+#| content: valuebox
+#| title: "Participación femenina"
+list(icon = "gender-ambiguous", color = "#8B7BB0", value = fmt_pct(pct_mujeres_nacional))
+```
+
+```{r}
+#| content: valuebox
+#| title: "Ocupaciones CIUO-08.CL con datos"
+list(icon = "diagram-3-fill", color = "#8B7BB0", value = paste0(n_ocupaciones, " / 444"))
+```
+
+## Fila intro {height="37%"}
+
+::: {.card}
+
+**Sobre este catálogo**
+
+Este catálogo busca vincular información administrativa, de encuestas de hogares, programas formativos y estudios cualitativos por ocupación, usando la Clasificación Internacional Uniforme de Ocupaciones adaptada para Chile (CIUO-08.CL) como columna vertebral. Se inspira en la Estrategia Nacional de Prospección Laboral del Ministerio del Trabajo (2023) y el Proyecto O\*NET del Departamento de Trabajo de Estados Unidos. Por ahora integra CASEN (2015-2024), la segunda ronda de la Evaluación de Competencias de Adultos (PIAAC), y las descripciones oficiales de ocupaciones del INE.
+
+**Cómo navegar el catálogo**
+
+- **Ranking de ocupaciones** — las 444 ocupaciones de un vistazo: con datos de ingresos, formalidad y ocupados con CASEN 2024.
+- **Ficha ocupaciones** — busca una ocupación puntual: descripción oficial, tareas, carreras de quienes la ejercen e indicadores clave.
+- **Trayectoria de ocupación** — cómo ha cambiado una ocupación en el tiempo (2015-2024).
+- **Ranking dinámico** — qué ocupaciones más crecieron o cayeron entre 2017 y 2024.
+- **Habilidades (PIAAC)** — numeracidad, literacidad y uso de habilidades en el trabajo, por ocupación a dos dígitos.
+- **Ficha metodológica** — todas las fuentes, supuestos y limitaciones, en detalle.
+
+:::
+
+## Fila gráficos {height="50%"}
+
+### Columna izquierda {width="55%"}
+
+```{r}
+#| title: "Ocupados por gran grupo"
+p <- gg |>
+  ggplot(aes(x = personas_estimadas, y = etiqueta_corta, fill = gran_grupo_nombre,
+             text = paste0(gran_grupo_nombre, "<br>Ocupados: ", fmt_n(personas_estimadas),
+                            "<br>Ingreso prom.: ", fmt_clp(ingreso_trabajo_prom),
+                            "<br>Formalidad: ", fmt_pct(tasa_formalidad)))) +
+  geom_col(width = 0.7) +
+  scale_fill_manual(values = paleta_gg) +
+  scale_x_continuous(labels = label_number(big.mark = ".", scale = 1e-3, suffix = " mil"),
+                      expand = expansion(mult = c(0, 0.08))) +
+  labs(x = "Personas ocupadas estimadas", y = NULL) +
+  tema_catalogo()
+
+ggplotly(p, tooltip = "text") |>
+  layout(showlegend = FALSE, margin = list(l = 10, r = 10, t = 10, b = 40))
+```
+
+### Columna derecha {width="45%"}
+
+```{r}
+#| title: "Ingreso vs. formalidad"
+p2 <- gg |>
+  ggplot(aes(x = tasa_formalidad, y = ingreso_trabajo_prom, size = personas_estimadas,
+             color = gran_grupo_nombre,
+             text = paste0(gran_grupo_nombre,
+                            "<br>Formalidad: ", fmt_pct(tasa_formalidad),
+                            "<br>Ingreso prom.: ", fmt_clp(ingreso_trabajo_prom),
+                            "<br>Ocupados: ", fmt_n(personas_estimadas)))) +
+  geom_point(alpha = 0.9) +
+  scale_color_manual(values = paleta_gg) +
+  scale_size_continuous(range = c(5, 20), guide = "none") +
+  scale_x_continuous(labels = label_percent()) +
+  scale_y_continuous(labels = label_number(big.mark = ".", prefix = "$")) +
+  labs(x = "Tasa de formalidad", y = "Ingreso del trabajo promedio", color = NULL) +
+  tema_catalogo()
+
+ggplotly(p2, tooltip = "text") |>
+  layout(showlegend = FALSE, margin = list(l = 60, r = 20, t = 10, b = 50))
+```
+
+# Ranking de ocupaciones
+
+## Fila filtros/tabla {height="100%"}
+
+```{r}
+#| title: "Ranking de ocupaciones"
+tabla <- ocup |>
+  filter(!is.na(gran_grupo_nombre)) |>
+  transmute(
+    `Código CIUO-08.CL` = codigo_ciuo08,
+    `Ocupación` = ocupacion_nombre,
+    `Gran grupo` = gran_grupo_nombre,
+    `Ocupados (estimado)` = round(personas_estimadas),
+    `Ingreso trabajo prom.` = round(ingreso_trabajo_prom),
+    `Horas semanales prom.` = round(horas_semanales_prom, 1),
+    `Formalidad` = round(tasa_formalidad * 100, 1),
+    `% Mujeres` = round(pct_mujeres * 100, 1),
+    `Escolaridad prom. (años)` = round(escolaridad_prom, 1),
+    `n muestra` = n_muestra
+  ) |>
+  arrange(desc(`Ocupados (estimado)`))
+
+datatable(
+  tabla,
+  rownames = FALSE,
+  filter = "top",
+  extensions = "Buttons",
+  options = list(
+    pageLength = 20,
+    lengthMenu = c(10, 20, 50, 100),
+    dom = "Blfrtip",
+    buttons = c("copy", "csv"),
+    scrollX = TRUE
+  ),
+  caption = "Nota: ocupaciones con menos de 30 casos muestrales en CASEN 2024 deben interpretarse con cautela (alta varianza muestral)."
+) |>
+  formatCurrency("Ocupados (estimado)", currency = "", interval = 3, mark = ".", digits = 0) |>
+  formatCurrency("Ingreso trabajo prom.", currency = "$", interval = 3, mark = ".", digits = 0) |>
+  formatStyle(
+    "n muestra",
+    backgroundColor = styleInterval(29, c("#fde2e2", "white"))
+  )
+```
+
+# Ficha ocupaciones {scrolling="true"}
+
+## Fila buscador {height="8%"}
+
+```{r}
+#| title: "Busca una ocupación"
+#| output: asis
+library(jsonlite)
+
+descripciones_ciuo <- read_csv("../data/reference/ciuo08_descripciones.csv", show_col_types = FALSE)
+
+# --- Distribución de carreras (CINE-F 2013, subárea) por ocupación ---------
+# Mapeo oficial de códigos a etiquetas (CASEN 2024, variable cinef13_subarea).
+etiquetas_subarea <- c(
+  "1" = "Salud", "2" = "Ingeniería y Profesiones Afines", "3" = "Educación",
+  "4" = "Servicios personales", "5" = "Educación Comercial y Administración",
+  "6" = "Periodismo e Información", "7" = "Ciencias Sociales y del Comportamiento",
+  "8" = "Ciencias Físicas", "9" = "Derecho", "10" = "Servicios de Transportes",
+  "11" = "Arquitectura y Construcción", "12" = "Agricultura",
+  "13" = "Tecnología de la Información y la Comunicación (TIC)",
+  "14" = "Matemáticas y Estadísticas", "15" = "Bienestar", "16" = "Artes",
+  "17" = "Veterinaria", "18" = "Idiomas", "19" = "Servicios de Seguridad",
+  "20" = "Ciencias Biológicas y Afines", "21" = "Humanidades",
+  "22" = "Servicios de Higiene y Salud Ocupacional", "23" = "Industria y Producción",
+  "24" = "Ciencias Naturales, Matemáticas y Estadísticas sin mayor definición",
+  "25" = "Medio Ambiente", "26" = "Pesca", "27" = "Silvicultura",
+  "28" = "Ciencias naturales, matemáticas y estadística"
+)
+
+casen_2024_ocupados <- readRDS("../data/processed/casen_2024_ocupados.rds")
+CODIGOS_NA_ES <- c(-88, -99, -66)
+
+# Umbral: si menos del 5% de quienes trabajan en la ocupación reporta una
+# carrera de educación superior (o hay menos de 5 casos muestrales), se
+# considera que la ocupación no requiere estudios superiores y se omite
+# la tabla (en vez de mostrar porcentajes poco fiables).
+UMBRAL_PCT_ES <- 0.05
+UMBRAL_N_ES <- 5
+
+construir_ficha_carreras <- function(codigo) {
+  sub <- casen_2024_ocupados |>
+    filter(codigo_ciuo08 == codigo) |>
+    mutate(
+      cinef13_subarea = if_else(cinef13_subarea %in% CODIGOS_NA_ES, NA_real_, cinef13_subarea),
+      e8 = if_else(e8 %in% CODIGOS_NA_ES, NA_real_, e8),
+      tipo_ies = case_when(
+        e8 %in% c(1, 2) ~ "Técnico Profesional",
+        e8 %in% c(3, 4, 5, 7) ~ "Universitaria",
+        e8 == 6 ~ "FF.AA. y del Orden",
+        !is.na(cinef13_subarea) ~ "Tipo no especificado",
+        TRUE ~ NA_character_
+      )
+    )
+
+  peso_total <- sum(sub$expr, na.rm = TRUE)
+  con_carrera <- sub |> filter(!is.na(cinef13_subarea))
+  peso_con_carrera <- sum(con_carrera$expr, na.rm = TRUE)
+  pct_es <- if (peso_total > 0) peso_con_carrera / peso_total else 0
+  n_con_carrera <- nrow(con_carrera)
+
+  if (n_con_carrera < UMBRAL_N_ES || pct_es < UMBRAL_PCT_ES) {
+    return(list(
+      requiere_es = FALSE,
+      pct_con_es = round(pct_es, 4),
+      n_muestra_carrera = n_con_carrera,
+      top_carreras = list(),
+      diversidad = NA,
+      n_carreras_distintas = 0,
+      pct_universitaria = NA,
+      pct_tecnico = NA,
+      pct_ffaa = NA
+    ))
+  }
+
+  # --- Cruce carrera (CINE-F subárea) x tipo de institución (e8) ------------
+  # e8: 1=CFT, 2=IP -> "Técnico Profesional"; 3,4,5,7=Universidades (privada
+  # no CRUCH, privada CRUCH, estatal, extranjera) -> "Universitaria";
+  # 6=FF.AA. y del Orden -> categoría propia. Quienes tienen carrera pero no
+  # reportan e8 (~10%) quedan en "Tipo no especificado", para no perder
+  # cobertura ni inflar artificialmente las otras categorías.
+  dist <- con_carrera |>
+    group_by(cinef13_subarea, tipo_ies) |>
+    summarise(peso = sum(expr, na.rm = TRUE), .groups = "drop") |>
+    mutate(pct = peso / sum(peso)) |>
+    arrange(desc(pct))
+
+  # Índice de diversidad: entropía de Shannon normalizada (equivalente al
+  # índice de uniformidad de Pielou), rango 0-1, calculado sobre el cruce
+  # carrera x tipo de institución. 0 = todos estudiaron la misma combinación;
+  # 1 = perfectamente repartido entre todas las combinaciones observadas.
+  p <- dist$pct
+  s <- length(p)
+  entropia <- if (s > 1) -sum(p * log(p)) / log(s) else 0
+
+  top10 <- dist |>
+    slice_head(n = 10) |>
+    transmute(
+      carrera = unname(etiquetas_subarea[as.character(cinef13_subarea)]),
+      tipo = tipo_ies,
+      pct = round(pct * 100, 1)
+    )
+
+  resumen_tipo <- con_carrera |>
+    group_by(tipo_ies) |>
+    summarise(peso = sum(expr, na.rm = TRUE), .groups = "drop") |>
+    mutate(pct = peso / sum(peso))
+  extraer_pct_tipo <- function(nombre) {
+    v <- resumen_tipo$pct[resumen_tipo$tipo_ies == nombre]
+    if (length(v) == 0) 0 else round(v * 100, 1)
+  }
+
+  list(
+    requiere_es = TRUE,
+    pct_con_es = round(pct_es, 4),
+    n_muestra_carrera = n_con_carrera,
+    top_carreras = as.data.frame(top10),
+    diversidad = round(entropia, 3),
+    n_carreras_distintas = s,
+    pct_universitaria = extraer_pct_tipo("Universitaria"),
+    pct_tecnico = extraer_pct_tipo("Técnico Profesional"),
+    pct_ffaa = extraer_pct_tipo("FF.AA. y del Orden")
+  )
+}
+
+codigos_ocup_ficha <- casen_2024_ocupados |> distinct(codigo_ciuo08) |> pull(codigo_ciuo08)
+lista_ficha_carreras <- setNames(lapply(codigos_ocup_ficha, construir_ficha_carreras), codigos_ocup_ficha)
+carreras_json <- toJSON(lista_ficha_carreras, auto_unbox = TRUE, na = "null")
+
+# --- Rama de actividad económica (CIIU4.CL, variable rama4) por ocupación --
+# Mapeo oficial de códigos a glosas (CASEN 2024, clasificador CIIU4.CL).
+etiquetas_rama <- c(
+  "101" = "Cultivo de plantas no perennes",
+  "102" = "Cultivo de plantas perennes",
+  "103" = "Ganadería",
+  "199" = "Otras actividades relacionadas con la agricultura, ganadería, caza y actividades de apoyo n.c.p.",
+  "201" = "Silvicultura, extracción de madera y actividades de servicios conexas",
+  "301" = "Pesca, acuicultura y actividades de servicios conexas",
+  "401" = "Extracción y procesamiento de cobre",
+  "501" = "Extracción de carbón de piedra y lignito",
+  "601" = "Extracción de petróleo crudo y gas natural",
+  "701" = "Extracción de minerales metalíferos, excepto cobre",
+  "801" = "Extracción y procesamiento de litio",
+  "899" = "Extracción de otras minas y canteras n.c.p., excepto litio",
+  "901" = "Actividades de apoyo para la explotación de minas y canteras",
+  "1001" = "Elaboración y conservación de carne, pescado, crustáceos y moluscos",
+  "1002" = "Elaboración y conservación de frutas, legumbres y hortalizas; aceites y grasas",
+  "1003" = "Elaboración de productos lácteos",
+  "1004" = "Elaboración de productos de panadería",
+  "1099" = "Elaboración de otros productos alimenticios n.c.p.",
+  "1101" = "Elaboración de bebidas alcohólicas y no alcohólicas, excepto vino",
+  "1102" = "Elaboración de vinos",
+  "1201" = "Elaboración de productos de tabaco",
+  "1401" = "Fabricación de productos textiles, prendas de vestir, productos de cuero y productos conexos",
+  "1601" = "Producción de madera y fabricación de productos de madera y corcho, excepto muebles; artículos de paja y materiales trenzados",
+  "1701" = "Fabricación de papel y productos de papel",
+  "1801" = "Impresión y servicios de apoyo; reproducción de grabaciones",
+  "1901" = "Fabricación de coque y productos de la refinación del petróleo",
+  "2001" = "Fabricación de sustancias y productos químicos",
+  "2101" = "Fabricación de productos farmacéuticos, sustancias químicas medicinales y productos botánicos de uso farmacéutico",
+  "2201" = "Fabricación de productos de caucho y de plástico",
+  "2301" = "Fabricación de otros productos minerales no metálicos",
+  "2401" = "Fabricación de metales comunes",
+  "2501" = "Fabricación de productos elaborados de metal y servicios de trabajo de metales, excepto máquinas y equipos",
+  "2701" = "Fabricación de productos informáticos, electrónicos, ópticos, equipos eléctricos y maquinaria",
+  "3001" = "Fabricación de vehículos automotores, remolques y semirremolques y otros tipos de equipo de transporte",
+  "3101" = "Fabricación de muebles",
+  "3201" = "Otras industrias manufactureras",
+  "3301" = "Mantenimiento, reparación e instalación de maquinaria y equipo",
+  "3501" = "Electricidad, gas, vapor y aire acondicionado",
+  "3601" = "Captación, tratamiento y distribución de agua",
+  "3701" = "Evacuación de aguas residuales",
+  "3801" = "Recogida, tratamiento y eliminación de desechos",
+  "3802" = "Recuperación de materiales",
+  "3901" = "Actividades de descontaminación y otros servicios de gestión de desechos",
+  "4101" = "Construcción de edificios",
+  "4201" = "Obras de ingeniería civil",
+  "4301" = "Actividades especializadas de construcción",
+  "4501" = "Comercio y reparación de vehículos automotores y motocicletas",
+  "4801" = "Comercio de intermediación",
+  "4802" = "Comercio de materias primas agropecuarias y animales vivos",
+  "4803" = "Comercio especializado de alimentos, bebidas y tabaco",
+  "4804" = "Comercio de productos textiles, prendas de vestir y calzado, y enseres domésticos",
+  "4805" = "Comercio de materiales de construcción, artículos de ferretería, gasfitería, pinturas, espejos y artículos para revestimiento",
+  "4806" = "Comercio de combustible para vehículos y productos conexos para uso doméstico",
+  "4807" = "Comercio de mercaderías n.c.p., incluso mercaderías usadas",
+  "4808" = "Tiendas no especializadas con o sin predominio de la venta de alimentos, bebidas o tabaco",
+  "4809" = "Comercio al por menor en mercados, ferias y otros puestos móviles",
+  "4810" = "Comercio al por menor por correo, televisión, internet; comercio ambulante y otros tipos de ventas n.c.p.",
+  "4901" = "Transporte por ferrocarril",
+  "4902" = "Transporte de pasajeros por vía terrestre",
+  "4903" = "Transporte de carga por vía terrestre",
+  "4904" = "Transporte por tuberías",
+  "5001" = "Transporte por vía acuática",
+  "5101" = "Transporte por vía aérea",
+  "5201" = "Depósito y almacenamiento",
+  "5202" = "Servicios auxiliares al transporte",
+  "5301" = "Actividades postales y de mensajería",
+  "5501" = "Actividades de alojamiento",
+  "5601" = "Servicios de expendio de comidas y bebidas, excepto por vendedores ambulantes",
+  "5602" = "Servicios de expendio de comidas y bebidas por vendedores ambulantes",
+  "5603" = "Servicios de suministro de comidas para eventos y otras actividades de servicio de comidas",
+  "5801" = "Actividades de edición",
+  "5901" = "Actividades de producción de películas cinematográficas, videos, programas de televisión, grabación de sonido y edición de música",
+  "6001" = "Actividades de programación y transmisión",
+  "6101" = "Actividades de telecomunicaciones",
+  "6201" = "Actividades de programación y consultorías informáticas y otras actividades conexas",
+  "6301" = "Actividades de servicios de información",
+  "6401" = "Intermediación financiera y otros servicios financieros, excepto seguros y administración de fondos de pensiones",
+  "6501" = "Isapres",
+  "6502" = "Seguros de vida o generales, reaseguros y fondos de pensiones, excepto Isapres",
+  "6601" = "Administradoras de Fondos de Pensiones (AFP)",
+  "6699" = "Otras actividades auxiliares relacionadas con servicios financieros, seguros y fondos de pensiones; otras actividades de gestión de fondos n.c.p.",
+  "6801" = "Actividades inmobiliarias",
+  "6901" = "Actividades jurídicas y de contabilidad",
+  "7001" = "Actividades de oficinas principales, actividades de consultoría de gestión",
+  "7101" = "Actividades de arquitectura e ingeniería; ensayos y análisis técnicos",
+  "7201" = "Investigación científica y desarrollo",
+  "7301" = "Publicidad y estudios de mercado",
+  "7401" = "Otras actividades profesionales, científicas y técnicas",
+  "7501" = "Actividades veterinarias",
+  "7701" = "Actividades de alquiler y arrendamiento",
+  "7801" = "Actividades de empleo",
+  "7901" = "Agencias de viajes, operadores turísticos y actividades conexas",
+  "8001" = "Actividades de investigación y seguridad",
+  "8101" = "Actividades de servicios de apoyo a edificios y actividades de limpieza en general",
+  "8102" = "Barrido y riego de calles, plazas, caminos, mercados, jardines y parques; paisajismo y jardinería",
+  "8201" = "Actividades administrativas de oficinas y otras actividades auxiliares de las empresas",
+  "8401" = "Administración del Estado y aplicación de la política económica y social de la comunidad",
+  "8402" = "Prestación de servicios a la comunidad en general",
+  "8403" = "Actividades de planes de seguridad social de afiliación obligatoria",
+  "8501" = "Enseñanza preescolar, primaria, secundaria científico humanista y técnico profesional, pública y privada",
+  "8502" = "Enseñanza superior",
+  "8599" = "Otros tipos de enseñanza",
+  "8601" = "Actividades de hospitales públicos y privados",
+  "8602" = "Actividades de médicos y odontólogos",
+  "8699" = "Otras actividades de atención de la salud humana n.c.p.",
+  "8701" = "Actividades de asistencia social en instituciones",
+  "8801" = "Actividades de asistencia social sin alojamiento",
+  "9001" = "Actividades creativas, artísticas y de entretenimiento",
+  "9101" = "Actividades de bibliotecas, archivos, museos y otras actividades culturales",
+  "9201" = "Actividades de juegos de azar y apuestas",
+  "9301" = "Actividades deportivas, de esparcimiento y recreativas",
+  "9401" = "Actividades de asociaciones",
+  "9501" = "Reparación de equipos informáticos",
+  "9502" = "Reparación de equipos de comunicación",
+  "9503" = "Reparación de efectos personales y enseres domésticos, excepto computadores y equipo periférico",
+  "9601" = "Lavado y limpieza, incluida la limpieza en seco, de productos textiles y de piel",
+  "9602" = "Servicios de peluquería y otros tratamientos de belleza",
+  "9603" = "Pompas fúnebres y servicios conexos",
+  "9699" = "Otras actividades de servicios personales n.c.p.",
+  "9701" = "Actividades de los hogares como empleadores de personal doméstico",
+  "9801" = "Actividades de los hogares como productores de bienes o servicios para uso propio",
+  "9901" = "Actividades de organizaciones y órganos extraterritoriales"
+)
+
+construir_ficha_rama <- function(codigo) {
+  sub <- casen_2024_ocupados |>
+    filter(codigo_ciuo08 == codigo) |>
+    mutate(rama4 = if_else(rama4 %in% CODIGOS_NA_ES | rama4 <= 0, NA_real_, rama4))
+
+  peso_total <- sum(sub$expr, na.rm = TRUE)
+  con_rama <- sub |> filter(!is.na(rama4))
+  peso_con_rama <- sum(con_rama$expr, na.rm = TRUE)
+  n_con_rama <- nrow(con_rama)
+
+  if (n_con_rama == 0) {
+    return(list(sectores = list(), diversidad = NA, n_sectores_distintos = 0, n_muestra = n_con_rama))
+  }
+
+  dist <- con_rama |>
+    group_by(rama4) |>
+    summarise(peso = sum(expr, na.rm = TRUE), n_casos = n(), .groups = "drop") |>
+    mutate(pct = peso / sum(peso)) |>
+    arrange(desc(pct))
+
+  # Máxima granularidad: se incluyen TODOS los sectores observados, sin
+  # truncar a un top-N, aunque tengan pocos casos (se muestra n de casos
+  # por fila para que el usuario juzgue la fiabilidad de cada una).
+  p <- dist$pct
+  s <- length(p)
+  entropia <- if (s > 1) -sum(p * log(p)) / log(s) else 0
+
+  tabla <- dist |>
+    transmute(
+      sector = unname(etiquetas_rama[as.character(rama4)]),
+      pct = round(pct * 100, 1),
+      n_casos = n_casos
+    )
+
+  list(
+    sectores = as.data.frame(tabla),
+    diversidad = round(entropia, 3),
+    n_sectores_distintos = s,
+    n_muestra = n_con_rama
+  )
+}
+
+lista_ficha_rama <- setNames(lapply(codigos_ocup_ficha, construir_ficha_rama), codigos_ocup_ficha)
+rama_json <- toJSON(lista_ficha_rama, auto_unbox = TRUE, na = "null")
+
+# --- Demanda laboral (ENADEL 2025) por ocupación ---------------------------
+enadel_disponible <- file.exists("../data/processed/enadel_agregado_ocupacion.csv")
+if (enadel_disponible) {
+  enadel_agg <- read_csv("../data/processed/enadel_agregado_ocupacion.csv", show_col_types = FALSE) |>
+    mutate(codigo_ciuo = str_pad(as.character(codigo_ciuo), 4, pad = "0"))
+
+  lista_ficha_enadel <- setNames(
+    lapply(codigos_ocup_ficha, function(codigo) {
+      fila <- enadel_agg |> filter(codigo_ciuo == codigo)
+      if (nrow(fila) == 0) return(list(disponible = FALSE))
+      fila <- fila |> slice(1)
+      list(
+        disponible = TRUE,
+        n_empresas_muestra = fila$n_empresas_muestra,
+        peso_empresas = round(fila$peso_empresas, 0),
+        personas_contratadas = round(fila$personas_contratadas, 0),
+        pct_sin_contratar = round(fila$pct_sin_contratar, 4),
+        nivel_educ_glosa = fila$nivel_educ_glosa,
+        nivel_educ_pct = round(fila$nivel_educ_pct, 4),
+        anios_exp_prom = round(fila$anios_exp_prom, 1),
+        pct_requiere_cert = round(fila$pct_requiere_cert, 4),
+        razon_dificultad_glosa = fila$razon_dificultad_glosa,
+        n_empresas_proyectan = if (is.na(fila$n_empresas_proyectan)) 0 else fila$n_empresas_proyectan,
+        peso_empresas_proyectan = if (is.na(fila$peso_empresas_proyectan)) 0 else round(fila$peso_empresas_proyectan, 0)
+      )
+    }),
+    codigos_ocup_ficha
+  )
+  enadel_json <- toJSON(lista_ficha_enadel, auto_unbox = TRUE, na = "null")
+
+  # --- Cargos reportados por empresas (pregunta C3), como texto -------------
+  enadel_cargos_disponible <- file.exists("../data/processed/enadel_cargos_ocupacion.csv")
+  if (enadel_cargos_disponible) {
+    enadel_cargos <- read_csv("../data/processed/enadel_cargos_ocupacion.csv", show_col_types = FALSE) |>
+      mutate(codigo_ciuo = str_pad(as.character(codigo_ciuo), 4, pad = "0"))
+
+    lista_ficha_cargos <- setNames(
+      lapply(codigos_ocup_ficha, function(codigo) {
+        enadel_cargos |>
+          filter(codigo_ciuo == codigo) |>
+          arrange(desc(peso)) |>
+          slice_head(n = 8) |>
+          pull(cargo)
+      }),
+      codigos_ocup_ficha
+    )
+    enadel_cargos_json <- toJSON(lista_ficha_cargos, auto_unbox = TRUE)
+  } else {
+    enadel_cargos_json <- toJSON(list(), auto_unbox = TRUE)
+  }
+} else {
+  enadel_json <- toJSON(list(), auto_unbox = TRUE)
+  enadel_cargos_json <- toJSON(list(), auto_unbox = TRUE)
+}
+
+ficha_datos <- ocup |>
+  filter(!is.na(gran_grupo_nombre)) |>
+  left_join(descripciones_ciuo, by = "codigo_ciuo08") |>
+  mutate(
+    descripcion = coalesce(descripcion, ""),
+    tareas_json = coalesce(tareas_json, "[]"),
+    tareas = purrr::map(tareas_json, ~ tryCatch(fromJSON(.x), error = function(e) list()))
+  ) |>
+  transmute(
+    codigo_ciuo08, ocupacion_nombre, gran_grupo_nombre, subgrupo_principal_nombre,
+    subgrupo_nombre, personas_estimadas, ingreso_trabajo_prom, pct_mujeres, edad_prom,
+    tasa_formalidad, n_muestra, descripcion, tareas
+  ) |>
+  arrange(ocupacion_nombre)
+
+ficha_json <- toJSON(ficha_datos, dataframe = "rows", auto_unbox = TRUE)
+nombres_ficha <- toJSON(ficha_datos$ocupacion_nombre, auto_unbox = FALSE)
+nombre_ficha_default <- if ("Cocineros" %in% ficha_datos$ocupacion_nombre) "Cocineros" else ficha_datos$ocupacion_nombre[1]
+nombre_ficha_default_js <- toJSON(nombre_ficha_default, auto_unbox = TRUE)
+
+html_ficha <- paste0('
+<div id="ficha-buscador-contenedor" style="max-width: 640px; flex:0 0 auto;">
+<label for="buscar-ficha" style="font-family:\'Space Grotesk\',sans-serif; font-weight:600; display:block; margin-bottom:6px;">Escribe para buscar por nombre</label>
+<input id="buscar-ficha" type="text" list="lista-ficha" autocomplete="off" placeholder="ej. cocineros, enfermeros, conductores..." style="width:100%; padding:8px 12px; font-family:\'IBM Plex Sans\',sans-serif; font-size:0.95rem; border:1px solid #E4DFD2; border-radius:2px;" />
+<datalist id="lista-ficha"></datalist>
+</div>
+
+<script>
+(function() {
+  const fichaData = ', ficha_json, ';
+  const nombresFicha = ', nombres_ficha, ';
+  const nombreDefault = ', nombre_ficha_default_js, ';
+  const carrerasData = ', carreras_json, ';
+  const ramaData = ', rama_json, ';
+  const enadelData = ', enadel_json, ';
+  const enadelCargosData = ', enadel_cargos_json, ';
+
+  var datalist = document.getElementById("lista-ficha");
+  nombresFicha.forEach(function(n) {
+    var opt = document.createElement("option");
+    opt.value = n;
+    datalist.appendChild(opt);
+  });
+
+  function fmtMoney(v) { return v == null ? "s/d" : "$" + Math.round(v).toLocaleString("es-CL"); }
+  function fmtN(v) { return v == null ? "s/d" : Math.round(v).toLocaleString("es-CL"); }
+  function fmtPct(v) { return v == null ? "s/d" : (v * 100).toFixed(1) + "%"; }
+
+  function set(id, texto) {
+    var el = document.getElementById(id);
+    if (el) el.textContent = texto;
+  }
+
+  function setHtml(id, html) {
+    var el = document.getElementById(id);
+    if (el) el.innerHTML = html;
+  }
+
+  function escapeHtml(s) {
+    return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+  }
+
+  function dibujarGenero(pctMujeres) {
+    if (!window.Plotly || pctMujeres == null) return;
+    var pctHombres = 1 - pctMujeres;
+    Plotly.newPlot("plot-genero-ficha", [{
+      x: [pctHombres, pctMujeres], y: ["Hombres", "Mujeres"],
+      type: "bar", orientation: "h",
+      marker: {color: ["#2E5266", "#B5622A"]},
+      text: [fmtPct(pctHombres), fmtPct(pctMujeres)], textposition: "outside",
+      hoverinfo: "text"
+    }], {
+      margin: {l: 70, r: 30, t: 10, b: 30},
+      height: 140,
+      xaxis: {tickformat: ".0%", range: [0, 1]},
+      font: {family: "IBM Plex Sans, sans-serif", size: 11}
+    }, {displayModeBar: false, responsive: true});
+  }
+
+  function actualizarFicha(nombre) {
+    var d = fichaData.filter(function(x) { return x.ocupacion_nombre === nombre; })[0];
+    if (!d) return;
+    set("ficha-nombre", d.ocupacion_nombre);
+    set("ficha-codigo", "Código CIUO-08.CL: " + d.codigo_ciuo08);
+    set("ficha-jerarquia", d.gran_grupo_nombre + "  →  " + d.subgrupo_principal_nombre + "  →  " + d.subgrupo_nombre);
+    set("kpi-ocupados", fmtN(d.personas_estimadas));
+    set("kpi-ingreso", fmtMoney(d.ingreso_trabajo_prom));
+    set("kpi-edad", d.edad_prom == null ? "s/d" : Math.round(d.edad_prom) + " años");
+    set("kpi-formalidad", fmtPct(d.tasa_formalidad));
+    set("ficha-muestra", d.n_muestra < 30
+      ? "⚠ Muestra chica (" + d.n_muestra + " casos) — estos datos tienen alta varianza, interpretar con cautela."
+      : "Basado en " + d.n_muestra + " casos muestrales, CASEN 2024.");
+    dibujarGenero(d.pct_mujeres);
+
+    if (d.descripcion && d.descripcion.length > 0) {
+      setHtml("ficha-descripcion", "<p>" + escapeHtml(d.descripcion).replace(/\\n\\n+/g, "</p><p>") + "</p>");
+    } else {
+      setHtml("ficha-descripcion", "<p style=\\"color:#8A8578;\\">Descripción no disponible para este código.</p>");
+    }
+
+    var tareas = d.tareas || [];
+    if (tareas.length > 0) {
+      var lis = tareas.map(function(t) { return "<li>" + escapeHtml(t) + "</li>"; }).join("");
+      setHtml("ficha-tareas", "<ul style=\\"margin:0; padding-left:1.2rem;\\">" + lis + "</ul>");
+    } else {
+      setHtml("ficha-tareas", "");
+    }
+
+    actualizarCarreras(d.codigo_ciuo08);
+    actualizarRama(d.codigo_ciuo08);
+    actualizarEnadel(d.codigo_ciuo08);
+    actualizarCargosEnadel(d.codigo_ciuo08);
+  }
+
+  function fmtDiversidad(v) {
+    if (v === null || v === undefined || isNaN(v)) return "s/d";
+    return v.toFixed(2);
+  }
+
+  function actualizarCarreras(codigo) {
+    var info = carrerasData[codigo];
+    var notaEl = document.getElementById("ficha-carreras-nota");
+    var resumenEl = document.getElementById("ficha-carreras-resumen");
+
+    if (!info || !info.requiere_es) {
+      if (notaEl) notaEl.textContent = "";
+      if (resumenEl) resumenEl.textContent = "";
+      setHtml("ficha-carreras-tabla", "<p style=\'color:#8A8578; font-size:0.88rem;\'>No se requieren estudios superiores para esta ocupación (menos del 5% de quienes la ejercen reporta una carrera de educación superior en CASEN 2024).</p>");
+      return;
+    }
+
+    var filas = info.top_carreras || [];
+    var htmlFilas = filas.map(function(f) {
+      return "<tr><td style=\'padding:5px 10px; border-bottom:1px solid #E4DFD2; font-size:0.87rem;\'>" +
+        escapeHtml(f.carrera) +
+        "</td><td style=\'padding:5px 10px; border-bottom:1px solid #E4DFD2; font-size:0.87rem; color:#8A8578;\'>" +
+        escapeHtml(f.tipo) +
+        "</td><td style=\'padding:5px 10px; border-bottom:1px solid #E4DFD2; text-align:right; font-family:monospace; font-size:0.87rem;\'>" +
+        f.pct.toFixed(1) + "%</td></tr>";
+    }).join("");
+
+    var tabla = "<table style=\'width:100%; border-collapse:collapse;\'><thead><tr>" +
+      "<th style=\'text-align:left; padding:5px 10px; border-bottom:2px solid #1C2321; font-size:0.82rem;\'>Carrera (CINE-F, subárea)</th>" +
+      "<th style=\'text-align:left; padding:5px 10px; border-bottom:2px solid #1C2321; font-size:0.82rem;\'>Tipo de institución</th>" +
+      "<th style=\'text-align:right; padding:5px 10px; border-bottom:2px solid #1C2321; font-size:0.82rem;\'>%</th>" +
+      "</tr></thead><tbody>" + htmlFilas + "</tbody></table>";
+    setHtml("ficha-carreras-tabla", tabla);
+
+    if (resumenEl) {
+      var partes = [];
+      if (info.pct_universitaria > 0) partes.push("Universitaria " + info.pct_universitaria.toFixed(1) + "%");
+      if (info.pct_tecnico > 0) partes.push("Técnico Profesional " + info.pct_tecnico.toFixed(1) + "%");
+      if (info.pct_ffaa > 0) partes.push("FF.AA. y del Orden " + info.pct_ffaa.toFixed(1) + "%");
+      resumenEl.textContent = partes.join("  ·  ");
+    }
+
+    if (notaEl) {
+      notaEl.textContent = fmtPct(info.pct_con_es) + " de quienes trabajan en esta ocupación tiene estudios superiores registrados (n=" +
+        info.n_muestra_carrera + ", CASEN 2024) · Índice de diversidad (carrera × tipo de institución): " + fmtDiversidad(info.diversidad) +
+        " (0 = una sola combinación concentra a todos, 1 = máxima diversidad; " + info.n_carreras_distintas + " combinaciones distintas observadas)";
+    }
+  }
+
+  function actualizarRama(codigo) {
+    var info = ramaData[codigo];
+    var notaEl = document.getElementById("rama-nota");
+
+    if (!info || !info.sectores || info.sectores.length === 0) {
+      if (notaEl) notaEl.textContent = "";
+      setHtml("rama-tabla", "<p style=\'color:#8A8578; font-size:0.88rem;\'>Sin datos de rama de actividad económica para esta ocupación.</p>");
+      return;
+    }
+
+    var totalSectores = info.sectores.length;
+    var sectores = info.sectores.slice(0, 10);
+    var htmlFilas = sectores.map(function(s) {
+      var chico = s.n_casos < 5 ? " ⚠" : "";
+      return "<tr><td style=\'padding:5px 10px; border-bottom:1px solid #E4DFD2; font-size:0.85rem;\'>" + escapeHtml(s.sector) + chico + "</td>" +
+        "<td style=\'padding:5px 10px; border-bottom:1px solid #E4DFD2; text-align:right; font-family:monospace; font-size:0.85rem;\'>" + s.n_casos + "</td>" +
+        "<td style=\'padding:5px 10px; border-bottom:1px solid #E4DFD2; text-align:right; font-family:monospace; font-size:0.85rem;\'>" + s.pct.toFixed(1) + "%</td></tr>";
+    }).join("");
+
+    var tabla = "<table style=\'width:100%; border-collapse:collapse;\'><thead><tr>" +
+      "<th style=\'text-align:left; padding:5px 10px; border-bottom:2px solid #1C2321; font-size:0.78rem;\'>Sector económico (CIIU4.CL)</th>" +
+      "<th style=\'text-align:right; padding:5px 10px; border-bottom:2px solid #1C2321; font-size:0.78rem;\'>n</th>" +
+      "<th style=\'text-align:right; padding:5px 10px; border-bottom:2px solid #1C2321; font-size:0.78rem;\'>%</th>" +
+      "</tr></thead><tbody>" + htmlFilas + "</tbody></table>";
+    setHtml("rama-tabla", tabla);
+
+    if (notaEl) {
+      var chicos = sectores.filter(function(s) { return s.n_casos < 5; }).length;
+      var textoTop = totalSectores > 10 ? ("Top 10 de " + totalSectores + " sectores observados") : (totalSectores + " sector(es) observados");
+      notaEl.textContent = textoTop + " · Basado en " + info.n_muestra + " casos muestrales, CASEN 2024 · Índice de diversidad de sectores: " + fmtDiversidad(info.diversidad) +
+        " (0 = un solo sector concentra a todos, 1 = máxima diversidad; " + info.n_sectores_distintos + " sectores distintos en total)" +
+        (chicos > 0 ? " · ⚠ " + chicos + " sector(es) con menos de 5 casos (interpretar con cautela)" : "");
+    }
+  }
+
+  function actualizarEnadel(codigo) {
+    var info = enadelData[codigo];
+    var notaEl = document.getElementById("enadel-nota");
+    var tablaEl = document.getElementById("enadel-tabla");
+    if (!notaEl || !tablaEl) return;
+
+    if (!info || !info.disponible) {
+      notaEl.textContent = "";
+      setHtml("enadel-tabla", "<p style=\'color:#8A8578; font-size:0.88rem;\'>Sin datos de demanda laboral (ENADEL 2025) para esta ocupación — no fue reportada entre los principales cargos con vacante de la muestra de empresas encuestadas.</p>");
+      return;
+    }
+
+    var chico = info.n_empresas_muestra < 5;
+    notaEl.textContent = "Basado en " + info.n_empresas_muestra + " empresas de la muestra, ENADEL 2025" +
+      (chico ? " · ⚠ muestra chica, interpretar con cautela" : "");
+
+    var filas = [
+      ["Empresas que buscan esta ocupación (jun. 2024 - may. 2025, estimado país)", fmtN(info.peso_empresas)],
+      ["Personas contratadas (jun. 2024 - may. 2025, estimado país)", fmtN(info.personas_contratadas)],
+      ["Vacantes sin lograr contratar (jun. 2024 - may. 2025)", fmtPct(info.pct_sin_contratar)],
+      ["Razón principal de dificultad", info.razon_dificultad_glosa == null ? "s/d (sin casos de dificultad reportados)" : escapeHtml(info.razon_dificultad_glosa)],
+      ["Nivel educacional más exigido", info.nivel_educ_glosa == null ? "s/d" : escapeHtml(info.nivel_educ_glosa) + " (" + fmtPct(info.nivel_educ_pct) + ")"],
+      ["Años de experiencia promedio exigidos", info.anios_exp_prom == null ? "s/d" : info.anios_exp_prom.toFixed(1)],
+      ["Exige licencia o certificación", fmtPct(info.pct_requiere_cert)],
+      ["Empresas que proyectan vacante durante 2025", info.n_empresas_proyectan > 0 ? fmtN(info.peso_empresas_proyectan) : "s/d"]
+    ];
+
+    var htmlFilas = filas.map(function(f) {
+      return "<tr><td style=\'padding:5px 10px; border-bottom:1px solid #E4DFD2; font-size:0.85rem;\'>" + f[0] + "</td>" +
+        "<td style=\'padding:5px 10px; border-bottom:1px solid #E4DFD2; text-align:right; font-family:monospace; font-size:0.85rem; font-weight:600;\'>" + f[1] + "</td></tr>";
+    }).join("");
+
+    setHtml("enadel-tabla", "<table style=\'width:100%; border-collapse:collapse;\'><tbody>" + htmlFilas + "</tbody></table>");
+  }
+
+  function actualizarCargosEnadel(codigo) {
+    var el = document.getElementById("enadel-cargos-texto");
+    if (!el) return;
+    var cargos = enadelCargosData[codigo];
+    if (!cargos || cargos.length === 0) {
+      el.innerHTML = "<span style=\'color:#8A8578;\'>Sin cargos reportados en ENADEL 2025 para esta ocupación.</span>";
+      return;
+    }
+    el.textContent = cargos.join(", ") + ".";
+  }
+
+  function forzarLayoutKpis() {
+    var cont = document.getElementById("ficha-kpis-contenedor");
+    if (!cont) return;
+    cont.style.setProperty("display", "flex", "important");
+    cont.style.setProperty("flex-direction", "row", "important");
+    cont.style.setProperty("flex-wrap", "wrap", "important");
+    cont.style.setProperty("width", "100%", "important");
+    ["ficha-kpis-izq", "ficha-kpis-der"].forEach(function(id) {
+      var el = document.getElementById(id);
+      if (el) {
+        el.style.setProperty("display", "flex", "important");
+        el.style.setProperty("flex-direction", "row", "important");
+        el.style.setProperty("flex", "1 1 340px", "important");
+      }
+    });
+    var buscadorCont = document.getElementById("ficha-buscador-contenedor");
+    if (buscadorCont) {
+      buscadorCont.style.setProperty("flex", "0 0 auto", "important");
+      buscadorCont.style.setProperty("height", "auto", "important");
+    }
+  }
+
+  function iniciar() {
+    var input = document.getElementById("buscar-ficha");
+    if (!input) { setTimeout(iniciar, 100); return; }
+    input.addEventListener("input", function() {
+      if (nombresFicha.indexOf(this.value) !== -1) {
+        actualizarFicha(this.value);
+      }
+    });
+    input.value = nombreDefault;
+    actualizarFicha(nombreDefault);
+    forzarLayoutKpis();
+    var intentos = 0;
+    var intervalId = setInterval(function() {
+      forzarLayoutKpis();
+      intentos++;
+      if (intentos > 15) clearInterval(intervalId);
+    }, 150);
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", iniciar);
+  } else {
+    iniciar();
+  }
+})();
+</script>
+')
+cat(html_ficha)
+```
+
+## Fila ficha {height="92%"}
+
+```{r}
+#| title: "Ficha de ocupación"
+#| output: asis
+cat('
+<div style="display:flex; flex-direction:column; gap:1.2rem; height:100%; overflow-y:auto;">
+<div>
+<div id="ficha-nombre" style="font-family:\'Space Grotesk\',sans-serif; font-weight:700; font-size:1.4rem; color:#1C2321;"></div>
+<div id="ficha-codigo" style="font-family:\'IBM Plex Mono\',monospace; font-size:0.85rem; color:#8A8578; margin-top:4px;"></div>
+</div>
+<div>
+<div style="font-family:\'Space Grotesk\',sans-serif; font-weight:600; font-size:0.9rem; color:#1C2321; margin-bottom:6px; border-bottom:2px solid #1C2321; padding-bottom:4px;">Descripción oficial (CIUO-08.CL, INE)</div>
+<div id="ficha-descripcion" style="font-family:\'IBM Plex Sans\',sans-serif; font-size:0.9rem; color:#1C2321; line-height:1.55;"></div>
+</div>
+<div>
+<div style="font-family:\'Space Grotesk\',sans-serif; font-weight:600; font-size:0.9rem; color:#1C2321; margin-bottom:6px; border-bottom:2px solid #1C2321; padding-bottom:4px;">Entre sus tareas se incluyen</div>
+<div id="ficha-tareas" style="font-family:\'IBM Plex Sans\',sans-serif; font-size:0.87rem; color:#1C2321; line-height:1.5;"></div>
+</div>
+<div>
+<div style="font-family:\'Space Grotesk\',sans-serif; font-weight:600; font-size:0.9rem; color:#1C2321; margin-bottom:6px; border-bottom:2px solid #1C2321; padding-bottom:4px;">Cargos reportados por empresas en ENADEL 2025 y que fueron asociados a la ocupación</div>
+<div id="enadel-cargos-texto" style="font-family:\'IBM Plex Sans\',sans-serif; font-size:0.87rem; color:#1C2321; line-height:1.5;"></div>
+</div>
+<div id="ficha-jerarquia" style="font-family:\'IBM Plex Sans\',sans-serif; font-size:0.82rem; color:#8A8578;"></div>
+<div id="ficha-kpis-contenedor" style="display:flex; gap:2rem; flex-wrap:wrap;">
+<div id="ficha-kpis-izq" style="flex:1; min-width:340px; display:flex; gap:1rem;">
+<div style="flex:1; min-width:150px; border:1px solid #E4DFD2; border-top:3px solid #1C2321; padding:14px;">
+<div style="font-family:\'IBM Plex Sans\',sans-serif; font-size:0.72rem; text-transform:uppercase; letter-spacing:0.6px; color:#8A8578;">Ocupados (estimado)</div>
+<div id="kpi-ocupados" style="font-family:\'IBM Plex Mono\',monospace; font-weight:600; font-size:1.6rem; color:#1C2321; margin-top:4px;"></div>
+</div>
+<div style="flex:1; min-width:150px; border:1px solid #E4DFD2; border-top:3px solid #B5622A; padding:14px;">
+<div style="font-family:\'IBM Plex Sans\',sans-serif; font-size:0.72rem; text-transform:uppercase; letter-spacing:0.6px; color:#8A8578;">Ingreso del trabajo prom.</div>
+<div id="kpi-ingreso" style="font-family:\'IBM Plex Mono\',monospace; font-weight:600; font-size:1.6rem; color:#1C2321; margin-top:4px;"></div>
+</div>
+</div>
+<div id="ficha-kpis-der" style="flex:1; min-width:340px; display:flex; gap:1rem;">
+<div style="flex:1; min-width:150px; border:1px solid #E4DFD2; border-top:3px solid #6B8F71; padding:14px;">
+<div style="font-family:\'IBM Plex Sans\',sans-serif; font-size:0.72rem; text-transform:uppercase; letter-spacing:0.6px; color:#8A8578;">Tasa de formalidad</div>
+<div id="kpi-formalidad" style="font-family:\'IBM Plex Mono\',monospace; font-weight:600; font-size:1.6rem; color:#1C2321; margin-top:4px;"></div>
+</div>
+<div style="flex:1; min-width:150px; border:1px solid #E4DFD2; border-top:3px solid #8A8578; padding:14px;">
+<div style="font-family:\'IBM Plex Sans\',sans-serif; font-size:0.72rem; text-transform:uppercase; letter-spacing:0.6px; color:#8A8578;">Edad promedio</div>
+<div id="kpi-edad" style="font-family:\'IBM Plex Mono\',monospace; font-weight:600; font-size:1.6rem; color:#1C2321; margin-top:4px;"></div>
+</div>
+</div>
+</div>
+<div>
+<div style="font-family:\'Space Grotesk\',sans-serif; font-weight:600; font-size:0.9rem; color:#1C2321; margin-bottom:6px;">Composición por sexo</div>
+<div id="plot-genero-ficha"></div>
+</div>
+<div id="ficha-muestra" style="font-family:\'IBM Plex Mono\',monospace; font-size:0.8rem; color:#8A8578;"></div>
+<div>
+<div style="font-family:\'Space Grotesk\',sans-serif; font-weight:600; font-size:0.9rem; color:#1C2321; margin-bottom:6px; border-bottom:2px solid #1C2321; padding-bottom:4px;">Carreras de quienes trabajan en esta ocupación</div>
+<div id="ficha-carreras-nota" style="font-family:monospace; font-weight:700; font-size:0.95rem; color:#1C2321; margin-bottom:4px;"></div>
+<div id="ficha-carreras-resumen" style="font-family:monospace; font-size:0.82rem; color:#8A8578; margin-bottom:8px;"></div>
+<div id="ficha-carreras-tabla"></div>
+</div>
+<div>
+<div style="font-family:\'Space Grotesk\',sans-serif; font-weight:600; font-size:0.9rem; color:#1C2321; margin-bottom:6px; border-bottom:2px solid #1C2321; padding-bottom:4px;">Actividad económica del lugar donde trabajan (CAENES) quienes ejercen esta ocupación</div>
+<div id="rama-nota" style="font-family:monospace; font-weight:700; font-size:0.95rem; color:#1C2321; margin-bottom:8px;"></div>
+<div id="rama-tabla"></div>
+</div>
+<div>
+<div style="font-family:\'Space Grotesk\',sans-serif; font-weight:600; font-size:0.9rem; color:#1C2321; margin-bottom:6px; border-bottom:2px solid #1C2321; padding-bottom:4px;">Demanda laboral y dificultad de contratación (ENADEL 2025)</div>
+<div id="enadel-nota" style="font-family:monospace; font-weight:700; font-size:0.95rem; color:#1C2321; margin-bottom:8px;"></div>
+<div id="enadel-tabla"></div>
+</div>
+</div>
+')
+```
+
+# Trayectoria de ocupación {scrolling="true"}
+
+## Fila buscador {height="12%"}
+
+```{r}
+#| title: "Busca una ocupación"
+#| output: asis
+library(jsonlite)
+
+# Criterio de inclusión en el buscador: se exige muestra suficiente (>=20)
+# en los años con CIUO-08.CL NATIVO (2020, 2022, 2024) -- estos son
+# directamente comparables entre sí, sin la incertidumbre del crosswalk
+# CIUO-88 -> CIUO-08.CL. 2015 y 2017 se incluyen si están disponibles y
+# cumplen el mismo umbral de muestra, pero su ausencia NO excluye la
+# ocupación del buscador.
+#
+# Además: si para una ocupación el crosswalk CIUO-88->CIUO-08.CL en 2015 o
+# 2017 no tuvo un calce perfecto (pct_crosswalk_ambiguo > 0 -- el código
+# CIUO-88 original tenía más de un candidato posible en CIUO-08.CL, ver
+# ficha metodológica), ese punto específico se omite del gráfico. La
+# ocupación sigue apareciendo en el buscador (con los años que sí tienen
+# calce perfecto o son nativos), solo se oculta el punto dudoso.
+anios_nativos_ciuo08 <- panel_ocup |>
+  filter(!es_crosswalk | is.na(es_crosswalk)) |>
+  pull(anio) |>
+  unique() |>
+  sort()
+
+panel_ocup_estable <- panel_ocup |>
+  group_by(codigo_ciuo08) |>
+  filter(all(anios_nativos_ciuo08 %in% anio[n_muestra >= 20])) |>
+  ungroup() |>
+  filter(anio %in% anios_nativos_ciuo08 | n_muestra >= 20) |>
+  filter(anio %in% anios_nativos_ciuo08 | coalesce(pct_crosswalk_ambiguo, 0) == 0) |>
+  arrange(codigo_ciuo08, anio)
+
+datos_js <- panel_ocup_estable |>
+  select(codigo_ciuo08, ocupacion_nombre, gran_grupo_nombre, anio,
+         personas_estimadas, ingreso_trabajo_prom, tasa_formalidad) |>
+  toJSON(dataframe = "rows", auto_unbox = TRUE)
+
+nombres_unicos <- panel_ocup_estable |>
+  distinct(ocupacion_nombre) |>
+  arrange(ocupacion_nombre) |>
+  pull(ocupacion_nombre)
+
+nombre_default <- if ("Conductores de automóviles, taxis y camionetas" %in% nombres_unicos) "Conductores de automóviles, taxis y camionetas" else nombres_unicos[1]
+
+nombres_js <- toJSON(nombres_unicos, auto_unbox = FALSE)
+nombre_default_js <- toJSON(nombre_default, auto_unbox = TRUE)
+
+html_bloque <- paste0('
+<div id="trayectoria-buscador-contenedor" style="max-width: 640px; flex:0 0 auto;">
+<label for="buscar-ocupacion" style="font-family:\'Space Grotesk\',sans-serif; font-weight:600; display:block; margin-bottom:6px;">Escribe para buscar por nombre</label>
+<input id="buscar-ocupacion" type="text" list="lista-ocupaciones" autocomplete="off" placeholder="ej. cocineros, desarrolladores, conductores..." style="width:100%; padding:8px 12px; font-family:\'IBM Plex Sans\',sans-serif; font-size:0.95rem; border:1px solid #E4DFD2; border-radius:2px;" />
+<datalist id="lista-ocupaciones"></datalist>
+<div id="msg-ocupacion" style="margin-top:6px; font-family:\'IBM Plex Mono\',monospace; font-size:0.8rem; color:#8A8578;"></div>
+</div>
+
+<script>
+(function() {
+  const panelData = ', datos_js, ';
+  const nombresValidos = ', nombres_js, ';
+  const nombreDefault = ', nombre_default_js, ';
+
+  var datalist = document.getElementById("lista-ocupaciones");
+  nombresValidos.forEach(function(n) {
+    var opt = document.createElement("option");
+    opt.value = n;
+    datalist.appendChild(opt);
+  });
+
+  var todosLosAnios = Array.from(new Set(panelData.map(function(d) { return d.anio; }))).sort(function(a, b) { return a - b; });
+
+  var layoutBase = {
+    margin: {l: 55, r: 15, t: 30, b: 30},
+    height: 300,
+    autosize: true,
+    xaxis: {tickmode: "array", tickvals: todosLosAnios, title: null},
+    font: {family: "IBM Plex Sans, sans-serif", size: 11},
+    showlegend: false
+  };
+
+  function fmtMoney(v) { return "$" + Math.round(v).toLocaleString("es-CL"); }
+  function fmtN(v) { return Math.round(v).toLocaleString("es-CL"); }
+  function fmtPct(v) { return (v * 100).toFixed(1) + "%"; }
+
+  function dibujarGraficos(filas) {
+    var anios = filas.map(function(d){ return d.anio; });
+    var ingreso = filas.map(function(d){ return d.ingreso_trabajo_prom; });
+    var formalidad = filas.map(function(d){ return d.tasa_formalidad; });
+    var tamano = filas.map(function(d){ return d.personas_estimadas; });
+
+    function rangoConMargen(valores, opts) {
+      opts = opts || {};
+      var min = Math.min.apply(null, valores);
+      var max = Math.max.apply(null, valores);
+      var span = max - min;
+      if (span === 0) span = max === 0 ? 1 : max * 0.2;
+      var pad = span * 0.35;
+      var lo = min - pad * 0.3;
+      var hi = max + pad;
+      if (opts.pisoCero && lo < 0) lo = 0;
+      if (opts.techo !== undefined && hi > opts.techo) hi = opts.techo;
+      return [lo, hi];
+    }
+
+    if (window.Plotly) {
+      Plotly.newPlot("plot-ingreso", [{
+        x: anios, y: ingreso, type: "scatter", mode: "lines+markers+text",
+        text: ingreso.map(fmtMoney), textposition: "top center",
+        cliponaxis: false,
+        line: {color: "#B5622A", width: 3}, marker: {color: "#B5622A", size: 9}
+      }], Object.assign({title: "Ingreso promedio"}, layoutBase,
+          {yaxis: {title: "$", tickformat: ",.0f", range: rangoConMargen(ingreso, {pisoCero: true})}}),
+          {displayModeBar: false, responsive: true});
+
+      Plotly.newPlot("plot-formal", [{
+        x: anios, y: formalidad, type: "scatter", mode: "lines+markers+text",
+        text: formalidad.map(fmtPct), textposition: "top center",
+        cliponaxis: false,
+        line: {color: "#2E5266", width: 3}, marker: {color: "#2E5266", size: 9}
+      }], Object.assign({title: "Formalidad"}, layoutBase,
+          {yaxis: {title: "%", tickformat: ".0%", range: rangoConMargen(formalidad, {pisoCero: true, techo: 1})}}),
+          {displayModeBar: false, responsive: true});
+
+      Plotly.newPlot("plot-tamano", [{
+        x: anios, y: tamano, type: "scatter", mode: "lines+markers+text",
+        text: tamano.map(fmtN), textposition: "top center",
+        cliponaxis: false,
+        line: {color: "#6B8F71", width: 3}, marker: {color: "#6B8F71", size: 9}
+      }], Object.assign({title: "Ocupados"}, layoutBase,
+          {yaxis: {title: "personas", tickformat: ",.0f", range: rangoConMargen(tamano, {pisoCero: true})}}),
+          {displayModeBar: false, responsive: true});
+    }
+  }
+
+  function actualizarTabla(filas) {
+    var tbody = document.querySelector("#tabla-seleccion tbody");
+    if (!tbody) return;
+    tbody.innerHTML = "";
+    filas.forEach(function(d) {
+      var tr = document.createElement("tr");
+      tr.innerHTML = "<td>" + d.anio + "</td><td>" + d.ocupacion_nombre + "</td><td>" + d.gran_grupo_nombre + "</td>" +
+        "<td>" + fmtN(d.personas_estimadas) + "</td>" +
+        "<td>" + fmtMoney(d.ingreso_trabajo_prom) + "</td>" +
+        "<td>" + fmtPct(d.tasa_formalidad) + "</td>";
+      tbody.appendChild(tr);
+    });
+  }
+
+  function seleccionarOcupacion(nombre) {
+    var filas = panelData.filter(function(d){ return d.ocupacion_nombre === nombre; })
+                          .sort(function(a, b){ return a.anio - b.anio; });
+    if (filas.length === 0) return;
+    dibujarGraficos(filas);
+    actualizarTabla(filas);
+    var msg = document.getElementById("msg-ocupacion");
+    if (msg) msg.textContent = "Mostrando: " + nombre + " (código " + filas[0].codigo_ciuo08 + ")";
+  }
+
+  function forzarLayoutHorizontal() {
+    var cont = document.getElementById("contenedor-graficos");
+    if (!cont) return;
+    cont.style.setProperty("display", "flex", "important");
+    cont.style.setProperty("flex-direction", "row", "important");
+    cont.style.setProperty("flex-wrap", "nowrap", "important");
+    cont.style.setProperty("width", "100%", "important");
+    cont.style.setProperty("height", "100%", "important");
+    var buscadorCont = document.getElementById("trayectoria-buscador-contenedor");
+    if (buscadorCont) {
+      buscadorCont.style.setProperty("flex", "0 0 auto", "important");
+      buscadorCont.style.setProperty("height", "auto", "important");
+    }
+    ["plot-ingreso", "plot-formal", "plot-tamano"].forEach(function(id) {
+      var el = document.getElementById(id);
+      if (el) {
+        el.style.setProperty("flex", "1 1 0", "important");
+        el.style.setProperty("min-width", "0", "important");
+        el.style.setProperty("width", "0", "important");
+        el.style.setProperty("height", "100%", "important");
+      }
+    });
+    if (window.Plotly) {
+      ["plot-ingreso", "plot-formal", "plot-tamano"].forEach(function(id) {
+        var el = document.getElementById(id);
+        if (el && el.getElementsByClassName("js-plotly-plot").length) {
+          Plotly.Plots.resize(id);
+        }
+      });
+    }
+  }
+
+  function iniciar() {
+    var input = document.getElementById("buscar-ocupacion");
+    if (!input) { setTimeout(iniciar, 100); return; }
+    input.addEventListener("input", function() {
+      if (nombresValidos.indexOf(this.value) !== -1) {
+        seleccionarOcupacion(this.value);
+      }
+    });
+    input.value = nombreDefault;
+    seleccionarOcupacion(nombreDefault);
+
+    // El sistema de layout de bslib puede reescribir los estilos en línea de
+    // estos contenedores después de cargar la página; reforzamos el layout
+    // horizontal repetidamente durante los primeros segundos y luego seguimos
+    // vigilando cambios con un MutationObserver.
+    forzarLayoutHorizontal();
+    var intentos = 0;
+    var intervalId = setInterval(function() {
+      forzarLayoutHorizontal();
+      intentos++;
+      if (intentos > 15) clearInterval(intervalId);
+    }, 150);
+
+    var cont = document.getElementById("contenedor-graficos");
+    if (cont && window.MutationObserver) {
+      var observer = new MutationObserver(function() { forzarLayoutHorizontal(); });
+      observer.observe(cont, {attributes: true, attributeFilter: ["style", "class"], subtree: true});
+    }
+    window.addEventListener("resize", forzarLayoutHorizontal);
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", iniciar);
+  } else {
+    iniciar();
+  }
+})();
+</script>
+')
+cat(html_bloque)
+```
+
+## Fila gráficos {height="53%" fill="false"}
+
+```{r}
+#| title: "Evolución en el tiempo"
+#| output: asis
+cat('
+<div id="contenedor-graficos" style="display:flex; gap:1rem; flex-wrap:nowrap; height:100%; width:100%;">
+<div style="flex:1 1 0; min-width:0; height:100%;" id="plot-ingreso"></div>
+<div style="flex:1 1 0; min-width:0; height:100%;" id="plot-formal"></div>
+<div style="flex:1 1 0; min-width:0; height:100%;" id="plot-tamano"></div>
+</div>
+')
+```
+
+## Fila tabla {height="35%"}
+
+```{r}
+#| title: "Datos de la ocupación seleccionada"
+#| output: asis
+cat('
+<table id="tabla-seleccion" style="width:100%; border-collapse:collapse; font-family:\'IBM Plex Sans\',sans-serif; font-size:0.88rem;">
+<thead>
+<tr style="border-bottom:2px solid #1C2321; text-align:left;">
+<th style="padding:6px 10px;">Año</th>
+<th style="padding:6px 10px;">Ocupación</th>
+<th style="padding:6px 10px;">Gran grupo</th>
+<th style="padding:6px 10px;">Ocupados (estimado)</th>
+<th style="padding:6px 10px;">Ingreso trabajo prom.</th>
+<th style="padding:6px 10px;">Formalidad</th>
+</tr>
+</thead>
+<tbody></tbody>
+</table>
+')
+```
+
+::: {.card title="Nota"}
+Solo se incluyen ocupaciones con al menos 20 casos muestrales en cada uno de los años con **CIUO-08.CL nativo** (2020, 2022 y 2024) — estos años son directamente comparables entre sí. 2017 se muestra como punto adicional cuando la ocupación tiene datos suficientes ese año, pero su ausencia **no** excluye la ocupación del buscador (a diferencia de una versión anterior de este dashboard, que exigía los 4 años y dejaba fuera ocupaciones como "Guardias de seguridad", sin dato en 2017). Prueba con "Cocineros", "Desarrolladores de software" o "Conductores de automóviles, taxis y camionetas" para ver el efecto de la pandemia en 2020.
+
+**Sobre 2015 y 2017:** esos años, CASEN todavía usaba el clasificador CIUO-88, no CIUO-08.CL. Sus datos se reclasificaron mediante una tabla de correspondencia oficial de la OIT, redistribuyendo proporcionalmente según la distribución observada en años con CIUO-08.CL nativo cuando un código CIUO-88 tenía más de un candidato posible (ver ficha metodológica). Cuando ni siquiera con esa redistribución hay un **calce perfecto** (es decir, el código CIUO-88 de origen tenía más de un candidato válido en CIUO-08.CL), el punto de 2015 o 2017 se **omite** del gráfico para esa ocupación — se muestra solo desde 2020 en adelante, que es CIUO-08.CL nativo y no tiene esta incertidumbre.
+:::
+
+# Ranking dinámico
+
+## Fila selectores {height="10%"}
+
+```{r}
+#| title: "Elige los años a comparar"
+#| output: asis
+ranking_json <- panel_ocup |>
+  select(codigo_ciuo08, ocupacion_nombre, gran_grupo_nombre, anio, personas_estimadas, n_muestra, pct_crosswalk_ambiguo) |>
+  toJSON(dataframe = "rows", auto_unbox = TRUE, na = "null")
+
+anios_disponibles_js <- toJSON(sort(unique(panel_ocup$anio)), auto_unbox = FALSE)
+
+html_ranking_selectores <- paste0('
+<div style="display:flex; gap:2rem; align-items:flex-end; flex-wrap:wrap;">
+<div>
+<label for="anio-inicial" style="font-family:\'Space Grotesk\',sans-serif; font-weight:600; display:block; margin-bottom:6px;">Año inicial</label>
+<select id="anio-inicial" style="padding:8px 12px; font-family:\'IBM Plex Sans\',sans-serif; font-size:0.95rem; border:1px solid #E4DFD2; border-radius:2px;"></select>
+</div>
+<div>
+<label for="anio-final" style="font-family:\'Space Grotesk\',sans-serif; font-weight:600; display:block; margin-bottom:6px;">Año final</label>
+<select id="anio-final" style="padding:8px 12px; font-family:\'IBM Plex Sans\',sans-serif; font-size:0.95rem; border:1px solid #E4DFD2; border-radius:2px;"></select>
+</div>
+<div id="msg-ranking" style="font-family:\'IBM Plex Mono\',monospace; font-size:0.8rem; color:#8A8578; padding-bottom:8px;"></div>
+</div>
+
+<script>
+(function() {
+  const rankingData = ', ranking_json, ';
+  const aniosDisponibles = ', anios_disponibles_js, ';
+  const ANIO_INICIAL_DEFAULT = 2017;
+  const ANIO_FINAL_DEFAULT = 2024;
+  const MIN_MUESTRA = 30;
+  const ANIOS_CROSSWALK = [2015, 2017];
+  const TOP_N = 15;
+  const colorCrece = "#6B8F71";
+  const colorCae = "#B5622A";
+
+  function fmtN(v) { return Math.round(v).toLocaleString("es-CL"); }
+  function fmtPct(v) { return (v * 100).toFixed(1) + "%"; }
+  function truncar(s, n) { return s.length > n ? s.slice(0, n - 1) + "\\u2026" : s; }
+
+  function calcularCambio(anioA, anioB) {
+    var filasA = {}, filasB = {};
+    rankingData.forEach(function(d) {
+      if (d.anio === anioA) filasA[d.codigo_ciuo08] = d;
+      if (d.anio === anioB) filasB[d.codigo_ciuo08] = d;
+    });
+    var resultado = [];
+    Object.keys(filasA).forEach(function(codigo) {
+      var a = filasA[codigo], b = filasB[codigo];
+      if (!b) return;
+      if (a.n_muestra < MIN_MUESTRA || b.n_muestra < MIN_MUESTRA) return;
+      if (!a.personas_estimadas || a.personas_estimadas === 0) return;
+      // Si el año A o B es un año con crosswalk CIUO-88 (2015/2017) y esta
+      // ocupación no tuvo un calce perfecto ese año, se excluye de la
+      // comparación (no hay forma confiable de saber si el cambio es real
+      // o un artefacto de la reclasificación).
+      if (ANIOS_CROSSWALK.indexOf(anioA) !== -1 && (a.pct_crosswalk_ambiguo || 0) > 0) return;
+      if (ANIOS_CROSSWALK.indexOf(anioB) !== -1 && (b.pct_crosswalk_ambiguo || 0) > 0) return;
+      resultado.push({
+        codigo_ciuo08: codigo,
+        ocupacion_nombre: a.ocupacion_nombre,
+        personas_A: a.personas_estimadas,
+        personas_B: b.personas_estimadas,
+        variacion_pct: (b.personas_estimadas - a.personas_estimadas) / a.personas_estimadas
+      });
+    });
+    return resultado;
+  }
+
+  function dibujarRanking(anioA, anioB) {
+    var cambio = calcularCambio(anioA, anioB);
+    if (cambio.length === 0) {
+      var msg = document.getElementById("msg-ranking");
+      if (msg) msg.textContent = "No hay suficientes ocupaciones comparables entre " + anioA + " y " + anioB + ".";
+      return;
+    }
+    cambio.sort(function(x, y) { return y.variacion_pct - x.variacion_pct; });
+    var crece = cambio.slice(0, TOP_N);
+    var cae = cambio.slice(-TOP_N).reverse();
+
+    function trazar(id, filas, color, tituloEje) {
+      filas = filas.slice().sort(function(a, b) { return a.variacion_pct - b.variacion_pct; });
+      var nombres = filas.map(function(d) { return truncar(d.ocupacion_nombre, 34) + " [" + d.codigo_ciuo08 + "]"; });
+      var valores = filas.map(function(d) { return d.variacion_pct; });
+      var textos = filas.map(function(d) {
+        return d.ocupacion_nombre + "<br>" + anioA + ": " + fmtN(d.personas_A) +
+               "<br>" + anioB + ": " + fmtN(d.personas_B) +
+               "<br>Variación: " + fmtPct(d.variacion_pct);
+      });
+      if (window.Plotly) {
+        Plotly.newPlot(id, [{
+          x: valores, y: nombres, type: "bar", orientation: "h",
+          marker: {color: color},
+          text: textos, hoverinfo: "text"
+        }], {
+          title: tituloEje,
+          margin: {l: 230, r: 20, t: 30, b: 40},
+          xaxis: {title: "Variación %", tickformat: ".0%"},
+          yaxis: {automargin: true, type: "category"},
+          font: {family: "IBM Plex Sans, sans-serif", size: 10.5}
+        }, {displayModeBar: false, responsive: true});
+      }
+    }
+
+    trazar("plot-ranking-crece", crece, colorCrece, "Mayor crecimiento " + anioA + "\\u2192" + anioB);
+    trazar("plot-ranking-cae", cae, colorCae, "Mayor caída " + anioA + "\\u2192" + anioB);
+
+    var msg = document.getElementById("msg-ranking");
+    if (msg) msg.textContent = "Comparando " + anioA + " \\u2192 " + anioB + " (" + cambio.length + " ocupaciones comparables, \\u2265 " + MIN_MUESTRA + " casos muestrales en ambos años)";
+  }
+
+  function actualizar() {
+    var selA = document.getElementById("anio-inicial");
+    var selB = document.getElementById("anio-final");
+    dibujarRanking(parseInt(selA.value, 10), parseInt(selB.value, 10));
+  }
+
+  function forzarLayoutRanking() {
+    var cont = document.getElementById("contenedor-ranking");
+    if (!cont) return;
+    cont.style.setProperty("display", "flex", "important");
+    cont.style.setProperty("flex-direction", "row", "important");
+    cont.style.setProperty("flex-wrap", "nowrap", "important");
+    cont.style.setProperty("width", "100%", "important");
+    cont.style.setProperty("height", "100%", "important");
+    ["plot-ranking-crece", "plot-ranking-cae"].forEach(function(id) {
+      var el = document.getElementById(id);
+      if (el) {
+        el.style.setProperty("flex", "1 1 0", "important");
+        el.style.setProperty("min-width", "0", "important");
+        el.style.setProperty("height", "100%", "important");
+      }
+    });
+  }
+
+  function iniciar() {
+    var selA = document.getElementById("anio-inicial");
+    var selB = document.getElementById("anio-final");
+    if (!selA || !selB) { setTimeout(iniciar, 100); return; }
+
+    aniosDisponibles.forEach(function(a) {
+      var optA = document.createElement("option");
+      optA.value = a; optA.textContent = a;
+      if (a === ANIO_INICIAL_DEFAULT) optA.selected = true;
+      selA.appendChild(optA);
+
+      var optB = document.createElement("option");
+      optB.value = a; optB.textContent = a;
+      if (a === ANIO_FINAL_DEFAULT) optB.selected = true;
+      selB.appendChild(optB);
+    });
+
+    selA.addEventListener("change", actualizar);
+    selB.addEventListener("change", actualizar);
+
+    actualizar();
+    forzarLayoutRanking();
+    var intentos = 0;
+    var intervalId = setInterval(function() {
+      forzarLayoutRanking();
+      intentos++;
+      if (intentos > 15) clearInterval(intervalId);
+    }, 150);
+    var cont = document.getElementById("contenedor-ranking");
+    if (cont && window.MutationObserver) {
+      var observer = new MutationObserver(function() { forzarLayoutRanking(); });
+      observer.observe(cont, {attributes: true, attributeFilter: ["style", "class"], subtree: true});
+    }
+    window.addEventListener("resize", forzarLayoutRanking);
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", iniciar);
+  } else {
+    iniciar();
+  }
+})();
+</script>
+')
+cat(html_ranking_selectores)
+```
+
+## Fila gráfico {height="60%"}
+
+```{r}
+#| title: "Ocupaciones con mayor crecimiento y caída"
+#| output: asis
+cat('
+<div id="contenedor-ranking" style="display:flex; gap:1rem; flex-wrap:nowrap; height:100%; width:100%;">
+<div style="flex:1 1 0; min-width:0; height:100%;" id="plot-ranking-crece"></div>
+<div style="flex:1 1 0; min-width:0; height:100%;" id="plot-ranking-cae"></div>
+</div>
+')
+```
+
+## Fila metodología {height="30%"}
+
+::: {.card title="¿Cómo se calcula esta variación?"}
+Para cada ocupación se compara el número de personas ocupadas estimadas entre el **año final** y el **año inicial** que elijas arriba (por defecto, 2017 → 2024):
+
+$$\text{variación \%} = \frac{\text{ocupados}_{\text{año final}} - \text{ocupados}_{\text{año inicial}}}{\text{ocupados}_{\text{año inicial}}}$$
+
+Es una resta simple entre los dos años elegidos, expresada como porcentaje del punto de partida — no es una tasa de crecimiento anualizada ni está desestacionalizada. Solo se incluyen ocupaciones con **al menos 30 casos muestrales en ambos años seleccionados**, para evitar que variaciones grandes sean puro ruido de muestra pequeña.
+
+**Importante:** 2020 es la Encuesta Casen en Pandemia, un año atípico para el mercado laboral (cuarentenas, Ley de Protección del Empleo, etc.). Si tu comparación incluye 2020, buena parte del "crecimiento" hacia años posteriores puede reflejar una recuperación desde un mínimo pandémico más que una tendencia estructural. Además, 2015 y 2017 usan CIUO-88 reclasificado a CIUO-08.CL vía crosswalk (ver ficha metodológica) — si eliges 2015 o 2017 como año de comparación, las ocupaciones sin un **calce perfecto** ese año (código CIUO-88 de origen con más de un candidato posible en CIUO-08.CL) se excluyen directamente del ranking, en vez de mostrar un cambio que podría ser un artefacto de la reclasificación. Conviene mirar también la pestaña "Trayectoria de ocupación" antes de sacar conclusiones sobre una ocupación específica.
+:::
+
+# Habilidades (PIAAC)
+
+## Fila selector {height="8%"}
+
+```{r}
+#| title: "Subgrupo principal (2 dígitos CIUO-08)"
+#| output: asis
+library(jsonlite)
+
+piaac_sp <- read_csv("../data/processed/piaac_subgrupo_principal.csv", show_col_types = FALSE)
+
+piaac_sp_limpio <- piaac_sp |>
+  filter(!is.na(subgrupo_principal_nombre)) |>
+  transmute(
+    codigo = subgrupo_principal,
+    nombre = subgrupo_principal_nombre,
+    gran_grupo = as.character(gran_grupo),
+    gran_grupo_nombre,
+    n_muestra,
+    numeracidad = round(numeracidad, 1),
+    literacidad = round(literacidad, 1),
+    uso_numeracidad_trabajo = round(uso_numeracidad_trabajo, 2),
+    uso_lectura_trabajo = round(uso_lectura_trabajo, 2),
+    uso_escritura_trabajo = round(uso_escritura_trabajo, 2),
+    uso_tic_trabajo = round(uso_tic_trabajo, 2)
+  ) |>
+  arrange(desc(numeracidad))
+
+piaac_sp_json <- toJSON(piaac_sp_limpio, dataframe = "rows", auto_unbox = TRUE)
+
+cat('<div id="piaac-msg" style="font-family:monospace; font-size:0.78rem; color:#8A8578;"></div>')
+```
+
+## Fila gráfico {height="52%" fill="false"}
+
+```{r}
+#| title: "Numeracidad y literacidad promedio, por subgrupo principal"
+#| output: asis
+html_piaac <- paste0('
+<div id="contenedor-piaac" style="display:flex; gap:1rem; height:100%; width:100%;">
+<div style="flex:3 1 0; min-width:0; height:100%; overflow-y:auto;" id="plot-piaac"></div>
+<div style="flex:1 1 0; min-width:170px; max-width:230px; height:100%; overflow-y:auto;" id="piaac-selector-gg"></div>
+</div>
+
+<script>
+(function() {
+  const piaacSP = ', piaac_sp_json, ';
+
+  function fmtN(v) { return Math.round(v).toLocaleString("es-CL"); }
+
+  function escapeHtmlPiaac(s) {
+    return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+  }
+
+  // Rango fijo del eje X, calculado sobre TODOS los subgrupos (no solo los
+  // filtrados), para que los puntajes sean comparables visualmente entre
+  // gran grupos distintos al cambiar el filtro.
+  var todosLosValoresPiaac = [];
+  piaacSP.forEach(function(d) {
+    todosLosValoresPiaac.push(d.numeracidad, d.literacidad);
+  });
+  var piaacXMin = Math.min.apply(null, todosLosValoresPiaac);
+  var piaacXMax = Math.max.apply(null, todosLosValoresPiaac);
+  var piaacXPad = (piaacXMax - piaacXMin) * 0.08;
+  var PIAAC_X_RANGE = [Math.max(0, piaacXMin - piaacXPad), piaacXMax + piaacXPad];
+
+  function dibujarPiaac(datos, etiquetaNivel) {
+    var ordenados = datos.slice().sort(function(a, b) { return a.numeracidad - b.numeracidad; });
+    var nombres = ordenados.map(function(d) {
+      var etiqueta = "[" + d.codigo + "] " + d.nombre;
+      return etiqueta.length > 46 ? etiqueta.slice(0, 45) + "\\u2026" : etiqueta;
+    });
+    var num = ordenados.map(function(d) { return d.numeracidad; });
+    var lit = ordenados.map(function(d) { return d.literacidad; });
+    var textosNum = ordenados.map(function(d) { return "[" + d.codigo + "] " + d.nombre + "<br>Numeracidad: " + d.numeracidad + "<br>n=" + d.n_muestra; });
+    var textosLit = ordenados.map(function(d) { return "[" + d.codigo + "] " + d.nombre + "<br>Literacidad: " + d.literacidad + "<br>n=" + d.n_muestra; });
+
+    if (window.Plotly) {
+      Plotly.newPlot("plot-piaac", [
+        { x: num, y: nombres, type: "bar", orientation: "h", name: "Numeracidad",
+          marker: {color: "#B5622A"}, text: textosNum, hoverinfo: "text" },
+        { x: lit, y: nombres, type: "bar", orientation: "h", name: "Literacidad",
+          marker: {color: "#2E5266"}, text: textosLit, hoverinfo: "text" }
+      ], {
+        barmode: "group",
+        margin: {l: 250, r: 20, t: 10, b: 40},
+        xaxis: {title: "Puntaje promedio (escala PIAAC, 0-500)", range: PIAAC_X_RANGE},
+        legend: {orientation: "h", y: -0.08},
+        font: {family: "IBM Plex Sans, sans-serif", size: 11},
+        height: Math.max(320, ordenados.length * 26)
+      }, {displayModeBar: false, responsive: true});
+    }
+
+    var filas = datos.slice().sort(function(a, b) { return b.numeracidad - a.numeracidad; }).map(function(d) {
+      var chico = d.n_muestra < 15 ? " ⚠" : "";
+      return "<tr><td style=\'padding:5px 10px; border-bottom:1px solid #E4DFD2; font-size:0.85rem;\'>[" + d.codigo + "] " + escapeHtmlPiaac(d.nombre) + chico + "</td>" +
+        "<td style=\'padding:5px 10px; border-bottom:1px solid #E4DFD2; text-align:right; font-family:monospace; font-size:0.85rem;\'>" + d.n_muestra + "</td>" +
+        "<td style=\'padding:5px 10px; border-bottom:1px solid #E4DFD2; text-align:right; font-family:monospace; font-size:0.85rem;\'>" + d.numeracidad + "</td>" +
+        "<td style=\'padding:5px 10px; border-bottom:1px solid #E4DFD2; text-align:right; font-family:monospace; font-size:0.85rem;\'>" + d.literacidad + "</td>" +
+        "<td style=\'padding:5px 10px; border-bottom:1px solid #E4DFD2; text-align:right; font-family:monospace; font-size:0.85rem;\'>" + (d.uso_numeracidad_trabajo == null ? "s/d" : d.uso_numeracidad_trabajo) + "</td>" +
+        "<td style=\'padding:5px 10px; border-bottom:1px solid #E4DFD2; text-align:right; font-family:monospace; font-size:0.85rem;\'>" + (d.uso_lectura_trabajo == null ? "s/d" : d.uso_lectura_trabajo) + "</td>" +
+        "<td style=\'padding:5px 10px; border-bottom:1px solid #E4DFD2; text-align:right; font-family:monospace; font-size:0.85rem;\'>" + (d.uso_escritura_trabajo == null ? "s/d" : d.uso_escritura_trabajo) + "</td>" +
+        "<td style=\'padding:5px 10px; border-bottom:1px solid #E4DFD2; text-align:right; font-family:monospace; font-size:0.85rem;\'>" + (d.uso_tic_trabajo == null ? "s/d" : d.uso_tic_trabajo) + "</td></tr>";
+    }).join("");
+
+    var tabla = "<table style=\'width:100%; border-collapse:collapse;\'><thead><tr>" +
+      "<th style=\'text-align:left; padding:5px 10px; border-bottom:2px solid #1C2321; font-size:0.78rem;\'>" + etiquetaNivel + "</th>" +
+      "<th style=\'text-align:right; padding:5px 10px; border-bottom:2px solid #1C2321; font-size:0.78rem;\'>n</th>" +
+      "<th style=\'text-align:right; padding:5px 10px; border-bottom:2px solid #1C2321; font-size:0.78rem;\'>Numeracidad</th>" +
+      "<th style=\'text-align:right; padding:5px 10px; border-bottom:2px solid #1C2321; font-size:0.78rem;\'>Literacidad</th>" +
+      "<th style=\'text-align:right; padding:5px 10px; border-bottom:2px solid #1C2321; font-size:0.78rem;\'>Uso numérico (trab.)</th>" +
+      "<th style=\'text-align:right; padding:5px 10px; border-bottom:2px solid #1C2321; font-size:0.78rem;\'>Uso lectura (trab.)</th>" +
+      "<th style=\'text-align:right; padding:5px 10px; border-bottom:2px solid #1C2321; font-size:0.78rem;\'>Uso escritura (trab.)</th>" +
+      "<th style=\'text-align:right; padding:5px 10px; border-bottom:2px solid #1C2321; font-size:0.78rem;\'>Uso TIC (trab.)</th>" +
+      "</tr></thead><tbody>" + filas + "</tbody></table>";
+    var tablaEl = document.getElementById("piaac-tabla");
+    if (tablaEl) tablaEl.innerHTML = tabla;
+
+    var msgEl = document.getElementById("piaac-msg");
+    if (msgEl) {
+      var chicos = datos.filter(function(d) { return d.n_muestra < 15; }).length;
+      msgEl.textContent = datos.length + " categorías" + (chicos > 0 ? " · ⚠ " + chicos + " con menos de 15 casos muestrales (interpretar con cautela)" : "");
+    }
+  }
+
+  function poblarSelectorGG() {
+    var grupos = {};
+    piaacSP.forEach(function(d) {
+      if (!grupos[d.gran_grupo]) grupos[d.gran_grupo] = {nombre: d.gran_grupo_nombre, suma: 0, n: 0};
+      grupos[d.gran_grupo].suma += d.numeracidad;
+      grupos[d.gran_grupo].n += 1;
+    });
+    var lista = Object.keys(grupos).map(function(k) {
+      return {codigo: k, nombre: grupos[k].nombre, prom: grupos[k].suma / grupos[k].n};
+    });
+    lista.sort(function(a, b) { return b.prom - a.prom; });
+
+    var el = document.getElementById("piaac-selector-gg");
+    if (!el) return;
+
+    var html = "<div class=\'piaac-gg-btn\' data-gg=\'\' style=\'padding:8px 10px; margin-bottom:4px; cursor:pointer; font-family:Space Grotesk,sans-serif; font-weight:700; font-size:0.82rem; border-left:3px solid #1C2321; background:#1C2321; color:#F6F4EE;\'>Todos los grupos</div>";
+    lista.forEach(function(g) {
+      html += "<div class=\'piaac-gg-btn\' data-gg=\'" + g.codigo + "\' style=\'padding:8px 10px; margin-bottom:4px; cursor:pointer; font-family:IBM Plex Sans,sans-serif; font-size:0.8rem; border-left:3px solid #E4DFD2; background:#F6F4EE; color:#1C2321;\'>" + escapeHtmlPiaac(g.nombre) + "</div>";
+    });
+    el.innerHTML = html;
+
+    var botones = el.querySelectorAll(".piaac-gg-btn");
+    for (var i = 0; i < botones.length; i++) {
+      botones[i].addEventListener("click", function() {
+        for (var j = 0; j < botones.length; j++) {
+          botones[j].style.background = "#F6F4EE";
+          botones[j].style.color = "#1C2321";
+          botones[j].style.borderLeftColor = "#E4DFD2";
+          botones[j].style.fontWeight = "400";
+        }
+        this.style.background = "#1C2321";
+        this.style.color = "#F6F4EE";
+        this.style.borderLeftColor = "#1C2321";
+        this.style.fontWeight = "700";
+        var gg = this.getAttribute("data-gg");
+        var filtrados = gg === "" ? piaacSP : piaacSP.filter(function(d) { return d.gran_grupo === gg; });
+        dibujarPiaac(filtrados, "Subgrupo principal");
+      });
+    }
+  }
+
+  function forzarLayoutPiaac() {
+    var cont = document.getElementById("contenedor-piaac");
+    if (!cont) return;
+    cont.style.setProperty("display", "flex", "important");
+    cont.style.setProperty("flex-direction", "row", "important");
+    cont.style.setProperty("width", "100%", "important");
+    cont.style.setProperty("height", "100%", "important");
+  }
+
+  function iniciar() {
+    var el = document.getElementById("piaac-selector-gg");
+    if (!el) { setTimeout(iniciar, 100); return; }
+    poblarSelectorGG();
+    dibujarPiaac(piaacSP, "Subgrupo principal");
+    forzarLayoutPiaac();
+    var intentos = 0;
+    var intervalId = setInterval(function() {
+      forzarLayoutPiaac();
+      intentos++;
+      if (intentos > 15) clearInterval(intervalId);
+    }, 150);
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", iniciar);
+  } else {
+    iniciar();
+  }
+})();
+</script>
+')
+cat(html_piaac)
+```
+
+## Fila tabla {height="40%"}
+
+```{r}
+#| title: "Detalle por categoría, incluyendo uso de habilidades en el trabajo"
+#| output: asis
+cat('<div id="piaac-tabla" style="overflow-x:auto;"></div>')
+```
+
+::: {.card title="Nota"}
+Fuente: PIAAC (Programme for the International Assessment of Adult Competencies), Ciclo 2, Chile — muestra de 4.726 personas, 3.276 con ocupación válida. Las escalas de **numeracidad** y **literacidad** van de 0 a 500 y se estiman con la metodología estándar de valores plausibles (10 estimaciones por persona, promediadas). Las escalas de **uso de habilidades en el trabajo** (numérico, lectura, escritura, TIC) miden la frecuencia/complejidad de uso autorreportada, no un puntaje de habilidad. Todas las estimaciones están ponderadas por el ponderador muestral final de PIAAC (`SPFWT0`); no se calculan errores estándar completos (que en PIAAC requieren los 80 ponderadores de réplica) — las categorías con menos de 15 casos se marcan con ⚠ y deben interpretarse con cautela. Se usa el nivel de **gran grupo o subgrupo principal** (1 o 2 dígitos CIUO-08) porque a 4 dígitos la mediana de casos por ocupación es de solo 5 personas, insuficiente para estimaciones confiables.
+:::
+
+# Anuncios BNE {scrolling="true"}
+
+## Fila total {height="120px"}
+
+```{r}
+#| title: "Resumen"
+#| output: asis
+library(jsonlite)
+
+ciuo_master <- read_csv("../data/reference/ciuo08_master.csv", show_col_types = FALSE) |>
+  mutate(gran_grupo = as.character(gran_grupo))
+
+bne_disponible <- file.exists("../data/processed/bne_jul2026_clasificado.csv")
+UMBRAL_CONFIANZA_BNE <- 0.45
+
+if (bne_disponible) {
+  bne_raw <- read_csv("../data/processed/bne_jul2026_clasificado.csv", show_col_types = FALSE) |>
+    mutate(codigo_ciuo_pred = str_pad(as.character(codigo_ciuo_pred), 4, pad = "0"))
+
+  bne_ok <- bne_raw |> filter(sim_codigo_ciuo >= UMBRAL_CONFIANZA_BNE)
+
+  total_anuncios_periodo <- nrow(bne_raw)
+  total_clasificados <- nrow(bne_ok)
+
+  # --- Agregado por gran grupo (1 dígito), para el gráfico -------------------
+  gg_nombres_bne <- ciuo_master |> distinct(gran_grupo, gran_grupo_nombre) |>
+    mutate(gran_grupo = as.character(gran_grupo))
+
+  bne_gg <- bne_ok |>
+    mutate(gran_grupo = str_sub(codigo_ciuo_pred, 1, 1)) |>
+    count(gran_grupo, name = "n_anuncios") |>
+    left_join(gg_nombres_bne, by = "gran_grupo") |>
+    filter(!is.na(gran_grupo_nombre)) |>
+    arrange(desc(n_anuncios))
+
+  # --- Ejemplos (título + descripción) por gran grupo -------------------------
+  ejemplos_por_grupo <- function(gg) {
+    sub <- bne_ok |> filter(str_sub(codigo_ciuo_pred, 1, 1) == gg) |>
+      arrange(desc(fecha_publicacion)) |> slice_head(n = 8)
+    purrr::pmap(list(sub$titulo, sub$descripcion), function(titulo, descripcion) {
+      list(titulo = titulo, descripcion = descripcion)
+    })
+  }
+
+  lista_gg <- setNames(
+    lapply(bne_gg$gran_grupo, function(gg) {
+      list(
+        nombre = bne_gg$gran_grupo_nombre[bne_gg$gran_grupo == gg],
+        n_anuncios = bne_gg$n_anuncios[bne_gg$gran_grupo == gg],
+        ejemplos = ejemplos_por_grupo(gg)
+      )
+    }),
+    paste0("GG:", bne_gg$gran_grupo)
+  )
+
+  # --- Agregado por ocupación (4 dígitos), para el buscador ------------------
+  bne_ocup <- bne_ok |>
+    count(codigo_ciuo_pred, name = "n_anuncios") |>
+    left_join(ciuo_master |> select(codigo_ciuo08, ocupacion_nombre), by = c("codigo_ciuo_pred" = "codigo_ciuo08")) |>
+    filter(!is.na(ocupacion_nombre)) |>
+    arrange(desc(n_anuncios))
+
+  ejemplos_por_ocup <- function(codigo) {
+    sub <- bne_ok |> filter(codigo_ciuo_pred == codigo) |>
+      arrange(desc(fecha_publicacion)) |> slice_head(n = 8)
+    purrr::pmap(list(sub$titulo, sub$descripcion), function(titulo, descripcion) {
+      list(titulo = titulo, descripcion = descripcion)
+    })
+  }
+
+  lista_ocup <- setNames(
+    lapply(bne_ocup$codigo_ciuo_pred, function(codigo) {
+      list(
+        nombre = bne_ocup$ocupacion_nombre[bne_ocup$codigo_ciuo_pred == codigo],
+        n_anuncios = bne_ocup$n_anuncios[bne_ocup$codigo_ciuo_pred == codigo],
+        ejemplos = ejemplos_por_ocup(codigo)
+      )
+    }),
+    paste0("OC:", bne_ocup$codigo_ciuo_pred)
+  )
+
+  bne_buscador <- c(lista_gg, lista_ocup)
+  bne_buscador_json <- toJSON(bne_buscador, auto_unbox = TRUE, na = "null")
+  bne_gg_json <- toJSON(bne_gg, dataframe = "rows", auto_unbox = TRUE)
+
+  # Opciones del buscador: gran grupos primero (con etiqueta), luego ocupaciones
+  opciones_busqueda <- c(
+    setNames(paste0("GG:", bne_gg$gran_grupo), paste0("Gran grupo — ", bne_gg$gran_grupo_nombre)),
+    setNames(paste0("OC:", bne_ocup$codigo_ciuo_pred), bne_ocup$ocupacion_nombre)
+  )
+  opciones_json <- toJSON(as.list(opciones_busqueda), auto_unbox = TRUE)
+
+  # --- Competencias (taxonomía OIT): gráfico general macro x subcategoría ----
+  # Una vacante puede requerir más de una competencia (hasta 3, v1/v2/v3);
+  # se cuentan todas las ocurrencias, no solo la principal.
+  bne_competencias_long <- bind_rows(
+    bne_ok |> transmute(macro = macro_v1, subcategoria = subcategoria_v1),
+    bne_ok |> transmute(macro = macro_v2, subcategoria = subcategoria_v2),
+    bne_ok |> transmute(macro = macro_v3, subcategoria = subcategoria_v3)
+  ) |>
+    filter(!is.na(subcategoria))
+
+  bne_competencias_agg <- bne_competencias_long |>
+    count(macro, subcategoria, name = "n") |>
+    arrange(macro, desc(n))
+  bne_competencias_json <- toJSON(bne_competencias_agg, dataframe = "rows", auto_unbox = TRUE)
+
+  # --- Habilidades (texto inductivo) top-10 por ocupación y por gran grupo ---
+  # para la nube de palabras.
+  habilidades_long <- bne_ok |>
+    filter(!is.na(habilidades_identificadas), habilidades_identificadas != "") |>
+    select(codigo_ciuo_pred, habilidades_identificadas) |>
+    tidyr::separate_rows(habilidades_identificadas, sep = ",\\s*") |>
+    filter(habilidades_identificadas != "") |>
+    mutate(gran_grupo = str_sub(codigo_ciuo_pred, 1, 1))
+
+  top10_habilidades <- function(datos, campo_grupo) {
+    datos |>
+      count(.data[[campo_grupo]], habilidades_identificadas, name = "frecuencia") |>
+      group_by(.data[[campo_grupo]]) |>
+      arrange(desc(frecuencia), .by_group = TRUE) |>
+      slice_head(n = 10) |>
+      ungroup()
+  }
+
+  construir_lista_nube <- function(datos_top, campo_grupo, prefijo) {
+    grupos <- unique(datos_top[[campo_grupo]])
+    setNames(
+      lapply(grupos, function(g) {
+        sub <- datos_top |> filter(.data[[campo_grupo]] == g)
+        purrr::pmap(list(sub$habilidades_identificadas, sub$frecuencia), function(p, f) {
+          list(palabra = p, frecuencia = f)
+        })
+      }),
+      paste0(prefijo, grupos)
+    )
+  }
+
+  lista_nube_ocup <- construir_lista_nube(top10_habilidades(habilidades_long, "codigo_ciuo_pred"), "codigo_ciuo_pred", "OC:")
+  lista_nube_gg <- construir_lista_nube(top10_habilidades(habilidades_long, "gran_grupo"), "gran_grupo", "GG:")
+  bne_nube_json <- toJSON(c(lista_nube_gg, lista_nube_ocup), auto_unbox = TRUE)
+} else {
+  total_anuncios_periodo <- 0
+  total_clasificados <- 0
+  bne_gg_json <- toJSON(list(), auto_unbox = TRUE)
+  bne_buscador_json <- toJSON(list(), auto_unbox = TRUE)
+  opciones_json <- toJSON(list(), auto_unbox = TRUE)
+  bne_competencias_json <- toJSON(list(), auto_unbox = TRUE)
+  bne_nube_json <- toJSON(list(), auto_unbox = TRUE)
+}
+
+cat(paste0('<div style="max-width:900px;">
+<div style="font-family:\'Space Grotesk\',sans-serif; font-weight:700; font-size:1.05rem; color:#1C2321; margin-bottom:8px;">Anuncios de empleo recientes (julio 2026) — Fuente: Bolsa Nacional de Empleo</div>
+<div style="font-family:monospace; font-size:0.95rem; color:#1C2321;"><strong>Total anuncios período:</strong> ', format(total_anuncios_periodo, big.mark = "."), '</div>
+</div>'))
+```
+
+## Fila gráfico {height="520px"}
+
+```{r}
+#| title: "Distribución de anuncios por gran grupo"
+#| output: asis
+html_bne_grafico <- paste0('
+<div id="plot-bne-gg" style="width:100%; height:100%;"></div>
+
+<script>
+(function() {
+  const bneGG = ', bne_gg_json, ';
+  const bneBuscador = ', bne_buscador_json, ';
+  const bneCompetencias = ', bne_competencias_json, ';
+  window.bneNubeData = ', bne_nube_json, ';
+
+  window.bneBuscadorData = bneBuscador;
+
+  function fmtN(v) { return Math.round(v).toLocaleString("es-CL"); }
+
+  function dibujarBneGG() {
+    if (!window.Plotly || !bneGG.length) return;
+    var ordenados = bneGG.slice().sort(function(a, b) { return a.n_anuncios - b.n_anuncios; });
+    var nombres = ordenados.map(function(d) { return d.gran_grupo_nombre; });
+    var valores = ordenados.map(function(d) { return d.n_anuncios; });
+    var codigos = ordenados.map(function(d) { return d.gran_grupo; });
+
+    Plotly.newPlot("plot-bne-gg", [{
+      x: valores, y: nombres, type: "bar", orientation: "h",
+      marker: {color: "#8B7BB0"},
+      text: valores.map(fmtN), textposition: "outside",
+      hoverinfo: "text",
+      hovertext: ordenados.map(function(d) { return d.gran_grupo_nombre + "<br>" + fmtN(d.n_anuncios) + " anuncios — click para ver ejemplos"; })
+    }], {
+      margin: {l: 260, r: 40, t: 10, b: 40},
+      xaxis: {title: "N° de anuncios"},
+      yaxis: {automargin: true, tickmode: "array", tickvals: nombres, ticktext: nombres},
+      font: {family: "IBM Plex Sans, sans-serif", size: 11},
+      height: Math.max(320, ordenados.length * 48)
+    }, {displayModeBar: false, responsive: true});
+
+    document.getElementById("plot-bne-gg").on("plotly_click", function(ev) {
+      var idx = ev.points[0].pointNumber;
+      var codigo = codigos[idx];
+      var nombre = nombres[idx];
+      var input = document.getElementById("buscar-bne");
+      if (input) input.value = "Gran grupo — " + nombre;
+      if (window.seleccionarBne) window.seleccionarBne("GG:" + codigo);
+    });
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", dibujarBneGG);
+  } else {
+    dibujarBneGG();
+  }
+})();
+</script>
+')
+cat(html_bne_grafico)
+```
+
+## Fila gráfico competencias {height="520px"}
+
+```{r}
+#| title: "Competencias requeridas (taxonomía OIT): macro y subcategoría"
+#| output: asis
+html_bne_competencias <- paste0('
+<div id="plot-bne-competencias" style="width:100%; height:100%;"></div>
+
+<script>
+(function() {
+  const bneComp = ', bne_competencias_json, ';
+
+  var COLOR_MACRO = {
+    "Competencias cognitivas": "#2E5266",
+    "Competencias socioemocionales": "#B5622A",
+    "Competencias manuales": "#6B8F71"
+  };
+
+  function fmtN(v) { return Math.round(v).toLocaleString("es-CL"); }
+
+  function dibujarBneCompetencias() {
+    if (!window.Plotly || !bneComp.length) return;
+    var ordenados = bneComp.slice().sort(function(a, b) { return a.n - b.n; });
+    var nombres = ordenados.map(function(d) { return d.subcategoria; });
+    var valores = ordenados.map(function(d) { return d.n; });
+    var colores = ordenados.map(function(d) { return COLOR_MACRO[d.macro] || "#8A8578"; });
+
+    var macros = Array.from(new Set(bneComp.map(function(d) { return d.macro; })));
+    var trazas = macros.map(function(m) {
+      return {
+        x: ordenados.map(function(d) { return d.macro === m ? d.n : null; }),
+        y: nombres,
+        type: "bar", orientation: "h", name: m,
+        marker: {color: COLOR_MACRO[m] || "#8A8578"},
+        text: ordenados.map(function(d) { return d.macro === m ? fmtN(d.n) : ""; }),
+        textposition: "outside",
+        hoverinfo: "text",
+        hovertext: ordenados.map(function(d) { return d.macro === m ? (d.subcategoria + "<br>" + fmtN(d.n) + " menciones") : ""; })
+      };
+    });
+
+    Plotly.newPlot("plot-bne-competencias", trazas, {
+      barmode: "stack",
+      margin: {l: 300, r: 40, t: 10, b: 40},
+      xaxis: {title: "N° de menciones en anuncios (jun.-jul. 2026)"},
+      yaxis: {automargin: true, tickmode: "array", tickvals: nombres, ticktext: nombres},
+      legend: {orientation: "h", y: -0.15},
+      font: {family: "IBM Plex Sans, sans-serif", size: 10.5},
+      height: Math.max(320, nombres.length * 30)
+    }, {displayModeBar: false, responsive: true});
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", dibujarBneCompetencias);
+  } else {
+    dibujarBneCompetencias();
+  }
+})();
+</script>
+')
+cat(html_bne_competencias)
+```
+
+## Fila título búsqueda {height="80px" scrolling="false"}
+
+```{r}
+#| title: ""
+#| output: asis
+cat('<div id="bne-titulo-busqueda" style="font-family:\'Space Grotesk\',sans-serif; font-weight:700; font-size:1.3rem; color:#1C2321; overflow-wrap:break-word;">Busca tu ocupación</div>')
+```
+
+## Fila buscador {height="120px" scrolling="false"}
+
+### Columna buscador {width="75%"}
+
+```{r}
+#| title: ""
+#| output: asis
+html_bne_buscador <- paste0('
+<div id="bne-buscador-todo" style="display:flex; flex-direction:column;">
+<div id="bne-buscador-etiqueta" style="font-family:\'IBM Plex Sans\',sans-serif; font-weight:700; font-size:0.9rem; color:#1C2321; margin-bottom:6px; overflow-wrap:break-word;">Busca una ocupación a 4 dígitos o un gran grupo a 1 dígito</div>
+<div id="bne-buscador-contenedor" style="max-width: 640px; flex:0 0 auto;">
+<input id="buscar-bne" type="text" list="lista-bne" autocomplete="off" placeholder="ej. cocineros, conductores, Gran grupo — Profesionales..." style="width:100%; padding:8px 12px; font-family:\'IBM Plex Sans\',sans-serif; font-size:0.95rem; border:1px solid #E4DFD2; border-radius:2px;" />
+<datalist id="lista-bne"></datalist>
+</div>
+</div>
+
+<script>
+(function() {
+  const opciones = ', opciones_json, ';
+  const OCUPACION_DEFAULT = "OC:8322";
+
+  function forzarLayoutBuscadorBne() {
+    var titulo = document.getElementById("bne-titulo-busqueda");
+    if (titulo) {
+      titulo.classList.remove("html-fill-item", "html-fill-container");
+      titulo.style.setProperty("display", "block", "important");
+      titulo.style.setProperty("position", "static", "important");
+      titulo.style.setProperty("height", "auto", "important");
+    }
+    var todo = document.getElementById("bne-buscador-todo");
+    if (todo) {
+      todo.classList.remove("html-fill-item", "html-fill-container");
+      todo.style.setProperty("display", "block", "important");
+      todo.style.setProperty("position", "static", "important");
+      todo.style.setProperty("height", "auto", "important");
+    }
+    var cont = document.getElementById("bne-buscador-contenedor");
+    if (cont) {
+      cont.classList.remove("html-fill-item", "html-fill-container");
+      cont.style.setProperty("display", "block", "important");
+      cont.style.setProperty("position", "static", "important");
+      cont.style.setProperty("flex", "0 0 auto", "important");
+      cont.style.setProperty("height", "auto", "important");
+    }
+    var etiqueta = document.getElementById("bne-buscador-etiqueta");
+    if (etiqueta) {
+      etiqueta.classList.remove("html-fill-item", "html-fill-container");
+      etiqueta.style.setProperty("display", "block", "important");
+      etiqueta.style.setProperty("position", "static", "important");
+      etiqueta.style.setProperty("height", "auto", "important");
+    }
+    var conteo = document.getElementById("bne-conteo-anuncios");
+    if (conteo) {
+      conteo.classList.remove("html-fill-item", "html-fill-container");
+      conteo.style.setProperty("position", "static", "important");
+      conteo.style.setProperty("height", "auto", "important");
+    }
+    var inputEl = document.getElementById("buscar-bne");
+    if (inputEl && inputEl.parentElement && inputEl.parentElement.tagName === "P") {
+      inputEl.parentElement.style.setProperty("margin", "0", "important");
+    }
+  }
+
+  function iniciarBuscadorBne() {
+    var input = document.getElementById("buscar-bne");
+    var datalist = document.getElementById("lista-bne");
+    if (!input || !datalist) { setTimeout(iniciarBuscadorBne, 100); return; }
+
+    Object.keys(opciones).forEach(function(nombre) {
+      var opt = document.createElement("option");
+      opt.value = nombre;
+      datalist.appendChild(opt);
+    });
+
+    input.addEventListener("input", function() {
+      var id = opciones[this.value];
+      if (id && window.seleccionarBne) window.seleccionarBne(id);
+    });
+
+    forzarLayoutBuscadorBne();
+    var intentosLayout = 0;
+    var intervalLayout = setInterval(function() {
+      forzarLayoutBuscadorBne();
+      intentosLayout++;
+      if (intentosLayout > 15) clearInterval(intervalLayout);
+    }, 150);
+
+    // Selección por defecto: Conductores de automóviles, taxis y camionetas
+    var nombreDefault = null;
+    Object.keys(opciones).forEach(function(nombre) {
+      if (opciones[nombre] === OCUPACION_DEFAULT) nombreDefault = nombre;
+    });
+    if (nombreDefault) {
+      input.value = nombreDefault;
+      var intentos = 0;
+      var intervalId = setInterval(function() {
+        if (window.seleccionarBne) {
+          window.seleccionarBne(OCUPACION_DEFAULT);
+          clearInterval(intervalId);
+        }
+        intentos++;
+        if (intentos > 30) clearInterval(intervalId);
+      }, 100);
+    }
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", iniciarBuscadorBne);
+  } else {
+    iniciarBuscadorBne();
+  }
+})();
+</script>
+')
+cat(html_bne_buscador)
+```
+
+### Columna conteo {width="25%"}
+
+```{r}
+#| title: ""
+#| output: asis
+cat('<div id="bne-conteo-anuncios" style="display:flex; align-items:center; justify-content:center; height:100%; font-family:monospace; font-weight:700; font-size:1.1rem; color:#1C2321; text-align:center; padding:10px 14px; background:#F6F4EE; border-left:3px solid #8B7BB0;">Elige una ocupación</div>')
+```
+
+## Fila nube y lista {height="420px"}
+
+### Columna nube {width="35%"}
+
+```{r}
+#| title: "Principales habilidades (nube de palabras)"
+#| output: asis
+cat('<div id="bne-nube-palabras" style="display:flex; flex-wrap:wrap; align-content:flex-start; align-items:baseline; gap:8px 12px; line-height:1.5; overflow-wrap:break-word; height:150px; overflow-y:auto; padding-right:8px;"></div>')
+```
+
+### Columna lista {width="65%"}
+
+```{r}
+#| title: "Ejemplos de cargos buscados"
+#| output: asis
+cat('
+<div id="bne-resultado-ejemplos" style="height:100%; overflow-y:auto; padding-right:8px; overflow-wrap:break-word;"></div>
+
+<script>
+(function() {
+  function forzarLayoutResultadoBne() {
+    var ejemplosEl = document.getElementById("bne-resultado-ejemplos");
+    if (ejemplosEl) {
+      ejemplosEl.classList.remove("html-fill-item", "html-fill-container");
+      ejemplosEl.style.setProperty("position", "static", "important");
+      ejemplosEl.style.setProperty("height", "100%", "important");
+      ejemplosEl.style.setProperty("overflow-y", "auto", "important");
+      ejemplosEl.style.setProperty("padding-right", "8px", "important");
+    }
+    var nubeEl = document.getElementById("bne-nube-palabras");
+    if (nubeEl) {
+      nubeEl.classList.remove("html-fill-item", "html-fill-container");
+      nubeEl.style.setProperty("position", "static", "important");
+      nubeEl.style.setProperty("height", "150px", "important");
+      nubeEl.style.setProperty("overflow-y", "auto", "important");
+      nubeEl.style.setProperty("padding-right", "8px", "important");
+    }
+    var conteoEl2 = document.getElementById("bne-conteo-anuncios");
+    if (conteoEl2) {
+      conteoEl2.classList.remove("html-fill-item", "html-fill-container");
+      conteoEl2.style.setProperty("position", "static", "important");
+      conteoEl2.style.setProperty("height", "100%", "important");
+    }
+  }
+
+  var PALETA_NUBE = ["#1C2321", "#B5622A", "#2E5266", "#6B8F71", "#8B7BB0", "#8A8578"];
+
+  function actualizarNubeBne(id) {
+    var nubeEl = document.getElementById("bne-nube-palabras");
+    if (!nubeEl) return;
+    var datos = (window.bneNubeData || {})[id];
+    if (!datos || !datos.length) {
+      nubeEl.innerHTML = "<span style=\'color:#8A8578; font-size:0.85rem;\'>Sin habilidades identificadas para esta selección.</span>";
+      return;
+    }
+    var max = Math.max.apply(null, datos.map(function(d) { return d.frecuencia; }));
+    var min = Math.min.apply(null, datos.map(function(d) { return d.frecuencia; }));
+    var html = datos.map(function(d, i) {
+      var t = max > min ? (d.frecuencia - min) / (max - min) : 1;
+      var tamano = (0.78 + t * 1.15).toFixed(2);
+      var peso = t > 0.5 ? 700 : 500;
+      var color = PALETA_NUBE[i % PALETA_NUBE.length];
+      return "<span title=\'" + d.frecuencia + " menciones\' style=\'font-family:Space Grotesk,sans-serif; font-size:" + tamano + "rem; font-weight:" + peso + "; color:" + color + ";\'>" + escapeHtmlBne(d.palabra) + "</span>";
+    }).join("");
+    nubeEl.innerHTML = html;
+  }
+  window.actualizarNubeBne = actualizarNubeBne;
+
+  function escapeHtmlBne(s) {
+    return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+  }
+
+  window.seleccionarBne = function(id) {
+    var data = window.bneBuscadorData;
+    if (!data) return;
+    var info = data[id];
+    var conteoEl = document.getElementById("bne-conteo-anuncios");
+    var ejemplosEl = document.getElementById("bne-resultado-ejemplos");
+    if (!info) {
+      if (conteoEl) conteoEl.textContent = "Sin anuncios";
+      if (ejemplosEl) ejemplosEl.innerHTML = "";
+      actualizarNubeBne(id);
+      return;
+    }
+    if (conteoEl) conteoEl.textContent = "N° de anuncios: " + info.n_anuncios;
+
+    var ejemplos = info.ejemplos || [];
+    var html = ejemplos.map(function(e) {
+      return "<div style=\'margin-bottom:12px; padding-bottom:10px; border-bottom:1px solid #E4DFD2;\'>" +
+        "<div style=\'font-family:monospace; font-weight:600; font-size:0.87rem; color:#1C2321; overflow-wrap:break-word;\'>" + escapeHtmlBne(e.titulo || "") + "</div>" +
+        "<div style=\'font-size:0.85rem; color:#1C2321; line-height:1.4; margin-top:2px; overflow-wrap:break-word;\'>" + escapeHtmlBne(e.descripcion || "") + "</div>" +
+        "</div>";
+    }).join("");
+    if (ejemplosEl) ejemplosEl.innerHTML = html || "<p style=\'color:#8A8578; font-size:0.88rem;\'>Sin ejemplos disponibles.</p>";
+
+    actualizarNubeBne(id);
+  };
+
+  forzarLayoutResultadoBne();
+  var intentosResLayout = 0;
+  var intervalResLayout = setInterval(function() {
+    forzarLayoutResultadoBne();
+    intentosResLayout++;
+    if (intentosResLayout > 15) clearInterval(intervalResLayout);
+  }, 150);
+})();
+</script>
+')
+```
+
+# Ficha metodológica
+
+## Fila {height="100%"}
+
+::: {.card title="Fuentes y notas metodológicas"}
+
+**Sobre el proyecto**
+Este catálogo se inspira en la Estrategia Nacional de Prospección Laboral, aprobada por el Ministerio del Trabajo y Previsión Social mediante el **Decreto Exento N°110 de 2023**, que además crea el Programa del Observatorio Laboral (ejecutado por una red de 16 Observatorios Laborales Regionales a cargo de instituciones de educación superior, uno por región del país).
+La Comisión Asesora Ministerial de Prospección Laboral, que elaboró la propuesta de Estrategia, planteó como objetivo consolidar un sistema de monitoreo y anticipación de los desajustes entre oferta y demanda de ocupaciones —granular, desagregado al menos por región, comuna y sexo— que se exprese en un catálogo público de caracterización de las ocupaciones y de anticipación de sus cambios. Ese es, en escala mucho más modesta y como ejercicio exploratorio, el espíritu que persigue este proyecto: partir por vincular fuentes existentes (hoy CASEN) alrededor de la taxonomía CIUO-08.CL, e ir ampliando su cobertura y granularidad con el tiempo.
+Fuente: [Decreto Exento N°110/2023 — Biblioteca del Congreso Nacional](https://www.bcn.cl/leychile/navegar?idNorma=1198246)
+
+**Taxonomía de ocupaciones — CIUO-08.CL**
+Clasificador Chileno de Ocupaciones, adaptación nacional del CIUO-08 (OIT), publicado por el INE en diciembre de 2018. Estructura de 4 niveles: gran grupo (1 dígito), subgrupo principal (2 dígitos), subgrupo (3 dígitos) y grupo primario (4 dígitos) — 10 grandes grupos, 44 subgrupos principales, 129 subgrupos y 444 grupos primarios.
+Fuente: [INE — CIUO 08.CL](https://www.ine.gob.cl/docs/default-source/buenas-practicas/clasificaciones/ciuo/clasificador/ciuo-08-cl.pdf)
+
+**Datos — CASEN 2015, 2017, 2020, 2022 y 2024**
+Encuesta de Caracterización Socioeconómica Nacional, Ministerio de Desarrollo Social y Familia. Usa la variable de ocupación principal de las personas ocupadas (`activ == 1`), junto con ingreso del trabajo corregido (`ytrabajocor`), categoría ocupacional, y una medida de formalidad laboral construida según el estándar OIT-INE (ver apartado siguiente). 2020, 2022 y 2024 ya usan CIUO-08.CL de forma nativa (`oficio4_08`). **2015 y 2017 usan CIUO-88** (`oficio4_88`) y se reclasificaron a CIUO-08.CL mediante una tabla de correspondencia — ver el detalle más abajo.
+
+**Formalidad laboral — estándar OIT-INE (no es solo cotización)**
+La "tasa de formalidad" de este catálogo **no** se calcula como "cotiza en AFP sí/no". Se construye siguiendo el algoritmo oficial validado por la mesa técnica INE - Observatorio Social del Ministerio de Desarrollo Social (Nota Técnica N°7, Casen 2024), alineado a los lineamientos de la OIT. La regla depende de la categoría ocupacional:
+
+- **Dependientes** (asalariados, servicio doméstico, Fuerzas Armadas): formales si cotizan simultáneamente en previsión **y** salud, y **no** trabajan a honorarios (trabajar a honorarios los vuelve informales aunque coticen, porque su acceso a seguridad social no deriva del vínculo laboral sino de una obligación tributaria distinta).
+- **Independientes** (empleadores y cuenta propia): formales si su negocio está registrado en el Servicio de Impuestos Internos (SII), o si desempeñan un oficio calificado (miembros del poder ejecutivo, profesionales, técnicos de nivel medio) cuando no hay dato de registro.
+- **Familiares no remunerados**: siempre informales, por definición.
+
+Las variables exactas cambian por año (2020, 2022/2024 comparten un set de preguntas; 2015 y 2017 usan el set anterior a la actualización metodológica de 2020, con más limitaciones). Validamos esta implementación contra las cifras oficiales publicadas por el MDS: para 2024 obtenemos 73,4% de formalidad a nivel nacional, **idéntico** al dato oficial publicado (73,4%); 2020 y 2022 quedan dentro de ±0,5 puntos porcentuales. 2015 y 2017 usan una metodología más antigua (documentada como no estrictamente comparable con 2020-2024 por el propio MDS) y tienen mayor margen de aproximación.
+
+Fuente: [Nota Técnica N°7 — Medición de la Informalidad en la Encuesta Casen 2006-2024, MDS](https://observatorio.ministeriodesarrollosocial.gob.cl/storage/docs/casen/2024/Nota_Tecnica_N7_Informalidad_Casen_2024.pdf)
+
+**Reclasificación CIUO-88 → CIUO-08.CL (Casen 2015 y 2017)**
+Se usó la tabla oficial de correspondencia entre ISCO-08 e ISCO-88 de la OIT (Organización Internacional del Trabajo), obtenida del paquete de código abierto [`occupationcross`](https://github.com/Guidowe/occupationcross). La correspondencia entre ambos clasificadores **no es uno a uno**: de los 671 pares de la tabla oficial, 356 están marcados como correspondencia *parcial* (un código CIUO-88 puede dividirse en varios códigos CIUO-08 distintos). Nuestra regla de reclasificación:
+- Si un código CIUO-88 tiene al menos una correspondencia *exacta* en CIUO-08, se usa esa.
+- Si todas sus correspondencias son parciales, se usa la primera listada por la OIT y el código queda marcado internamente como "ambiguo" (43% de los 389 códigos CIUO-88 observables quedan en esta categoría).
+
+Esto significa que **los datos de 2015 y 2017 a nivel de ocupación específica (4 dígitos) son una aproximación**, con más incertidumbre que los años que ya usan CIUO-08.CL de forma nativa. Aun así, hay alta cobertura entre lo que arroja el crosswalk y nuestra tabla maestra: del total de ocupados, ~1,0% (2015) y ~1,2% (2017) no lograron reclasificarse (típicamente por quedar en códigos genéricos "no especificado" en el CIUO-88 original de la encuesta).
+
+**Carreras por ocupación (pestaña "Ficha ocupaciones")**
+La tabla de las carreras más frecuentes entre quienes trabajan en cada ocupación usa la variable `cinef13_subarea` de CASEN 2024 — el campo de estudio de la educación superior, según la Clasificación Internacional Normalizada de la Educación, Campos de Educación y Formación (CINE-F 2013), a nivel de subárea (27 categorías). Los porcentajes se calculan solo entre quienes reportan una carrera de educación superior (ponderados por `expr`); si menos del 5% de una ocupación tiene ese dato, se indica que la ocupación no requiere estudios superiores en vez de mostrar porcentajes poco fiables.
+
+El **índice de diversidad de carreras** es la entropía de Shannon normalizada (equivalente al índice de uniformidad de Pielou), con rango 0 a 1: 0 significa que todos estudiaron la misma carrera; 1 significa una distribución perfectamente pareja entre todas las carreras observadas en esa ocupación. Es una medida estándar de diversidad/uniformidad en este tipo de análisis.
+
+**Actividad económica por ocupación (pestaña "Ficha ocupaciones")**
+La tabla de sectores usa la variable `rama4` de CASEN 2024, que corresponde a la **actividad económica del lugar donde trabaja** la persona (no la ocupación en sí), codificada según el Clasificador Chileno de Actividades Económicas Nacional Enlazado con la Seguridad Social (CAENES), basado en CIIU4.CL del INE, a nivel de clase (4 dígitos). Se muestran los 10 sectores más frecuentes por ocupación (de un máximo de granularidad de 121 categorías observadas en los datos), ponderados por `expr`, con el número de casos muestrales de cada uno para juzgar su confiabilidad. El índice de diversidad de sectores se calcula con la misma metodología de entropía de Shannon normalizada que el de carreras.
+
+**Anuncios de empleo recientes — Bolsa Nacional de Empleo (pestaña "Anuncios BNE")**
+Muestra avisos de empleo publicados en la BNE durante julio de 2026, clasificados automáticamente a CIUO-08.CL mediante una skill propia (similitud de texto TF-IDF de n-gramas de caracteres, sin modelos de lenguaje externos), que aprende de los pares puesto-de-trabajo → código validados por expertos en ENADEL 2024 y 2025, combinados con los ejemplos oficiales del manual CIUO-08.CL del INE. Solo se muestran avisos con una confianza de clasificación ≥0,45 — un umbral definido empíricamente tras detectar falsos positivos por similitud de caracteres poco relacionados semánticamente (ej. "Portero" mal asignado a "Cocinero" por compartir la palabra "colegio") en el rango 0,35-0,45. Es una clasificación experimental y automática — no reemplaza una codificación experta caso a caso.
+
+**Correcciones manuales sobre la clasificación automática.** Tras revisar una muestra amplia, se detectaron patrones sistemáticos de error causados por ejemplos de referencia genéricos o ambiguos en ENADEL que generan coincidencias de texto espurias (no solo casos aislados de baja confianza). Se corrigieron manualmente 43 avisos en 3 grupos de error, **sin modificar la skill de clasificación**:
+- 24 avisos con "Vendedor" en el título quedaron mal asignados a "Garzones de mesa", porque un ejemplo de ENADEL literalmente llamado "Vendedor/a" fue codificado ahí (probable error de la encuesta original) → reasignados a "Vendedores y asistentes de venta de tiendas, almacenes y puestos de mercado".
+- 8 avisos de "Vendedores Terreno (telecomunicaciones)" quedaron en "Analistas de sistemas" por compartir vocabulario técnico → reasignados a "Profesionales de ventas de TIC".
+- 11 avisos sueltos (ej. "Conductor Profesional" → "Profesionales de ventas técnicas" por coincidir en la palabra "Profesional"; "Guardias Nocheros...Proyecto" → "Ingenieros industriales" por coincidir en "Proyecto") corregidos caso a caso.
+
+Estos casos quedan marcados con `correccion_manual = TRUE` en los datos, para que sean auditables y distinguibles de la clasificación automática original.
+
+**Armonización entre años**
+- *Categoría ocupacional*: 2022 y 2024 usan `o21` (3 categorías). 2015, 2017 y 2020 usan `o15` (9 categorías, más granular). Se armonizaron a 3 niveles comunes (patrón/empleador, cuenta propia, asalariado/otro).
+- *Rama de actividad*: 2020 la identifica como `rama4_rev4`/`rama1_rev4`; 2022/2024 como `rama4`/`rama1`; 2017 usa CIIU Rev. 3 (`rama4_rev3`), una revisión distinta y no directamente comparable — no se usa en este módulo.
+- *Horas semanales trabajadas*: **no disponible para 2020** — la Encuesta Casen en Pandemia 2020 usó un cuestionario reducido (aplicación mayoritariamente telefónica) que omitió esta pregunta. Por eso la pestaña "Trayectoria de ocupación" no muestra horas para ese año.
+- Entre 1,2% y 2,4% de los ocupados de cada año no tienen un código CIUO-08.CL de 4 dígitos asignable (quedaron codificados como "no bien especificado", "no responde", o solo a nivel de 2 dígitos por información insuficiente del encuestado, o sin correspondencia en el crosswalk en el caso de 2017) — se excluyen de los agregados por ocupación específica.
+
+**Ponderación**
+Todos los indicadores están ponderados por el factor de expansión muestral de personas (`expr`) de cada año, por lo que representan estimaciones para el total de la población ocupada del país en cada ronda, no promedios simples de la muestra.
+
+**Advertencia sobre tamaño muestral**
+Las pestañas de ranking y trayectoria excluyen o marcan ocupaciones con muestra insuficiente (umbrales de 20-30 casos según la vista) para evitar leer variación que en realidad es ruido muestral.
+
+**Próximos pasos del catálogo**
+- Extender la serie histórica más allá de 2015 (CASEN existe desde 1990), reutilizando el mismo crosswalk CIUO-88 mientras el clasificador no cambie, y evaluando si hace falta una tabla adicional para clasificadores aún más antiguos.
+- La ENE (Encuesta Nacional de Empleo) se descartó para el catálogo a nivel de grupo primario porque sus tabulados públicos no desagregan a 4 dígitos de CIUO — podría revisitarse solo a nivel de gran grupo/subgrupo principal.
+- Registros administrativos (cotizaciones, contratos, remuneraciones).
+- Estudios cualitativos y notas técnicas sectoriales.
+
+:::

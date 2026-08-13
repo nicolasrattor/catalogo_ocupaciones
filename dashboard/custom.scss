@@ -1,0 +1,147 @@
+/*-- scss:defaults --*/
+
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500;600&display=swap');
+
+$tinta:   #1C2321;
+$papel:   #F6F4EE;
+$cobre:   #B5622A;
+$andino:  #2E5266;
+$salvia:  #6B8F71;
+$gris:    #8A8578;
+$linea:   #E4DFD2;
+$morado:  #8B7BB0;
+
+$font-family-sans-serif: "IBM Plex Sans", -apple-system, sans-serif;
+$font-family-monospace:  "IBM Plex Mono", ui-monospace, monospace;
+
+$navbar-bg: $tinta;
+$navbar-fg: $papel;
+$body-bg: $papel;
+$body-color: $tinta;
+
+$card-border-color: $linea;
+$card-border-radius: 2px;
+$card-cap-bg: transparent;
+
+/*-- scss:rules --*/
+
+body, .quarto-dashboard {
+  background-color: $papel;
+  font-family: $font-family-sans-serif;
+  letter-spacing: 0.1px;
+}
+
+.navbar {
+  background-color: $tinta !important;
+  border-bottom: 3px solid $cobre;
+}
+
+.navbar-title, .navbar-brand, .navbar-title-text, .navbar-title a {
+  font-family: "Space Grotesk", sans-serif !important;
+  font-weight: 700 !important;
+  font-size: 1.05rem !important;
+  letter-spacing: 0.2px;
+}
+
+.navbar-subtitle, .quarto-dashboard .navbar .navbar-text {
+  font-family: $font-family-monospace;
+  opacity: 0.85;
+  font-size: 0.78rem !important;
+}
+
+.dashboard-title, .dashboard-subtitle {
+  font-family: "Space Grotesk", sans-serif;
+}
+
+/* Tabs */
+.nav-tabs .nav-link {
+  font-family: "Space Grotesk", sans-serif;
+  font-weight: 600;
+  color: $tinta;
+  opacity: 0.55;
+  border: none;
+  border-bottom: 3px solid transparent;
+}
+.nav-tabs .nav-link.active {
+  opacity: 1;
+  color: $cobre;
+  border-bottom: 3px solid $cobre;
+  background: transparent;
+}
+
+/* Cards */
+.card {
+  border: 1px solid $linea;
+  border-top: 3px solid $andino;
+  box-shadow: none !important;
+  background-color: #FFFFFF;
+}
+.card-header {
+  font-family: "Space Grotesk", sans-serif;
+  font-weight: 600;
+  font-size: 0.92rem;
+  color: $tinta;
+  background-color: transparent;
+  border-bottom: 1px solid $linea;
+}
+
+/* Value boxes */
+.valuebox {
+  border: 1px solid $linea;
+  border-top: 3px solid $cobre;
+  box-shadow: none !important;
+}
+.value-box-value {
+  font-family: "IBM Plex Mono", monospace !important;
+  font-weight: 600 !important;
+  letter-spacing: -0.5px;
+  font-size: 1.3rem !important;
+  line-height: 1.15 !important;
+}
+.value-box-title {
+  font-family: "IBM Plex Sans", sans-serif !important;
+  text-transform: uppercase;
+  font-size: 0.68rem !important;
+  letter-spacing: 0.6px;
+  opacity: 0.9;
+}
+.card.valuebox.bg-primary,
+.card.valuebox.bg-success,
+.card.valuebox.bg-info,
+.card.valuebox.bg-warning,
+.card.valuebox.bg-secondary {
+  background-color: $morado !important;
+  color: #FFFFFF !important;
+}
+.valuebox .bi {
+  color: #FFFFFF !important;
+}
+
+/* Tablas DT */
+table.dataTable {
+  font-family: $font-family-sans-serif;
+  font-size: 0.86rem;
+}
+table.dataTable thead th {
+  font-family: "Space Grotesk", sans-serif;
+  font-weight: 600;
+  border-bottom: 2px solid $tinta !important;
+}
+
+/* Evitar que el desplegable del buscador (crosstalk/selectize) quede
+   recortado por el overflow:hidden de las tarjetas del dashboard */
+.card:has(.crosstalk-input),
+.card-body:has(.crosstalk-input) {
+  overflow: visible !important;
+}
+.selectize-dropdown {
+  z-index: 99999 !important;
+}
+.selectize-control, .selectize-input {
+  font-family: $font-family-sans-serif;
+}
+
+/* Fichas metodológicas */
+.card[title] p, .card p {
+  line-height: 1.55;
+}

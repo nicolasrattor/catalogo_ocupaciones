@@ -1,0 +1,30 @@
+# Datos crudos (pesados; no deben subirse a un repo público de GitHub Pages).
+# build_site.R los necesita localmente en data/raw/ para regenerar todo.
+data/raw/*.parquet
+
+# Archivos intermedios GRANDES y regenerables por build_site.R a partir de
+# data/raw/ (CSV "seleccion" de cada año de CASEN, y los .rds de personas
+# ocupadas). NO se excluyen aquí los CSV más chicos y no regenerables
+# automáticamente (bne_*, enadel_*, piaac_*) -- esos si van al repo, porque
+# el dashboard los necesita y no hay forma de reconstruirlos solo con
+# build_site.R (vienen de skills/procesos aparte).
+data/processed/casen_*_seleccion.csv
+data/processed/casen_*_ocupados.rds
+data/reference/ciuo08_master.csv
+
+# Artefactos de Quarto/knitr
+dashboard/*.knit.md
+dashboard/*.dashboard.md
+dashboard/catalogo_ocupaciones.html
+dashboard/catalogo_ocupaciones_files/
+dashboard/.quarto/
+
+# R
+.Rproj.user/
+.Rhistory
+.RData
+.Ruserdata
+
+# SO
+.DS_Store
+Thumbs.db

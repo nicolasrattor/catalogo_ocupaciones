@@ -1,0 +1,1153 @@
+codigo_ciuo,cargo,peso,n_empresas
+1120,Gerente general,65.02054046439271,2
+1120,Gerente/a General,16.3994932203154,1
+1120,Gerente General,5.64116086302934,1
+1120,Directores y gerentes generales de empresas,2.48926708471777,1
+1120,Director/a de empresa,1,1
+1211,Director/a de empresa,231.669315520792,1
+1211,Gerente de riesgos,46.359425082256,1
+1211,Director/a o Jefe/a de departamento financiero,21.6344070654774,1
+1211,Gerente de finanzas,6.0979201785786,1
+1211,Adminstrador/a de finanzas,5.66294559730431,2
+1211,Director/a de administración y finanzas,3.79532945947424,1
+1211,Gerente de administración y finanzas,2.4488534550445,1
+1212,Administrador/a de recursos humanos,30.7511909728815,1
+1212,Jefe/a de recursos humanos,9.62806121053974,5
+1212,"Directores, gerentes y administradores de recursos humanos",3.793366385534,1
+1213,Jefe/a de departamento de políticas y planificación,6.03215123785774,2
+1213,Administrador/a de proyecto,2.45108453867106,1
+1219,Director/a de Oficina,221.392238507527,1
+1219,Jefe/a de proyectos de telecomunicaciones,83.8018215905458,1
+1219,Subgerente general,28.7181252781852,1
+1219,Administrador/a de contratos,1,1
+1221,Gerente de ventas,214.2861588020722,3
+1221,Jefe/a de marketing,154.084563926273,1
+1221,Jefe/a de ventas,30.905008153534368,3
+1221,Gerente comercial,21.5439039337003,1
+1221,Gerente comerial,2.73628491762591,1
+1223,Director/a de investigación,28.3262895606989,1
+1311,"Directores, gerentes y administradores de producción y operaciones agropecuarias y de silvicultura",4.83847753256889,1
+1311,Capataz de estancia,3.39212157220047,1
+1311,Jefe/a de estancia,3.39212157220047,1
+1311,Administrador/a de plantación,3.34597568865511,1
+1311,Administrador/a de predio agrícola,3.34597568865511,1
+1324,Jefe/a de operaciones,462.07424844616,1
+1324,Director/a de calidad,169.558766002071,1
+1324,Jefe/a de estación ferroviaria,7.18046689059344,1
+1324,Administrador/a de empresa,5.44028137095823,1
+1324,Jefe/a de operaciones de transporte,3.2825743931432,1
+1324,Gerente de calidad,1,1
+1330,Gerente de operaciones,6.10920645087901,1
+1330,Gerente/a de telecomunicaciones,4.09466738576137,1
+1330,Gerente de transformación digital,3.83623723147949,1
+1330,Gestor de proyectos,3.38748806528896,1
+1344,Jefe/a zonal en fundación,258.866416475489,1
+1345,Profesional de Gestión Universitaria,1,1
+1346,Gerente de empresa financiera,46.359425082256,1
+1411,Gerente de hotel,3.78015522531299,1
+1411,Administrador/a de hotel,1,1
+1412,Jefe/a de restaurant,87.5598207598285,1
+1412,Administrador/a de restaurante,45.38837450579713,6
+1412,Encargado/a de administración,8.15889662339701,1
+1412,Gerente de restaurante,5.82686988229644,2
+1412,Gerente en empresa de catering,1,1
+1412,Sobgerente de restaurant,1,1
+1420,Administrador/a de local,43.4835673770807,2
+1420,Jefe/a o Administrador/a de local,29.522945078874187,3
+1431,Administrador/a de sala de teatro,3.79532945947424,1
+1431,Director/a cultural,3.79532945947424,1
+1439,Jefe/a de estación,5.81496886942004,1
+1439,Gerente/Administrador de empresa de servicios,4.24301849537621,1
+1439,Director/a de seguridad,1,1
+2111,Investigadores en ciencias básicas,5.57901030683986,1
+2113,personal de investigación y desarrollo,3.62996180403925,1
+2113,Químico/a,1,1
+2114,Geólogo/a,14.31398826561907,4
+2120,Estadístico/a,2.96831110397465,1
+2131,Biólogo/a marino/a,17.95461190615,1
+2131,Microbiologo,4.75313536812026,1
+2132,Ingeniero/a forestal,20.4818040565633,1
+2132,Ingeniero/a acuícola,17.95461190615,1
+2132,Buzo especialista en muestra,15.9827479174487,1
+2133,Operario/a de protección medioambiental,15.9827479174487,1
+2141,Ingeniero/a de procesos,17.4343211498199,1
+2141,Ingeniero/a de producción,5.66282369386627,2
+2141,Ingeniero/a industrial,2.25841296736366,1
+2142,Ingeniero/a en construcción,122.23305929762284,4
+2142,Constructor/a civil,66.23732179582561,5
+2142,Ingeniero/a calculista,28.0884053340587,1
+2142,Constructor/a Civil,7.1849933524850504,1
+2142,Ingeniero/a civil,6.75813782208289,1
+2142,Jefe de proyecto,4.31787800363785,1
+2142,Ingeniero/a civil en construcción,2.23125793740013,1
+2143,Ingeniero/a medioambiental,265.91534339919184,3
+2143,Coordinador/a de impacto medioambiental,31.552922067661,1
+2144,Ingeniero/a de mantenimiento,1,1
+2144,Ingeniero/a mecánico,1,1
+2145,Ingeniero/a químico,5.79768252649023,2
+2145,Ingeniero/a quimico especialista en combustibles,2.73157097967576,1
+2146,Ingeniero/a en minas,114.9306199163465,2
+2146,Administrador/a de faena minera,22.6496228380874,1
+2151,Ingeniero/a eléctrico,23.76908436150241,6
+2153,Ingeniero/a de proyectos de telecomunicaciones,83.8018215905458,1
+2153,Ingeniero/a de telecomunicaciones,83.8018215905458,1
+2153,Lider proyectos en telecomunicaciones,83.8018215905458,1
+2163,Diseñador/a de vestuario,463.07424844616,2
+2163,Diseñador/a de productos,231.669315520792,1
+2165,Ingeniero/a en geomensura,83.8018215905458,1
+2165,Geomensor/a,2.74083417047324,1
+2166,Diseñador/a Gráfico multimedia,21.72403696279991,3
+2166,Diseñador/a Gráfico digital,17.8979195718987,1
+2166,Diseñador/a Gráfico,17.15279221834828,3
+2211,Médico/a general,26.35774650658586,4
+2212,Médico/a especialista,7.41900200796358,1
+2212,Médico/a anestesista,4.65052397813388,1
+2221,Enfermero/a,125.67567476062577,15
+2230,Veterinario/a,49.4916833149297,4
+2230,Médico/a Veterinario/a,27.0840741567653,1
+2230,Médico/a Veterinario,4.75313536812026,1
+2241,Odontólogo/a,258.866416475489,1
+2241,Dentista,11.4391350739138,1
+2242,Administrador/a de local comercial (farmacia),27.0840741567653,1
+2242,Químico farmacéutico,13.778107439158,1
+2242,Químico farmacéutico de salud pública,10.6093860452297,1
+2242,Farmacéutico/a,7.72485772324824,1
+2243,Prevencionista de riesgo,252.00454982434417,11
+2243,Ingeniero/a en prevención de riesgo,64.88580854747545,10
+2243,Profesional de la prevención de riesgos,45.1069763162732,2
+2244,Kinesiólogo/a,287.49417326873515,5
+2245,Nutricionista,23.77261533634954,3
+2246,Fonoaudiólogo/a,302.77806925023845,5
+2247,Tecnólogo/a médico,310.8794411510701,6
+2247,Tecnólogo/a médico de otorrinolaringología,23.8691645475402,1
+2248,Terapeuta ocupacional,40.50396598932599,5
+2310,Docente de gastronomía educación superior,156.2253566029126,2
+2310,Profesor/a de educación superior,17.74942851294256,6
+2310,Académico/a de educación superior,3,3
+2310,Profesor/a de talleres extraprogramáticos,1,1
+2320,Profesor/a de formación laboral en establecimiento de educación media Técnico/a profesional,1,1
+2330,Profesor/a de educación media,181.72339398199583,17
+2330,Profesor/a,78.1126783014563,1
+2330,Profesor/a de fisica en ed media,1.79800552387734,1
+2330,Profesor/a de matematicas,1.79800552387734,1
+2341,Profesor/a de educación básica,133.6398406793218,18
+2341,Profesor/a de Lenguaje,36.5300984902798,1
+2341,Profesor/a de matemáticas,15.2133793129833,2
+2342,Educador/a de párvulos,90.86368702835124,6
+2342,Educadores de párvulos,3.92919633519165,1
+2351,Jefe/a de unidad técnica pedagógica,17.9887620005335,1
+2351,Analista curricular,14.2133793129833,1
+2351,Profesional de aseguramiento de la calidad de educación,2.83255681266876,1
+2351,Especialistas en métodos pedagógicos,2.37414721167236,1
+2352,Educador/a diferencial,390.66647853640256,16
+2352,Profesor/a de educación física para personas con discapacidad,258.866416475489,1
+2352,Educadores para necesidades especiales,47.2143564125143,3
+2352,Asistente de aula de educación diferencial,23.8691645475402,1
+2352,Asistente de aula,11.4391350739138,1
+2352,Educador diferencial,5.8725273725894,1
+2353,Profesor/a de segundo idioma,5.34290126427455,1
+2359,Relator/a en minería,8.22945122640888,1
+2359,Instructor/a universitario,7.72485772324824,1
+2359,Orientador/a escolar,7.72485772324824,1
+2359,Psicopedagogo/a,7.47445554885214,1
+2411,Contador/a,994.517679817083,12
+2411,Contador/a auditor/a,676.6881537163763,4
+2411,Administrativo/a contable,510.638218598106,1
+2411,Analista contable,57.4653099581732,1
+2411,Subgerente contable,9.04947376143623,1
+2411,Analista presupuestario,3.05560038266833,1
+2413,Analista financiero,81.61637745091123,3
+2413,Analista de control financiero,57.4653099581732,1
+2413,Analista de inversiones,3.74780012609433,1
+2421,Asesor/a de empresas,469.83978837329784,2
+2421,Asesor/a,462.074248446162,1
+2421,Coordinador/a de gestión,56.3630221236528,1
+2421,Analista de datos,6.10920645087901,1
+2421,Analista en control de gestión,4.05560038266833,2
+2421,Analista de organización y métodos,3.51286674832601,1
+2421,Administrador/a de contrato,3.13217582716262,1
+2421,Ingeniero/a especialista en planificación y control,1,1
+2423,Consultor/a en selección de personal,169.558766002071,1
+2423,Analista de recursos humanos,13.0756792176398,3
+2423,Analista en recursos humanos,1,1
+2424,Encargado/a de capacitación,31.730932244918982,3
+2431,Profesional de publicidad,462.07424844616,1
+2431,Encargado/a de Marketing,24.83827859522074,5
+2431,Publicista radial,4.09466738576137,1
+2431,Publicista,3.62996180403925,1
+2431,Analista de ventas,2,2
+2431,Profesional de merchandising,1,1
+2432,Administrador/a de redes sociales,83.8018215905455,1
+2432,Encargado/a de redes sociales,27.0840741567653,1
+2432,Community manager,22.24797630574168,3
+2432,Relaacionador público,17.9887620005335,1
+2432,Coordinador/a de comunicaciones,3.54837053120246,1
+2432,Profesional de gestión,1,1
+2433,Vendedor/a de implantes,510.638218598107,1
+2433,Representante comercial especializado en maquinaria,231.669315520792,1
+2433,Representante Técnico/a especializado en ventas de productos industriales,30.270738832229842,3
+2433,Asistente comercial,18.4343211498199,2
+2433,Profesional de ventas,11.4287913093968,1
+2433,Consultor/a de ventas,10.4098104112287,1
+2433,Vendedor/a TI,6.10920645087901,1
+2433,Ejecutivo/a comercial,3.06985534067553,1
+2433,Jefe/a de ventas,2.96831110397465,1
+2434,Vendedor/a de software,83.8018215905458,1
+2434,Ejecutivo/a comerercial TI,25.2871145670538,1
+2434,Ejecutivo/a de ventas de software,25.2871145670537,1
+2434,Profesionales de ventas de tecnología de la información y las comunicaciones (TIC),2.74083417047324,1
+2434,Vendedor/a TI,2.74083417047324,1
+2511,Analista de sistemas,25.54686472292263,3
+2511,Analista de datos,25.2871145670538,1
+2512,Desarrollador/a de software,185.86892812552819,9
+2512,Ingeniero/a informático/a,18.64460186938618,2
+2512,Desarrollador Backend,4.01755510457195,1
+2512,Desarrollador/a Frontend,4.01755510457195,1
+2512,Analista programador/a,1,1
+2513,Desarrollador/a de página web,4.31787800363785,1
+2514,Desarrollador/a de aplicaciones,185.03204958164972,3
+2514,Programador/a de aplicación,15.729206709338062,2
+2519,Consultor técnico de sofware,83.8018215905455,1
+2519,Programador/a de software y contador/a,83.8018215905455,1
+2519,Tester de aplicaciones,25.2871145670537,1
+2521,Diseñador/a de bases de datos,25.2871145670537,1
+2521,Analista de datos,7.12560837946903,1
+2521,Arquitecto de bases de datos,4.61789358648057,1
+2521,Ingeniero/a de datos,4.31787800363785,1
+2522,Administrador/a de sistemas,494.6522893391614,2
+2522,Analista de sistemas,7.18046689059344,1
+2522,Ingeniero/a en sistemas,3.22251567262593,1
+2523,Analista de redes informáticas,4.01755510457196,1
+2611,Abogado/a,147.48708237706717,5
+2611,Abogado/a de Cumplimiento (Compliance Officer),3.67872007090204,1
+2622,Bibliotecario/a,6.88268729828353,1
+2632,Arqueólogo/a,47.303857539815,2
+2634,Psicólogo/a,83.72556082879709,9
+2634,Psicólogo/a educacional,55.443689113045735,3
+2634,Psicólogo/a clínico,7.56782240879211,2
+2634,Psicólogo/a organizacional,5.34290126427455,1
+2634,Psicólogo/a laboral/organizacional,1,1
+2635,Trabajador/a social,78.27690572870358,5
+2635,Profesional psicosocial,14.2133793129833,1
+2636,Pastor de iglesia,78.1126783014563,1
+2642,Periodista,14.44463955908881,3
+2643,Traductor/a,258.86641647549,1
+2652,Músico,5.34290126427455,1
+2653,Bailarines,12.8797783942311,1
+2653,Director de cine,1.99406078025323,1
+2656,Locutor/a radial,10.14098309251559,3
+2659,Animador/a de eventos,12.8797783942311,1
+2659,Disc jockey (DJ),12.8797783942311,1
+3111,Técnico en ciencias físicas,18.7647360968455,1
+3111,Ayudante de laboratorista vial,6.0979201785786,1
+3111,Analista de Laboratorio,4.9718709548347,1
+3111,Muestrista,4.30328488150779,1
+3111,Asistente de laboratorio químico,4.1617206494349,1
+3111,Laboratorista Químico,3.04689581211318,1
+3112,Topógrafo,277.6964268170975,4
+3112,Técnico/a en construcción,94.65727265801458,5
+3112,Especialista en prevención de incendios,5.11925815814655,1
+3112,Analista de proyectos de construcción,3.39903942077162,1
+3112,Técnicos en construcción y topógrafos,2.50707465236255,1
+3112,Inspector/a de obra,2.2453250560792,1
+3112,Asistente de supervisor/a de obra,1,1
+3113,Técnico/a electricista,265.80211059394145,11
+3113,Técnico/a en electricidad,130.1290281683386,14
+3113,Técnico en electricidad,35.5007787373567,2
+3113,Técnico electricista,4.65052397813388,1
+3113,Supervisor/a electricista,1,1
+3114,Mecánico/a de equipo médico,462.074248446162,1
+3114,Técnico/a en electricidad,16.3994608559366,1
+3114,Electromecánico/a,7.54583949047439,1
+3114,Técnico/a en mantenimiento sistemas de oxígeno,7.12560837946903,1
+3114,Técnico/a en electrónica,4.01755510457196,1
+3115,Técnico/a en ingeniería mecánica,40.84258051781317,4
+3115,Técnico/a mecánico/a,17.0012048076738,1
+3115,Jefe/a taller automotriz,16.3994932203154,1
+3115,Técnico/a en mantenimiento mecánico,11.9538546864424,1
+3115,Técnico/a de soporte,6.91655838195872,1
+3115,Técnico/a en control de calidad,6.91655838195872,1
+3115,Inspector/a de calidad industrial,4.17920775549524,1
+3115,Técnico/a en mantenimiento,3.34597568865511,1
+3115,Técnico/a mecánico,1,1
+3117,Técnico/a metalúrgico,2,2
+3118,Asistente de oficina técnica,8.32124240624532,1
+3118,Delineante y dibujante técnico,4.01755510457195,1
+3119,Técnico/a en capacitaciones,11.6878087424019,1
+3119,Otros técnicos en ciencias físicas y en ingeniería no clasificados previamente,7.67969373048774,2
+3121,Supervisor de producción,6.46516832596426,1
+3121,Supervisor/a de minería,3.02512187695574,2
+3121,Supervisores de minas,2.0096822241167,1
+3122,Supervisor/a de producción en industria manufacturera,54.46683833219414,11
+3122,Supervisor de cosecha,27.292389205992002,2
+3122,Supervisor/a de operaciones,19.47317344675059,2
+3122,Supervisor/a de campo,17.1674156335887,1
+3122,Supervisor/a de faena forestal,17.1674156335887,1
+3122,Supervisor/a de maquinaria,14.3633132974849,1
+3122,Supervisor/a de planta de proceso alimentaria,13.9538546864424,3
+3122,Jefe/a de línea,13.4728093486332,2
+3122,Supervisor/a de buceo,13.3436866244682,1
+3122,Supervisor/a de ensamblaje,9.42327858192975,2
+3122,Supervisor/a de equipo,5.07787761974289,1
+3122,Jefe/a de producción,4.46708996366324,1
+3122,Jefe/a de mantenimiento eléctrico,3.46201747387135,1
+3122,Supervisor/a de planta de reciclaje,2.96512571382148,1
+3122,Supervisor/a de planta,2.25841296736366,1
+3122,Encargado/a general de obra,1.53658687525836,1
+3122,Analista de procesos,1,1
+3122,Supervisor/a Industrial,1,1
+3123,Administrador/a de obras de la construcción,815.917781369119,1
+3123,Supervisor/a de obra,710.8724395684129,12
+3123,Jefe/a de obra,288.521153375744,4
+3123,Lider de cuadrilla en construcción,221.392238507527,1
+3123,Supervisor/a de construcción,174.99564937174029,7
+3123,Capataz de la construcción,52.80866855094904,6
+3123,Capataz de obra gruesa y obras preliminares,28.0884053340588,1
+3123,Supervisor/a de la construcción de edificios,27.80227794665678,2
+3123,Jefe/a de instalaciones eléctricas,15.0211478886385,1
+3123,Jefe de obra,6.46516832596426,1
+3123,Maestro/a de obra civil,2.0468295953419,1
+3132,Operador/a de depuración,38.3709232495538,1
+3132,Operador/a de instalaciones de tratamiento de aguas,10.288038116061541,4
+3132,Operador/a de planta de tratamiento,10.2726765337983,1
+3132,Técnico/a en tratamiento de agua,9.14988843070264,2
+3132,Operador/a de instalaciones de tratamiento de aguas residuales,8.01112751610296,2
+3132,Operador/a de estación de bombeo,4.60058491836551,1
+3132,Operador/a servicios sanitarios,4.04657594733918,1
+3132,Operador de instalaciones de tratamiento de aguas,3.2825743931432,1
+3132,Operador/a de planta de hidrólisis,1.96220059240112,1
+3132,Operador/a planta aguas servidas,1.86707573977902,1
+3132,Operador/a sanitario/a,1.53658687525836,1
+3134,Supervisor técnico en terreno,3.32217002649045,1
+3141,Muestreador/a de laboratorio,17.4343211498199,1
+3142,Técnico/a agrícola,58.8503296896037,2
+3142,Administrador del campo agricola,22.5720086639088,1
+3142,Técnico/ acuícola,17.95461190615,1
+3142,Muestreador/a de leche,11.6878087424019,1
+3142,Técnicos agropecuarios (incluyendo acuícolas),4.83847753256889,1
+3142,Asistente de centro de producción,1,1
+3143,Técnico/a forestal,18.72358208792194,2
+3151,Operador/a de Drone,56.3630221236528,1
+3151,Motorista de nave menor,34.97862643001835,6
+3151,Operador/a de ROVS,17.95461190615,1
+3151,Tripulante Piloto/a Rov,10.734308677538,1
+3151,Operador/a ROV,6.42362962852544,1
+3152,Patrón/a de nave menor,77.45031430977315,9
+3152,Patrón o capitán de barco mercante,21.5439039337002,1
+3152,Motorista de nave menor,10.734308677538,1
+3152,Marinero/a timonel,7.18046689059344,1
+3152,Marino/a mercante,7.18046689059344,1
+3152,Capitán Embarcación,6.42362962852544,1
+3152,Capitan de cubierta,3.5372587568796,1
+3152,Patrón/a de nave mayor,1.59140111631994,1
+3211,Técnico/a en imagenología,14.3633132974849,1
+3213,Asistente farmaceútico,27.0840741567653,1
+3221,Asistente quirúrgico,510.638218598107,1
+3221,Técnico/a en Enfermería,238.1298164478184,24
+3221,Auxiliar paramédico de enfermería,23.6519287699075,1
+3221,Tens,7.76553992713581,1
+3221,Técnico/a paramédico,4.01679227892075,1
+3223,Ayudante de ambulancia,6.13896215578772,1
+3240,Técnico/a veterinario,104.66699466647648,8
+3251,Ayudante de odontología,411.6475750216896,6
+3254,Asesor/a de óptica,13.1091876830554,1
+3255,Cosmetologa clínica estética,5.34290126427455,1
+3256,Monitor/a de inocuidad alimentaria,11.9538546864424,1
+3257,Prevencionista de riesgos,131.6577547103881,9
+3257,Inspector/a Técnico/a de obra,56.3630221236528,1
+3257,Técnico/a en prevención de riesgos,28.733300002455003,3
+3257,Encargado/a de Seguridad Ocupacional y técnicos en prevención de riesgos,6.47466010089871,1
+3257,Inspectores de la salud y técnicos en prevención de riesgos,6.00511406216661,1
+3313,Asistente contable,333.0540268203074,12
+3313,analista de contabilidad,32.5780408929994,1
+3313,Administrativo/a contable,5.57879253831152,1
+3321,Vendedor/a de seguros,92.718850164512,2
+3321,Agente de seguros,4.61877666218048,1
+3321,Ejecutivo/a de recaudación de cotizaciones,3.67872007090204,1
+3322,Ejecutivo/a comercial,687.9415849643299,4
+3322,Analista comercial,549.6340692059905,2
+3322,Gestor comercial,231.669315520792,1
+3322,Ejecutivo/a KAM,170.558766002071,2
+3322,Agente de compras,106.335079680585,1
+3322,Representante de ventas al por mayor y al por menor,66.4150079641457,3
+3322,Representante comercial,41.10689660440394,6
+3322,Vendedor/a en terreno,9.15785779833692,2
+3322,Representante de ventas,7.39167991145104,3
+3322,Ejecutivo/a de cartera de clientes,6.38196910193067,1
+3322,Ejecutivo/a de ventas,5.59113315959663,2
+3322,Ejecutivo/a de venta a empresas,1,1
+3323,Analista de compras,57.4653099581732,1
+3323,Responsable de adquisiciones,24.8261897845804,2
+3323,Agente de adquisiciones,24.55163564482849,3
+3323,Administrador/a postventa,10.4791071354881,1
+3323,Jefe de adquisiciones,8.32124240624532,1
+3323,Encargado/a de compras,5.44374356631853,2
+3323,Encargado/a de licitaciones,3.20383500566392,1
+3331,Agente de aduana,248.1958294883215,2
+3331,Ejecutivo/a de Comercio Exterior,29.4454844632792,2
+3331,Tramitador/a documental de comercio exterior,24.34274249009865,2
+3331,Receptor/a de naves,7.71918223938465,1
+3334,Agente inmobiliario,169.72213432249708,6
+3334,Ejecutivo/a de ventas inmobiliarias,11.8136722761082,1
+3334,Administrador/a de propiedades,8.40385045878902,1
+3334,Corredor/a de propiedades,3.67872007090204,1
+3334,Encargado/a de ventas,3.67872007090204,1
+3339,Asesor/a de viajes turísticos,11.0666820846193,1
+3341,Supervisor/a de equipo,278.860870495958,2
+3341,Coordinador/a de oficina,169.558766002071,1
+3341,Supervisor/a de datos,169.558766002071,1
+3341,Monitor/a de talleres,3.79532945947425,1
+3342,Administrativo/a legal,139.430435247979,1
+3343,Asistente ejecutivo,277.6967220309593,3
+3343,Administrativa de operaciones,231.669315520792,1
+3343,Secretaria/o administrativo/a,78.56060959270417,9
+3343,Secretario/a administrativo/a,15.782476128163271,2
+3343,Secretario/a administrativo,7.1849933524850504,1
+3343,Secretario/a ejecutivo,4.61877666218049,1
+3343,Secretario/a de gerencia,4.61789358648057,1
+3343,Asistente administrativo/a de recursos humanos,4.57494421535132,1
+3343,Secretarios administrativos y ejecutivos,3.92919633519165,1
+3343,Asistente administrativo/a de compras,1,1
+3344,Recepcionista de centro de salud,23.8691645475402,1
+3344,Secretario/a médico,4.630562336546101,2
+3344,Empleado administrativo de consultorio médico,3.63733547255337,1
+3411,Asistente jurídico,15.9827479174487,1
+3412,Técnico/a en trabajo social,6.08117630726176,2
+3412,Voluntario/a en trabajo social,5.8725273725894,1
+3413,Misionero/a de iglesia,78.1126783014563,1
+3423,Guía de actividades de aventura,10.8202217704964,1
+3423,Preparador/a físico,6.13896215578772,1
+3423,Profesor/a de Sala Muscular,5.81496886942004,1
+3423,Instructor/a de gimnasio,3.78015522531298,1
+3423,Coordinador/a de actividades recreativas,3.28228585088011,1
+3431,Fotógrafo/a,258.86641647549,1
+3433,Administrador/a de centro cultural,3.54837053120246,1
+3434,Chef,337.77455814581776,11
+3434,Chef Ejecutivo/a,18.86571851422911,2
+3434,Jefe/a de cocina,8.49222747945974,2
+3434,Garde-manger,8.40385045878902,1
+3439,Montador/a de stand,462.07424844616,1
+3439,Encargado/a de extensión cultural,9.04947376143623,1
+3511,Técnico/a de soporte,15.93081703673976,4
+3511,Encargado/a Informático,10.1197107710232,1
+3511,Técnico/a en información y comunicaciones,9.81765801358457,1
+3511,Técnico/a informático,4.31787800363785,1
+3512,Auxiliar Técnico/a TI,110.08893615759919,3
+3512,Operador/a de servicio de asistencia a usuarios,9.16480683354734,2
+3512,Técnico/a informático,8.56012992700631,2
+3512,Asistente informático,8.41905182229327,2
+3512,Técnico/a de soporte,3.38748806528896,1
+3512,Trabajador/a de soporte técnico,1,1
+3513,Técnico/a en soporte informático,35.81442785326074,4
+3513,Técnico/a de redes informáticas,24.65305667738742,6
+3521,Técnico de producción,6.10920645087901,1
+3521,Sonidista,2.91343494114822,1
+3522,Técnico/a en telecomunicaciones,18.01675179866245,4
+3522,Técnico/a de ingeniería de las telecomunicaciones,7.26643121252256,2
+3522,Técnico/a en telecomunicación,5.93214576460398,1
+3611,Técnica/o en educación parvularia,108.93883051016101,10
+3611,Técnico/a en educación parvularia,32.324135283057714,5
+3611,Asistente de párvulo,28.91916929336886,3
+3611,Técnico en Educación Parvularia,10.8202217704964,1
+3611,Asistente párvulo,5.8725273725894,1
+3611,Técnico en educación parvularia,5.73021563945187,1
+3612,Asistente en educación diferencial,328.56186506960535,4
+3612,Técnico/a en educación diferencial,47.38965320628477,3
+4110,Asistente administrativo,903.7968840899418,13
+4110,Administrativo/a general,179.822974380957,10
+4110,Empleado de labores administrativas generales,59.62920418886911,6
+4110,Administrativo(a) general,21.212699600470593,2
+4110,Empleado/a de labores administrativas generales,17.1674156335887,1
+4110,Asistente de documentación,7.72485772324824,1
+4110,Secretario/a,4.6676082994262,1
+4120,Secretario/a de funciones generales,19.01319571469209,2
+4120,Secretario/a administrativo,17.09928272849585,2
+4120,Asistente administrativo,4.57494421535132,1
+4120,Asistente de oficina técnica,4.17920775549524,1
+4132,Digitalizador/a,69.9059807061057,1
+4212,Crupier de juegos,3.1583466704331302,2
+4214,Agente de cobranzas,258.86641647549,1
+4221,Vendedor/a de pasajes de transporte aéreo,21.5439039337003,1
+4221,Vendedor/a en agencia de viajes,20.69326756268324,4
+4221,Vendedor/a de pasaje en boletería,3.88344456657712,1
+4221,Vendedor de pasajes en boletería,3.32442335558736,1
+4221,Vendedor/a de pasajes de bus,3.32442335558736,1
+4221,Vendedor/a de boletos,3.13217582716262,1
+4221,Vendedor/a de pasajes en boletería,2.4488534550445,1
+4221,Vendedor/a en boleteria,2.2453250560792,1
+4222,Ejecutivo/a de call center,83.4783145119966,3
+4222,Empleado/a de informaciones,7.76553992713581,1
+4222,Radio comunicador/a,2.96512571382147,1
+4222,Atención al cliente,2.48919632647864,1
+4222,Empleado/a de servicio de información al cliente,2.13208184990742,1
+4223,Operador/a de radio,7.76553992713581,1
+4224,Recepcionista de hotel,188.07612823011405,25
+4224,Recepcionista,15.94369492292164,2
+4224,Botón/a de hotel,10.0540792660816,1
+4224,Encargado de recepción,2.91343494114822,1
+4224,Encargada de huespedes,2.39950702694744,1
+4225,Ejecutivo/a de información al cliente,572.7781260532711,8
+4225,Agente de información,53.1258693953205,1
+4225,Recepcionista de restaurante,17.8979195718987,1
+4225,Empleado/a de servicio de información,10.4791071354881,1
+4226,Recepcionista en clínica,336.9790947769453,2
+4226,Recepcionista,107.72453893028192,12
+4226,Recepcionista de consulta médica,18.28487546497158,2
+4226,Recepcionista de centro de salud,7.41900200796358,1
+4226,Anfitrión/a de oficina comercial,6.38196910193067,1
+4226,Recepcionistas (funciones generales),3.20383500566392,1
+4229,Otros empleados de servicios de información al cliente no clasificados previamente,2.44167017008651,1
+4311,Administrativo/a contable,550.7435887109134,6
+4311,Empleado administrativo/a contable,77.06587707094099,5
+4311,Auxiliares y ayudantes de registros de contabilidad y cálculo de costos,4.83847753256889,1
+4311,Empleado administrativo contable,3.24952156487532,1
+4313,Administrativo/a de salarios y nóminas,21.6344070654774,1
+4313,Encargado/a de remuneraciones,11.8136722761082,1
+4313,Empleado/a administrativo de salarios y nóminas,5.64116086302934,1
+4321,Administrativo/a logístico,462.074248446162,1
+4321,Encargado/a de bodega,380.3853437557835,16
+4321,Bodeguero/a,303.94928639636316,35
+4321,Empleado/a de bodega,96.2980949636777,9
+4321,Gestor/a de inventario,22.18195789794702,2
+4321,Operador/a de bodega,20.62106760948552,3
+4321,Operador/a logístico,16.3994932203154,1
+4321,Operario de patio y despacho de maderas,16.0265049012021,1
+4321,Empleado/a de inventario,13.696606854701919,2
+4321,Empleado/a encargado/a del control de abastecimiento e inventario,13.607789857115291,2
+4321,Auxiliar de bodega,11.4287913093968,1
+4321,Coordinador/a logístico,11.4287913093968,1
+4321,Asistente de bodega y despacho,8.40385045878902,1
+4321,Asistente de logística y suministros,6.91655838195872,1
+4321,Empleado de bodega,5.81496886942004,1
+4321,Personal de almacén,5.44028137095823,1
+4321,Operario/a de bodega,5.07787761974289,1
+4321,Coordinador/a logístico/a en terreno,4.17920775549524,1
+4321,Encargado de bodega,1,1
+4321,Operador/a de bodega de supermercado,1,1
+4323,Controlador/a de servicio de transporte,32.156530684068926,5
+4323,Coordinador/a de transporte,23.72636825789732,2
+4323,Inspector/a de transporte,17.3150366814798,2
+4323,Auxiliar de servicio de transporte,14.7227422316396,1
+4323,Despachador/a de transporte de carga,14.1136507463825,1
+4323,Empleado/a de recepcion de carga,8.63876053153606,2
+4323,Despachador/a de transporte,7.59281684270562,2
+4323,Empleado/a de servicios de transporte,6.0979201785786,1
+4323,Controlador de pesaje del servicio de transporte,5.54013214292018,1
+4323,Asistente de logística de empresa industrial,4.02535651150994,1
+4323,Encargado/a de rutas,3.5372587568796,1
+4323,Operador/a logistico,3.5372587568796,1
+4323,Supervisor/a de operaciones de transporte,3.13217582716262,1
+4323,Asistente en logistica,3.01617970092595,1
+4323,Recepcionista de transporte,2.50707465236255,1
+4323,Supervisor/a portuario,2.50707465236255,1
+4323,Administrativo/a de operaciones,2.2453250560792,1
+4323,Recepcionista de carga (servicio de transporte),1.48756213454977,1
+4412,Cartero/a,70.6340597329064,1
+4416,Encargado/a de recursos humanos,462.07424844616,1
+4416,Asistente de recursos humanos,91.5286278785145,8
+4416,Empleados y asistentes de recursos humanos,6.16614682885615,2
+4416,Encargado/a de personal,4.04702086646765,1
+4419,Asistente de compras,69.9059807061057,1
+5111,Auxiliares de servicio a bordo de aeronaves y barcos,3.0712920891139,1
+5112,Auxiliar de bus,18.07569119528316,6
+5112,Auxiliar de bus de pasajeros,9.521076936726189,3
+5112,Revisores y cobradores de los transportes públicos,3.89141327964785,1
+5113,Guía de turismo,20.69326756268324,4
+5113,Guía baquedano,1.87024593119997,1
+5120,Cocinero/a,410.6663419718664,27
+5120,Maestro/a de cocina,108.19083447546485,17
+5120,Cocinero/a de sushi,26.4210870002648,1
+5120,Manipulador/a de alimentos,20.121293658354002,2
+5120,Cocinero/a parrillero,17.8979195718987,1
+5120,Jefe/a de cocina,12.8797783942311,1
+5120,Cocineros,8.41244698665126,4
+5120,Cocinero/a en casino de colegio,1,1
+5131,Garzón/a,2034.286571905728,195
+5131,Asistente de salón,26.4210870002648,1
+5131,Supervisor/a de cocina,17.8979195718987,1
+5131,Ayudante de garzón,10.7068218908321,1
+5131,Camarero/a de hotel,3.67872007090204,1
+5131,Anfitrión de restaurant,3.20383500566392,1
+5131,Garzones de mesa,2.2233740864553,1
+5132,Bartender,254.80749823950188,34
+5132,Barista,30.38811643585958,3
+5132,Barman,6.759073475241189,2
+5132,Bármanes,3.20383500566392,1
+5151,Supervisor/a de limpieza,24.802317194072003,2
+5151,Supervisor/a de mantenimiento,8.65751834073991,1
+5151,"Supervisores de mantenimiento y limpieza en oficinas, hoteles y otros establecimientos",8.57972031332553,2
+5151,Supervisor/a de piso,8.15889662339701,1
+5151,Gobernanta,3.78015522531299,1
+5151,Supervisor/a de aseo,3.40023402834294,1
+5151,Supervisor/a de operaciones y mantenimiento,3.33683199258974,1
+5151,Supervisor/a de mantenimiento de edificio,1,1
+5151,Supervisor/a de trabajo de aseo,1,1
+5153,Conserje,372.5521938814668,6
+5153,Portero/a,5.57879253831152,1
+5165,Instructor/a de manejo,5.03215123785774,1
+5169,Guía de actividades,3.28228585088011,1
+5221,Encargado/a de local comercial,13.1091876830554,1
+5222,Supervisor/a de local comercial,58.10202234029714,5
+5222,Jefe/a de sucursal,19.8102936720593,1
+5222,Supervisor/a de local de comida rapida,4.66044580465282,2
+5222,Supervisor/a de tienda,4.31938026576803,1
+5222,Supervisor/a de local,4.24301849537621,1
+5222,Supervisor/a de venta,3.84563853409296,1
+5222,"Supervisores de locales comerciales, tiendas y almacenes",3.84563853409296,1
+5223,Vendedor/a de tienda,1976.6501179264046,51
+5223,Vendedor/a,235.90886918858268,47
+5223,Vendedor/a de comercio,162.69299068867497,12
+5223,Vendedor/a de establecimiento al por menor,161.21177687162873,9
+5223,Vendedor/a en local comercial,90.32769439706658,13
+5223,Asistente de ventas,53.269256233615444,5
+5223,Vendedor/a de tienda de combustibles,27.0840741567653,1
+5223,Vendedor/a operario de fiambrería,21.6344070654774,1
+5223,Vendedor/a de local,17.19009186337117,2
+5223,Vendedor/a de mesón,12.7070854301968,1
+5223,Operador/a de servicios,12.5748642684542,1
+5223,Auxiliar de farmacia,11.4287913093968,1
+5223,Vendedor/a de concesionaria de automóviles,10.458163917454769,2
+5223,Ejecutivo/a de ventas,8.40385045878902,1
+5223,Auxiliar de ventas en farmacia,5.11925815814655,1
+5223,Atención de mesón,5.07787761974289,1
+5223,Vendedor/a de fiambrería,1,1
+5223,"Vendedores y asistentes de venta de tiendas, almacenes y puestos de mercado",1,1
+5230,Cajero/a,154.7106878007496,26
+5230,Cajero/a de comercio,78.05144551134306,8
+5230,Vendedor/a de comercio,35.394058564481,2
+5230,Cajero/a de local comercial,26.3286951369901,5
+5230,Cajero/a de gasolinera,26.16164132063863,2
+5230,Cajero/a de supermercado,17.53717609164643,4
+5230,Cajero/a de estacionamiento,14.7227422316396,1
+5230,Cajero/a en local de juegos tragamonedas,8.1432035691453,1
+5230,Cajero/a de tienda,5.03800303779988,2
+5230,Vendedor/a de entradas,3.28228585088011,1
+5230,Cajero/a de local,2.48919632647864,1
+5242,Vendedor/a de punto de venta,1,1
+5243,Vendedor/a en terreno,16.134389623236352,3
+5243,Representantes de ventas de puerta a puerta,7.69127706818592,2
+5243,Vendedor/a en Terreno,5.11925815814655,1
+5243,Vendedor/a puerta a puerta,3.32217002649045,1
+5244,Vendedor/a de call center,2.4509234761273,1
+5245,Bombero/a de gasolinera,274.40635406543277,23
+5246,Vendedor/a de comida al mostrador,95.87804797639555,7
+5249,Captador/a de clientes de servicios,19.7839061532614,2
+5249,Otros vendedores no clasificados previamente,3.69113378472407,1
+5249,Captador de clientes de servicios,2.74083417047324,1
+5249,Asesor de ventas,2.48919632647864,1
+5311,Tutor/a para cuidado de niños,5.73021563945187,1
+5312,Asistente de aula,78.99709709809177,8
+5312,Inspector/a de establecimiento educacional,62.91546526942291,5
+5312,Asistente educacional,9.04947376143623,1
+5312,Asistente de párvulos,7.72485772324824,1
+5312,Asistentes de aula e inspectores de patio,4.06360851879736,1
+5312,Asistente de educación,1,1
+5312,Inspector/a de patio,1,1
+5321,Cuidador/a de adulto mayor,37.506694619795134,6
+5321,Cuidador/a de pacientes en instituciones,17.9887620005335,1
+5322,Asistente de cuidados,139.430435247979,1
+5411,Bombero,73.0601969805596,2
+5411,Brigadista forestal,29.1062336858949,3
+5411,Cuartelero/a de bomberos,27.625298746748562,2
+5411,Vigilante de torre de incendios forestales,16.0265049012021,1
+5414,Guardia de seguridad,986.536571505231,65
+5414,Monitor/a de seguridad,83.8018215905458,1
+5414,Vigilante,48.33972720536864,4
+5414,Monitor/a de cámaras de seguridad,40.7202632634552,4
+5414,Supervisor/a de guardias de seguridad,20.8866034163554,2
+5414,Patrullero de protección,15.9827479174487,1
+5414,Monitor/a de actividades,5.57879253831152,1
+5414,Personal de televigilancia,3.33683199258974,1
+5419,Salvavida,18.1328255314451,4
+6111,Trabajador/a agrícola calificado,26.9298226643207,1
+6111,Jefe/a de Cosechero/a,17.4343211498199,1
+6111,Supervisor/a de área agrícola,11.6821662441338,1
+6111,Trabajador/a agrícola,10.4098104112287,1
+6112,Jefe/a de terreno agrícola,264.850224421149,1
+6112,Supervisor/a de campo,122.456175083365,1
+6112,Supervisor/a de riego,122.456175083365,1
+6112,Supervisor/a de cosecha,79.9182862727064,1
+6112,Encargado/a de riego tecnificado,72.4284920598045,3
+6112,Supervisor/a agrícola,47.4396543311652,3
+6112,Supervisor/a frutícula,11.1197107710232,2
+6112,Fruticultor,10.1197107710232,1
+6112,Agricultores y trabajadores calificados de plantaciones de árboles y arbustos,4.28040714799391,2
+6113,Encargado/a de huerto,264.850224421149,1
+6113,Jardinero/a,101.7159479192764,2
+6113,Supervisor/a agrícola,57.3630221236528,2
+6113,Operario/a jardinero/a,4.65052397813388,1
+6113,"Agricultores y trabajadores calificados de huertas, invernaderos, viveros y jardines",1.95674825595962,1
+6114,Supervisor/a agrícola,18.4343211498199,2
+6121,Criador/a de ganado,57.3630221236528,2
+6121,Operario/a acuícola,53.86383571845,3
+6121,Ordeñador/a,11.39775277161958,2
+6121,Encargado/a de pastoreo,7.9097696216827895,2
+6121,Encargado/a cría bovina,6.42362962852544,1
+6121,Esquilador/a,6.0979201785786,1
+6121,Ovejero/a,3.39212157220047,1
+6123,Operario/a apícola,8.08177884659017,1
+6210,Trabajador/a silvícola,59.989371442304105,4
+6210,Trabajador/a forestal calificado,27.6642158103655,2
+6221,Supervisor/a acuícola,4.83847753256889,1
+6221,Trabajadores de explotaciones de acuicultura,4.83847753256889,1
+6222,Pescadores de aguas costeras y de aguas profundas,4.4086649204006,1
+6222,Tripulante de pesca,4.4086649204006,1
+6223,Pescador/a marítimo/a,3.65251125831881,1
+7112,Albañil,324.4358747266595,13
+7112,Maestro/a Albañil,131.5097998135558,6
+7112,Albañil pavimentador,45.3529257956236,1
+7112,Albañil de obra,10.6466910555505,1
+7114,Enfierrador/a,51.3230634997549,1
+7114,Operador/a en cemento,22.6496228380874,1
+7114,Operario/a en cemento armado,19.3075073460584,1
+7114,Operario/a de moldaje,8.07699680921145,1
+7115,Carpintero/a de obra,1015.7270310333763,24
+7115,Carpintero/a,167.4913390740421,11
+7115,Maestro/a carpintero/a de obra gruesa,113.96529477421349,5
+7115,Ayudante de carpintero/a,69.38079550960751,4
+7115,Maestro/a carpintero,52.63351511802691,3
+7115,Carpintero,34.6636746080955,1
+7115,Maestro/a carpintero/a,33.91163923781636,4
+7115,Carpintero/a de marcos y molduras,16.8017324042206,1
+7115,Maestro Aluminio en aluminio,6.47466010089871,1
+7115,Maestro/a en aluminio,3.62996180403925,1
+7119,Andamiero/a,45.537743407247206,3
+7119,Constructor/a de container,9.62000025845905,1
+7122,Instalador de Cerámicos,24.6602769010232,1
+7122,Ceramista,22.1191933502152,1
+7122,Colocador/a de cerámicas,17.905910863184,2
+7122,Maestro/a Ceramista,10.6466910555505,1
+7124,Instalador/a de ventanas,6.47466010089871,1
+7125,Instalador/a de vidrios,34.6636746080955,1
+7125,Cristalero/a,28.56471680553851,4
+7125,Ayudante de cristalero,4.31938026576803,1
+7125,Cortador/a de vidrio,3.62996180403925,1
+7126,Gásfiter,238.777164553815,17
+7126,Mantenedor/a de cañerías,38.3709232495538,1
+7126,Instalador/a de tuberías,14.69608778940653,3
+7126,Instalador/a hidráulicos,13.1091876830554,1
+7126,Gásfiter e instaladores de tuberías,11.6662189464636,1
+7126,Gasfiter,10.6466910555505,1
+7126,Instalador/a,3.46201747387135,1
+7127,Mecánico/a de sistemas de refrigeración,51.3230634997549,1
+7127,Técnico/a en refrigeración,21.4704351737167,3
+7131,Pintor/a de edificaciones,45.3529257956236,1
+7131,Maestro/a pintor/a,27.7360110030266,1
+7131,Maestro/a pinto/a,21.45947460380565,2
+7131,Pintor/a de obra,16.905910863184,1
+7131,Pintores y empapeladores de paredes,6.86700426264657,1
+7131,Maestro/a de terminaciones,1,1
+7132,Pintor/a de productos manufacturados,4.87978346465066,2
+7132,Pintor/a de vehículos,3.83623723147949,1
+7212,Soldador/a,1304.7353593312118,47
+7212,Soldador/a y oxicortador/a,100.62305269070066,14
+7212,Ayudante de soldador/a,43.18474632808981,3
+7212,Buzo Soldador/a,12.7070854301968,1
+7212,Mecánico/a metalMecánico/a de taller,12.7070854301968,1
+7212,Soldador/a estructural,12.7070854301968,1
+7212,Soldador/a calificado/a,6.91655838195872,1
+7212,Soldador/a calderero,1.99192662405012,1
+7213,Ayudante de hojalatería,235.50555275227148,2
+7213,Hojalatero,45.3529257956236,1
+7213,Calderero/a,21.5439039337002,1
+7213,Maestro/a hojalatero/a,17.8295127997664,1
+7214,Montador/a de estructuras metálicas,56.348695768103006,5
+7214,Maestro/a estructurero/a,23.3847734134511,3
+7214,Ayudante estructurero,16.8017324042206,1
+7214,Calderero/a,4.18840552816858,1
+7215,Señalero de grúas (rigger),3.83623723147949,1
+7221,Forjador/a de acero,231.669315520792,1
+7223,Operador/a de calefactores,69.9059807061057,1
+7223,Operario/a de máquinas herramientas,69.9059807061057,1
+7223,Operador/a de torno convencional,17.4343211498199,1
+7223,Tornero/a,14.85147115723587,3
+7223,Operario de máquina herramienta,12.94932020179742,2
+7223,Tornero/a de piezas de metal,10.31413200160469,3
+7223,Operador/a de máquina industrial,4.18840552816858,1
+7223,Activador/a de materiales,4.17920775549524,1
+7224,Tornero/a,8.91560005738092,1
+7231,Mecánico/a,508.767088800706,5
+7231,Jefe de taller mecánico,231.669315520792,1
+7231,Mecánico/a automotriz,51.35187025102318,7
+7231,Especialista de mantenimiento Mecánico/a automotriz,43.35870522820399,3
+7231,Mecánico/a de vehículos de motor,30.58272083900267,6
+7231,Mecánico/a de vehículo,25.91775744646396,3
+7231,Mécanico/a de autos,19.8102936720593,1
+7231,Ayudante de taller,17.0012048076737,1
+7231,Ayudante de mantenimiento Mecánico/a automotriz,16.3994932203154,1
+7231,Mecánico/a de camionetas y camiones,14.1136507463825,1
+7231,Ayudante de mantenimiento industrial,7.76553992713583,1
+7231,Especialista en mantenimiento automotriz,7.12560837946903,1
+7231,Ayudante de mecánico,4.09847576868249,2
+7231,Mecánico/a de camiones,3.74780012609433,1
+7231,Mecánicos y reparadores de vehículos de motor,3.44666854554849,1
+7231,Mecánico/a y reparador/a de vehículos de motor,2.95966168401303,1
+7231,Mecánico/a de buses,2.50707465236255,1
+7232,Mecanico/a de aviones,1.49489666412702,1
+7233,Mecánico/a en taller,462.074248446162,1
+7233,Mantenedor/a mecánico,250.1036366706119,3
+7233,Mecánico/a de dechancador,231.669315520792,1
+7233,Técnico/a de trabajo de campo,231.669315520792,1
+7233,Mecánico/a de máquina fija,46.5849948390476,9
+7233,Mecánico/a de máquinas,27.110069127302662,4
+7233,Mecánico/a de máquina,26.69101984313175,6
+7233,Técnico/a mecánico,26.14562465896786,5
+7233,Mecánico/a de máquina de minería,26.12849564478538,7
+7233,Mecánico/a y reparador de maquinaria industrial,13.7787618657435,2
+7233,Técnico/a en mantenimiento industrial,13.1091876830554,1
+7233,Mecánico/a de motores navales,12.7070854301968,1
+7233,Técnico/a mecánico de máquinaria industrial,12.7070854301968,1
+7233,Mecánico/a en maquinaria pesada,12.4577297268702,2
+7233,Operador/a de maquinaria industrial,7.5366396981467,1
+7233,Mecánico de máquina fija,6.14669516497218,1
+7233,Mecánico/a de maquinaria industrial,4.83623723147949,2
+7233,Reparador/a de máquina agrícola,3.2822858508801,1
+7233,Técnico/a en mantenimiento,1,1
+7411,Instalador/a eléctrico,2703.96197895723,1
+7411,Electricista de obra,252.26740724450062,11
+7411,Electricista,139.51634070655066,8
+7411,Maestro/a eléctrico,13.3436866244682,1
+7411,Personal eléctrico,5.81496886942004,1
+7412,Electromecánico/a,1113.1069816717065,16
+7412,Electricista automotriz,21.6344070654774,1
+7412,Técnico/a en mantenimiento de ascensores,12.7070854301968,1
+7412,Mecánico electricista,8.08177884659016,1
+7412,Técnico/a eléctrico de mantenimiento,4.75313536812027,1
+7412,Mecánico/a y ajustador/a electricista,4.29045348305249,1
+7412,Mecánico/a electricista,3.83623723147949,1
+7412,Ayudante electricista,1,1
+7412,Mantenedor/a eléctrico/a,1,1
+7413,Instalador/a y reparador/a de líneas eléctricas,15.0211478886385,1
+7413,Instalador/a de líneas eléctricas de tracción,4.60058491836551,1
+7413,Empalmador/a de cables eléctricos,4.03800303779987,1
+7413,Supervisor/a de cuadrilla en corte y reposición de suministro eléctrico,2.96512571382147,1
+7413,Técnico/a eléctrico,1,1
+7421,Mecánico/a electrónico,11.414851604016519,2
+7421,Mecánicos y reparadores en electrónica,3.92919633519165,1
+7422,Instalador/a de internet,109.08893615759919,2
+7422,Instalador/a en cableado de datos y telecomunicaciones,62.72747436690395,8
+7422,Instalador/a de equipos informáticos,12.55423779613087,3
+7422,Ayudante de técnico/a en instalación de telecomunicaciones,4.75313536812027,1
+7422,Instalador/a de telecomunicaciones,3.8011582358127,1
+7422,"Instalador de tv cable, internet, servicios de telefonía",3.22251567262593,1
+7511,Carnicero/a,58.594413695095,6
+7511,Carnicero/a de embutidos,8.04017439763438,1
+7511,Operario/a en planta de salmones,7.46708996366324,4
+7511,Operario/a en planta de erizos,7.12560837946903,1
+7511,Ayudante de carnicero,5.64116086302935,1
+7511,Carniceros y pescaderos,2.0096822241167,1
+7511,Carnicero/a y pescadero/a,1,1
+7511,Operario/a de productos cárnicos,1,1
+7512,Panadero/a,177.883708191908,21
+7512,Pastelero/a,62.45516174892917,6
+7512,Ayudante de panadería,17.50412259196835,3
+7512,Maestro/a panadero/a,13.83311676391744,2
+7512,Maestro/a pastelero/a,11.2255998614226,1
+7512,Chocolatero/a,3.83623723147949,1
+7512,Confitero/a,3.83623723147949,1
+7513,Maestro/a heladero/a,4.83847753256889,1
+7515,Control de calidad de productos alimenticios,93.0024829865715,12
+7515,Clasificador/a de fruta en línea,16.0265049012021,1
+7515,Analista de control de calidad,10.65602583173475,3
+7521,Operario/a de la madera,45.68258407787115,7
+7521,Operador/a de cámara de secado de madera,5.54013214292018,1
+7522,Mueblista,11.91801607806965,2
+7522,Ebanista,6.91655838195872,1
+7522,Ebanistas y mueblistas,2.0096822241167,1
+7523,Operador/a chipeadora de madera,16.3994932203154,1
+7523,Operario de máquina de fabricación de muebles,6.47466010089871,1
+7531,Sastre,30.4041147124373,2
+7531,Confeccionador/a de prenda de vestir,8.08177884659017,1
+7531,Operador/a máquina coser,4.18840552816858,1
+7532,Cortador/a de telas y moldes,12.7070854301968,1
+7541,Buzo acuícola,50.9343705878563,4
+7541,Buzo comercial,34.8875905581684,2
+7541,Supervisor/a de buzo,11.9538546864424,1
+7541,Buzo,9.994432515198302,2
+7543,Control de calidad,5.69218979973437,2
+7543,"Clasificadores, probadores de productos e inspectores de calidad (excluyendo alimentos y bebidas)",2.84121619791885,1
+7543,Inspector/a de contenedores,2.80999664908918,1
+7544,Fumigador/a,31.02663454399191,3
+7544,Controlador de plagas,28.3262895606989,1
+7544,Encargado/a de control de plagas,11.0666820846193,1
+7544,Aplicador/a de agroquímicos,10.1197107710232,1
+7544,Técnico/a en control de plagas,3.65251125831881,1
+7549,Operador/a de ROV,11.480457256352349,3
+8111,Operador/a de equipo minero,21.0869726612122,1
+8111,Operador/a de perforadora jumbo,11.819859600200331,2
+8111,Minero/a,7.8040645259723895,3
+8111,Operador/a de secadores de arena,6.77479815454606,1
+8111,Operador/a de maquinaria y equipos,3.47858215077982,1
+8111,Fortificador/a de túneles o piques mineros,3.05714578235601,2
+8111,Operador/a de máquina jumbo empernador,2.05714578235601,1
+8111,Operador/a de cargador subterráneo,1,1
+8112,Operador/a de chancado,21.0869726612122,1
+8112,Operador/a de planta,3.86194938403533,1
+8112,Operador/a de instalaciones de procesamiento de minerales,3.24867467744887,1
+8113,Operador/a de sondaje,80.73760658524839,9
+8113,Ayudante de sondaje,62.77113041797808,3
+8113,Ayudante de perforista,57.4653099581732,1
+8113,Jefe de sondaje,42.1739453224244,2
+8113,Controlador/a de sondaje,21.0869726612122,1
+8113,Perforador/a,12.36858601912969,3
+8113,Operador/a de máquina para la perforación de pozos,11.819859600200331,2
+8113,Ayudante de perforador/a,7.39671506429499,2
+8114,Operadores de máquinas para fabricar cemento y otros productos minerales,1.99192662405012,1
+8114,Hormigonero/a,1,1
+8121,Ayudante fundidor/a,21.0869726612122,1
+8131,Operador/a de maquinaria en manufactura química,510.638218598106,1
+8131,Operador/a de planta química,110.44079928042953,2
+8131,Operario/a en producción de pinturas,8.32124240624532,1
+8131,Operador/a de plantas y máquinas para fabricar productos químicos,3.62996180403925,1
+8142,Operador/a de producción de productos plasticos,43.527815919440606,3
+8142,Operador/a de máquina para fabricar plástico,8.57816330499026,3
+8152,Operador/a de máquina de confección textil,3.67100582805091,1
+8153,Operador/a de maquina de confección,8.37681105633716,2
+8153,Operador/a de máquina de coser,3.67100582805091,1
+8157,Operador/a de lavandería,50.390050152290044,7
+8157,Operador de máquina de lavandería,11.4391350739138,1
+8160,Operario/a de producción en alimentos,1022.276437196212,3
+8160,Operador/a de maquinaria para procesamiento de frutos secos,27.0840741567653,1
+8160,Operador/a de maquinaria procesadora de alimentos,14.14609532885461,3
+8160,Operario/a de producción de mosto,12.7070854301968,1
+8160,Operador/a de máquina de elaboración de conservas y pulpas,8.7196887393689,1
+8160,Operario/a de maquinaria de faenadora,8.32124240624532,1
+8160,Operador/a de máquina de elaboración de chocolates,4.52723425516123,1
+8160,Operario/a de maquinas de frio,1,1
+8160,Operario/a de producción,1,1
+8172,Operador/a de instalación de procesamiento de la madera,76.55254076579432,8
+8182,Personal de caldera,19.85763607407512,3
+8183,Operador/a de envasado,21.476492495848,2
+8183,Operador/a de máquina enlatadora,12.7787618657435,1
+8183,Operario/a de bidones,7.28162471491128,1
+8183,Operador/a de sellado,2,2
+8183,"Operadores de máquinas de embalaje, embotellamiento y etiquetado",1,1
+8189,Operador/a de secado,5.98826503275658,2
+8189,Operador/a de máquina transportadora,4.61877666218049,1
+8189,Operadores de máquinas y de instalaciones fijas no clasificados previamente,1,1
+8311,Auxiliar de cochera,7.18046689059344,1
+8311,Ayudante de maquinista,6.33086505259683,1
+8321,Repartidor/a de comida,16.26963995875222,2
+8321,Repartidor/a de pedidos,2.91343494114822,1
+8322,Conductor clase B,234.082178741939,1
+8322,Conductor,104.566787909428,1
+8322,Repartidor,70.88870520648008,3
+8322,Chofer de camión 3/4,44.62204534235933,4
+8322,Chofer repartidor de gas,36.29319640819273,4
+8322,Chofer de automovil,32.552922067661,2
+8322,Chofer de van,32.4999952243494,7
+8322,Conductor repartidor de mercaderías,27.0840741567653,1
+8322,Conductor/a de camioneta,27.0840741567653,1
+8322,Conductor de transporte escolar,22.3915910543013,1
+8322,Conductor repartidor,19.29511806516194,2
+8322,Repartidor de panadería,17.28202964554812,2
+8322,Conductor/a de camión 3/4,17.1674156335887,1
+8322,Conductor de furgón,16.57247616340827,3
+8322,Conductor/a de furgón,16.49587791918319,2
+8322,Conductor de vehículo,16.3994608559366,1
+8322,Chofer repartidor,15.40786100279564,4
+8322,Conductor repartidor camión 3/4,15.0211478886385,1
+8322,Conductor/a de furgón o van,14.7227422316396,1
+8322,Conductor licencia A2,14.1136507463825,1
+8322,Conductor/a (chofer) de reparto,12.7070854301968,1
+8322,Conductor/a de transporte de personal,9.00362602625772,1
+8322,Conductor/a de camionetas,8.91560005738092,1
+8322,Conductor/a repartidor/a,8.40385045878902,1
+8322,Conductor de van,8.08272412164172,3
+8322,Conductor (chofer) de automóvil de transporte privado de pasajeros,7.86632675576514,1
+8322,Conductor de camionetas,7.76553992713581,1
+8322,Chofer,6.0323594018519,2
+8322,Conductor profesional,5.44028137095823,1
+8322,Conductor/a de reparto,5.07787761974289,1
+8322,Conductor de colectivo,3.74780012609433,1
+8322,Taxista,3.5372587568796,1
+8322,Conductor de camioneta,3.2825743931432,1
+8322,Chofer de camion 3/4,2.74178775262076,1
+8322,"Conductores de automóviles, taxis y camionetas",2.74083417047324,1
+8322,Chofer ambulancia,2.37414721167236,1
+8331,Conductor de buses,79.15528368999405,5
+8331,Conductor de bus,66.61916986957903,12
+8331,Conductor/a de bus,35.14341921501573,8
+8331,Conductor de bus interurbano,29.713942736016918,5
+8331,Conductor/a,27.01087807877316,3
+8331,Conductor/a de bus licencia A3,25.095840986878283,3
+8331,Conductor de autobús urbano licencia A3,14.1136507463825,1
+8331,Chofer de bus,13.8104926819968,5
+8331,Conductor/a bus,9.52489085806869,1
+8331,Conductor (chofer) de autobús,7.40180570345289,3
+8331,Chofer de Buses A3,6.8744897244448,2
+8331,Conductor/a (chofer) de autobús,2.02512187695574,1
+8331,Conductor de autobús,1.82784934318484,1
+8331,Chofer de micro,1.49489666412702,1
+8332,Conductor/a (chofer) de camión grua,234.082178741939,1
+8332,Conductor/a (chofer) de camión licencia A5,227.58688959113192,27
+8332,Conductor/a (chofer) de camión pesado,213.55726576243853,42
+8332,Conductor/a (chofer) de camión,130.43878627935803,27
+8332,Conductor/a de camión pesado,125.08155128285877,13
+8332,Conductor/a (chofer) de carga pesada,40.12988990401437,6
+8332,Conductor/a de carga licencia A4,30.58991637576622,4
+8332,Conductor/a de camión tolva,17.0012048076737,1
+8332,Chofer de camión,5.85411031918493,2
+8332,Conductor/a de camiones pesados y de alto tonelaje,4.18840552816858,1
+8332,Conductor/a (chofer) de camioneta,4.1617206494349,1
+8332,Conductor de camión de alto tonelaje,3.2825743931432,1
+8332,Chofer de camión pesado y de alto tonelaje,2.95966168401303,1
+8332,Conductor/a (chofer) de camión hormigonero,2.33022290232641,1
+8332,Conductor de camión de basura,2.14486988997102,1
+8341,Tractorista,356.1491490557024,10
+8341,Operador/a de maquinaria agrícola,175.40218994614247,6
+8341,Operadores de maquinaria agrícola y forestal,35.29801292818459,3
+8341,Operador/a de skidder,4.83847753256889,1
+8342,Operador/a de retroexcavadora,128.6081136203207,5
+8342,Operador/a de excavadora,94.87415132545843,14
+8342,Conductor/a de draga,29.634096081514,1
+8342,Operador/a de máquina asfaltadora,22.6496228380874,1
+8342,Operador/a de máquinas de movimiento de tierras,21.79594604318456,2
+8342,Operador/a de maquinaria,14.3633132974849,1
+8342,Operador/a de cargador frontal,14.24545167420918,4
+8342,Operador/a de dumper,8.22054563228357,2
+8342,Operador/a de maquinaria de construcción,8.07699680921146,1
+8342,Operador/a de bulldozer,6.8876173488553,1
+8342,Operador/a de maquinaria de movimiento de tierra,5.69218979973436,2
+8342,Operador/a de minicargador,4.9718709548347,1
+8342,Operador/a maquinaria de movimiento de tierras D,3.8464059039183,1
+8342,Operador/a de maquinaria pesada,3.84121619791885,2
+8342,Operador/a de máquina pesada,3.35156194954141,1
+8343,Operador/a de grúa,67.98065093600684,9
+8343,Operador/a de yale,27.0840741567653,1
+8343,Operador/a de grúa y de aparato elevador,15.0211478886385,1
+8343,Operador/a de aparato elevador,11.41711823122437,3
+8343,Operador de grúa,5.81496886942004,1
+8343,Operador/a portuario/a,5.44028137095823,1
+8343,Operador/a de camión grúa,3.83623723147949,1
+8343,Operador/a de maquinaria,3.4466685455485,1
+8343,Operador/a de grúa horquilla,2.25841296736366,1
+8343,Conductor/a de grúa,1,1
+8344,Operador/a de grúa horquilla,27.531864412383143,4
+8344,Operador/a de carretilla elevadora,20.4818040565633,1
+8344,Operador/a de montacarga,17.8787440435157,1
+8344,Operador/a de grúa,6.16037925630497,2
+8344,Operador/a grúa Horquilla,3.62996180403925,1
+8350,Operario/a de remolcador,106.335079680585,1
+8350,Tripulante/a de nave menor,49.09651216376921,5
+8350,Tripulante de cubierta,11.71934959678584,4
+8350,Tripulante de nave menor,9.27109484680768,3
+8350,Motoristas y tripulantes de embarcación,8.86519021131339,2
+8350,Marinero Segundo,7.18046689059344,1
+9112,Auxiliar de aseo,1698.4797322011418,82
+9112,Mucamo/a,86.88669146308605,18
+9112,Auxiliar de aseo de oficinas,57.473711254290905,9
+9112,Auxiliar de aseo y apoyo general,36.5300984902798,1
+9112,Mucamo/a de hotel,34.01508507504179,6
+9112,Auxiliar de aseo de hoteles,22.29560840278584,3
+9112,Auxiliar de limpieza,22.03992857326518,5
+9112,Auxiliar de aseo de restaurante,17.8979195718987,1
+9112,Camarero/a de hotel,8.42099935217048,2
+9122,Limpiador/a de autos,175.14176995261062,3
+9122,Limpiador/a de vehículos,3.83623723147949,1
+9129,Limpiador/a industrial,9.33771978039637,3
+9129,Especialistas en aseo industrial,7.5375396886423705,2
+9129,Operario/a de limpieza industrial,7.3845505920170496,2
+9129,Otro personal de limpieza no clasificado previamente,2.2233740864553,1
+9211,Obrero/a agrícola,1146.3001160404112,52
+9211,Encargado/a de riego agrícola,264.850224421149,1
+9211,Temporero/a agrícola,209.16393658440242,16
+9211,Recolector/a de fruta,111.4916183430702,7
+9211,Trabajador/a agrícola,105.34385063554524,9
+9211,Desmalezador/a,79.9182862727064,1
+9211,Embalador/a packing agrícola,32.86075232661424,2
+9211,Obreros de explotaciones agrícolas,26.9806735843094,2
+9211,Personal de packing,20.525211230270322,3
+9211,Cosechero/a,18.4343211498199,2
+9211,Operario/a de paletizado,16.0265049012021,1
+9211,Celador/a de canales,8.09315189467836,2
+9211,Raleador/a,5.87401137100153,1
+9211,Celador/a de agua,5.23370769244726,1
+9211,Recolector/a de cerezas,4.83847753256889,1
+9212,Ternerero/a,32.75257496257264,2
+9212,Trabajador/a de estancia,5.34390853706442,1
+9213,Obrero/a agropecuario,28.2854849989094,1
+9213,Obrero agropecuario,10.1197107710232,1
+9214,Cortador/a de pasto,7.3679960442521,1
+9214,Obrero de vivero,6.42362962852544,1
+9215,Obrero/a forestal,63.498411415781504,4
+9216,Limpiador/a de redes,28.2854849989094,1
+9216,Alguero/a,26.9298226643207,1
+9216,Operario/a de centro de cultivo,19.76530485519763,7
+9216,Obreros de pesca y acuicultura,4.83847753256889,1
+9216,Operario/a de taller de redes,4.83847753256889,1
+9216,Operario/a en centro de cultivo,3.39212157220047,1
+9216,Asistente de operador/a ROV,1.80350219121457,1
+9311,Obrero/a de minería,8.40385045878902,1
+9311,Obrero/a de la minería,2.42484410946029,1
+9312,Peón de construcción vial,45.3529257956236,1
+9312,Obrero/a de la construcción de obras de ingeniería civil,14.07435519829332,3
+9312,Obrero/a de obras públicas,7.76553992713583,1
+9312,Obrero de la construcción de obras de ingeniería civil,4.49944548500421,1
+9312,Guía de tránsito,3.79532945947425,1
+9313,Obrero/a de la construcción,691.5197243857626,21
+9313,Jornal de la construcción,277.72310604813003,14
+9313,Jornal,208.23589939182366,13
+9313,Jornal de obra,84.68498837906799,6
+9313,Obrero/a de obra civil,17.5757391178205,1
+9313,Obrero/a de limpieza de obras de construcción,11.8911116421776,1
+9313,Obrero de la construcción,1,1
+9321,Empacador/a manual,51.78890225654038,12
+9329,Ayudante de taller manufacturero,463.338631041584,2
+9329,Operario/a de apoyo en manufactura,69.9059807061057,1
+9329,Ayudante de operaciones industriales,13.80025314540627,3
+9329,Operario/a en planta de proceso de salmones,11.9538546864424,1
+9329,Ayudante de bodega,8.1756216135078,1
+9329,Clasificador de aserradero,5.54013214292018,1
+9329,Jornal industria manufacturera,5.54013214292018,1
+9329,Operario/a de aserradero,5.54013214292018,1
+9329,Auxiliar de fábrica,5.11925815814655,1
+9329,Operario/a multifuncional,5.02740192968878,1
+9329,Ayudante de operador,4.04657594733918,1
+9329,Seleccionador/a de ropa,3.84563853409296,1
+9329,Operador/a de maquila,2.24532505607921,1
+9333,Operario/a de bodega,623.6402649638835,4
+9333,Ayudante de ruta,234.082178741939,1
+9333,Obrero/a de carga,223.03660152148177,26
+9333,Peoneta de carga y descarga,125.37883542044545,13
+9333,Ayudante de bodega,62.10446903558124,8
+9333,Peoneta de carga,51.09233006079337,3
+9333,Obrero/a del transporte y almacenamiento,48.44707617463753,3
+9333,Cargador/a de bodega,41.21180570084961,3
+9333,Cargador/a,21.476492495848,2
+9333,Ayudante de repartidor/a,8.91560005738092,1
+9333,Peoneta,7.86632675576514,1
+9333,Obreros de carga,4.83847753256889,1
+9333,Repartidor/a,1.99192662405012,1
+9333,Estibador/a,1,1
+9334,Reponedor/a de estantería,122.1054397642388,7
+9334,Reponedor/a,50.72527538317535,13
+9334,Reponedor/a y ordenador/a,32.7989864406308,2
+9334,Asistente visual,16.3994932203154,1
+9334,Reponedor/a de abarrotes,11.2255998614226,1
+9334,Reponedor/a de supermercado,1,1
+9334,Reponedor/a de tienda,1,1
+9411,Cocinero/a de comida rápida,317.0156083987323,15
+9411,Reponedor/a de estantería,27.1611332288015,2
+9412,Ayudante de cocina,1447.1428012419206,115
+9412,Ayudante de panadería,463.338631041584,2
+9412,Copero/a,278.8439760620557,13
+9412,Copero,21.29815360024164,2
+9412,Ayudante de pastelero/a,18.811414628337303,2
+9412,Piletero/a,16.93506914597937,6
+9412,Operario/a de cocina y sala de producción,11.6946957434009,1
+9412,Ayudante de panadero,3.24952156487532,1
+9412,Ayudante de pastelero,3.24952156487532,1
+9611,Recolector/a de basura,7.378577582418281,2
+9611,Recolectores de basura y material reciclable,1.80350219121457,1
+9612,Reciclador/a de base,28.55216518537308,3
+9612,Operario/a de reciclaje,9.39023496228257,3
+9612,Clasificador/a de desechos,6.04892692370184,1
+9612,Clasificador/a de desechos industriales,5.38709324017132,1
+9612,Reciclador/a de desechos,4.67122427020826,1
+9612,Clasificador/a de desechos reciclables,2.96512571382148,1
+9621,Estafeta,3.67100582805091,1
+9622,Auxiliar de mantenimiento,51.52347449569422,4
+9623,Lector/a de medidores de agua,4.57494421535132,1
+9629,Encargado/a de probadores,2.96231182319223,1
+9629,Asistente multifuncional,2.83554857378346,1

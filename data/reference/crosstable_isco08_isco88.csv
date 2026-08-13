@@ -1,0 +1,672 @@
+isco88_titulo_en,isco88_codigo,isco08_codigo,isco08_parcial,isco08_titulo_en,comentarios
+Legislators,1110,1111,NA,Legislators,NA
+Senior government officials,1120,1112,NA,Senior government officials,NA
+Traditional chiefs and heads of villages,1130,1113,NA,Traditional chiefs and heads of villages,NA
+Senior officials of political-party organisations,1141,1114,p,Senior officials of special-interest organizations,NA
+"Senior officials of employers', workers' and other economic-interest organisations",1142,1114,p,Senior officials of special-interest organizations,NA
+Senior officials of humanitarian and other special-interest organisations,1143,1114,p,Senior officials of special-interest organizations,NA
+Directors and chief executives,1210,1120,NA,Managing directors and chief executives,NA
+"Production and operations department managers in agriculture, hunting, forestry and fishing",1221,1311,NA,Agricultural and forestry production managers,NA
+"Production and operations department managers in agriculture, hunting, forestry and fishing",1221,1312,NA,Aquaculture and fisheries production managers,NA
+Production and operations department managers in manufacturing,1222,1321,p,Manufacturing managers,NA
+Production and operations department managers in manufacturing,1222,1322,p,Mining managers,NA
+Production and operations department managers in construction,1223,1323,p,Construction managers,NA
+Production and operations department managers in construction,1223,3123,p,Construction supervisors,NA
+Production and operations department managers in wholesale and retail trade,1224,1420,p,Retail and wholesale trade managers,NA
+Production and operations department managers in restaurants and hotels,1225,1411,p,Hotel managers,NA
+Production and operations department managers in restaurants and hotels,1225,1412,p,Restaurant managers,Production and operations managers in restaurants
+"Production and operations department managers in transport, storage and communications",1226,1324,p,"Supply, distribution and related managers","Postmasters,  station masters, transport, storage and distribution department managers"
+"Production and operations department managers in transport, storage and communications",1226,1330,p,Information and communications technology service managers,Telecommunications department managers
+Production and operations department managers in business services,1227,1219,p,Business services and administration managers not elsewhere classified,NA
+Production and operations department managers in business services,1227,1346,NA,Financial and insurance services branch managers,NA
+"Production and operations department managers in personal care, cleaning and related services",1228,1219,p,Business services and administration managers not elsewhere classified,Building services and cleaning department managers
+Production and operations department managers not elsewhere classified,1229,1213,p,Policy and planning managers,NA
+Production and operations department managers not elsewhere classified,1229,1219,p,Business services and administration managers not elsewhere classified,NA
+Production and operations department managers not elsewhere classified,1229,1341,p,Child care services managers,NA
+Production and operations department managers not elsewhere classified,1229,1342,p,Health services managers,NA
+Production and operations department managers not elsewhere classified,1229,1343,p,Aged care services managers,NA
+Production and operations department managers not elsewhere classified,1229,1344,p,Social welfare managers,NA
+Production and operations department managers not elsewhere classified,1229,1345,p,Education managers,NA
+Production and operations department managers not elsewhere classified,1229,1349,p,Professional services managers not elsewhere classified,NA
+Production and operations department managers not elsewhere classified,1229,1439,p,Services managers not elsewhere classified,NA
+Production and operations department managers not elsewhere classified,1229,2654,p,"Film, stage and related directors and producers",NA
+Production and operations department managers not elsewhere classified,1229,3435,p,Other artistic and cultural associate professionals,Stage managers
+Finance and administration department managers,1231,1211,p,Finance managers,NA
+Finance and administration department managers,1231,1219,p,Business services and administration managers not elsewhere classified,Administration department managers
+Personnel and industrial relations department managers,1232,1212,p,Human resource managers,NA
+Sales and marketing department managers,1233,1221,p,Sales and marketing managers,NA
+Advertising and public relations department managers,1234,1222,p,Advertising and public relations managers,NA
+Supply and distribution department managers,1235,1324,p,"Supply, distribution and related managers",NA
+Computing services department managers,1236,1330,p,Information and communications technology service managers,NA
+Research and development department managers,1237,1223,p,Research and development managers,NA
+Other department managers not elsewhere classified,1239,1213,p,Policy and planning managers,"Managers of planning and policy departments in establishments other than those in public administration, compulsory social security, education, health, social work, extra territorial organizations and bodies, and recreational, cultural and sporting activities (as defined in ISIC Rev 3)."
+"General managers in agriculture, hunting, forestry and fishing",1311,6111,p,Field crop and vegetable growers,NA
+"General managers in agriculture, hunting, forestry and fishing",1311,6112,p,Tree and shrub crop growers,NA
+"General managers in agriculture, hunting, forestry and fishing",1311,6113,p,"Gardeners, horticultural and nursery growers",NA
+"General managers in agriculture, hunting, forestry and fishing",1311,6114,p,Mixed crop growers,NA
+"General managers in agriculture, hunting, forestry and fishing",1311,6121,p,Livestock and dairy producers,NA
+"General managers in agriculture, hunting, forestry and fishing",1311,6122,p,Poultry producers,NA
+"General managers in agriculture, hunting, forestry and fishing",1311,6130,p,Mixed crop and animal producers,NA
+"General managers in agriculture, hunting, forestry and fishing",1311,6210,p,Forestry and related workers,NA
+"General managers in agriculture, hunting, forestry and fishing",1311,6221,p,Aquaculture workers,NA
+"General managers in agriculture, hunting, forestry and fishing",1311,6222,p,Inland and coastal waters fishery workers,NA
+"General managers in agriculture, hunting, forestry and fishing",1311,6223,p,Deep-sea fishery workers,NA
+General managers in manufacturing,1312,1321,p,Manufacturing managers,NA
+General managers in manufacturing,1312,1322,p,Mining managers,Managers of small mining and quarrying businesses
+General managers in construction,1313,1323,p,Construction managers,NA
+General managers in wholesale and retail trade,1314,1420,p,Retail and wholesale trade managers,NA
+General managers in wholesale and retail trade,1314,5221,NA,Shopkeepers,NA
+General managers of restaurants and hotels,1315,1411,p,Hotel managers,NA
+General managers of restaurants and hotels,1315,1412,p,Restaurant managers,NA
+"General managers in transport, storage and communications",1316,1324,p,"Supply, distribution and related managers",NA
+"General managers in transport, storage and communications",1316,1330,p,Information and communications technology service managers,NA
+General managers of business services,1317,1211,p,Finance managers,Managers of establishments providing accounting or similar services
+General managers of business services,1317,1212,p,Human resource managers,Managers of establishments providing human resource and recruitment services
+General managers of business services,1317,1219,p,Business services and administration managers not elsewhere classified,NA
+General managers of business services,1317,1221,p,Sales and marketing managers,Managers of marketing companies
+General managers of business services,1317,1222,p,Advertising and public relations managers,Managers of  advertising and public relations companies
+General managers of business services,1317,1330,p,Information and communications technology service managers,Managers of small computing and telecommunications companies
+General managers of business services,1317,1346,NA,Financial and insurance services branch managers,NA
+"General managers in personal care, cleaning and related services",1318,1219,p,Business services and administration managers not elsewhere classified,Managers of contract cleaning companies? For review
+General managers not elsewhere classified,1319,1223,p,Research and development managers,Research and devlopment company managers
+General managers not elsewhere classified,1319,1341,p,Child care services managers,NA
+General managers not elsewhere classified,1319,1342,p,Health services managers,NA
+General managers not elsewhere classified,1319,1343,p,Aged care services managers,NA
+General managers not elsewhere classified,1319,1344,p,Social welfare managers,NA
+General managers not elsewhere classified,1319,1345,p,Education managers,NA
+General managers not elsewhere classified,1319,1349,p,Professional services managers not elsewhere classified,NA
+General managers not elsewhere classified,1319,1431,NA,"Sports, recreation and cultural centre managers",NA
+General managers not elsewhere classified,1319,1439,p,Services managers not elsewhere classified,NA
+Physicists and astronomers,2111,2111,NA,Physicists and astronomers,NA
+Meteorologists,2112,2112,NA,Meteorologists,NA
+Chemists,2113,2113,NA,Chemists,NA
+Chemists,2113,2262,p,Pharmacists,"Industrial pharmacists,  pharmaceutical chemists"
+Geologists and geophysicists,2114,2114,NA,Geologists and geophysicists,NA
+Mathematicians and related professionals,2121,2120,p,"Mathematicians, actuaries and statisticians",NA
+Statisticians,2122,2120,p,"Mathematicians, actuaries and statisticians",NA
+Computer systems designers and analysts,2131,2511,NA,Systems analysts,NA
+Computer systems designers and analysts,2131,2512,NA,Software developers,NA
+Computer systems designers and analysts,2131,2513,p,Web and multimedia developers,NA
+Computer systems designers and analysts,2131,2519,p,Software and applications developers and analysts not elsewhere classified,NA
+Computer systems designers and analysts,2131,2521,NA,Database designers and administrators,NA
+Computer systems designers and analysts,2131,2522,NA,Systems administrators,NA
+Computer systems designers and analysts,2131,2523,NA,Computer network professionals,NA
+Computer programmers,2132,2513,p,Web and multimedia developers,NA
+Computer programmers,2132,2514,NA,Applications programmers,NA
+Computer programmers,2132,2519,p,Software and applications developers and analysts not elsewhere classified,NA
+Computing professionals not elsewhere classified,2139,2513,p,Web and multimedia developers,NA
+Computing professionals not elsewhere classified,2139,2519,p,Software and applications developers and analysts not elsewhere classified,NA
+Computing professionals not elsewhere classified,2139,2529,p,Database and network professionals not elsewhere classified,NA
+"Architects, town and traffic planners",2141,2161,NA,Building architects,NA
+"Architects, town and traffic planners",2141,2162,NA,Landscape architects,NA
+"Architects, town and traffic planners",2141,2164,NA,Town and traffic planners,NA
+Civil engineers,2142,2142,NA,Civil engineers,NA
+Electrical engineers,2143,2151,NA,Electrical engineers,NA
+Electronics and telecommunications engineers,2144,2152,NA,Electronics engineers,NA
+Electronics and telecommunications engineers,2144,2153,NA,Telecommunications engineers,NA
+Mechanical engineers,2145,2144,NA,Mechanical engineers,NA
+Chemical engineers,2146,2145,NA,Chemical engineers,NA
+"Mining engineers, metallurgists and related professionals",2147,2146,NA,"Mining engineers, metallurgists and related professionals",NA
+Cartographers and surveyors,2148,2165,NA,Cartographers and surveyors,NA
+"Architects, engineers and related professionals not elsewhere classified",2149,2141,NA,Industrial and production engineers,NA
+"Architects, engineers and related professionals not elsewhere classified",2149,2143,NA,Environmental engineers,NA
+"Architects, engineers and related professionals not elsewhere classified",2149,2149,NA,Engineering professionals not elsewhere classified,NA
+"Biologists, botanists, zoologists and related professionals",2211,2131,p,"Biologists, botanists, zoologists and related professionals",NA
+"Biologists, botanists, zoologists and related professionals",2211,2133,NA,Environmental protection professionals,NA
+"Pharmacologists, pathologists and related professionals",2212,2131,p,"Biologists, botanists, zoologists and related professionals","Plant pathologists, pharmacologists"
+"Pharmacologists, pathologists and related professionals",2212,2212,NA,Specialist medical practitioners,"Human pathologists , histopathologists, endocrinologists, neuropathologists"
+"Pharmacologists, pathologists and related professionals",2212,2250,p,Veterinarians,Animal and veterinary pathologists
+Agronomists and related professionals,2213,2132,p,"Farming, forestry and fisheries advisers",NA
+Medical doctors,2221,2211,NA,Generalist medical practitioners,NA
+Medical doctors,2221,2212,NA,Specialist medical practitioners,NA
+Dentists,2222,2261,NA,Dentists,NA
+Veterinarians,2223,2250,p,Veterinarians,NA
+Pharmacists,2224,2262,p,Pharmacists,NA
+Health professionals (except nursing) not elsewhere classified,2229,2263,p,Environmental and occupational health and hygiene professionals,NA
+Health professionals (except nursing) not elsewhere classified,2229,2269,p,Health professionals not elsewhere classified,NA
+Nursing and midwifery professionals,2230,1342,p,Health services managers,Hospital matrons and principal nursing officers
+Nursing and midwifery professionals,2230,1343,p,Aged care services managers,Matrons and principal nursing officers in aged care facilities
+Nursing and midwifery professionals,2230,2221,p,Nursing professionals,NA
+Nursing and midwifery professionals,2230,2222,p,Midwifery professionals,NA
+Nursing and midwifery professionals,2230,3221,p,Nursing associate professionals,NA
+Nursing and midwifery professionals,2230,3222,p,Midwifery associate professionals,NA
+"College, university and higher education teaching professionals",2310,2310,NA,University and higher education teachers,NA
+"College, university and higher education teaching professionals",2310,2320,p,Vocational education teachers,NA
+Secondary education teaching professionals,2320,2320,p,Vocational education teachers,NA
+Secondary education teaching professionals,2320,2330,NA,Secondary education teachers,NA
+Primary education teaching professionals,2331,2341,p,Primary school teachers,NA
+Pre-primary education teaching professionals,2332,2342,p,Early childhood educators,NA
+Special education teaching professionals,2340,2352,p,Special needs teachers,NA
+Education methods specialists,2351,2351,p,Education methods specialists,NA
+School inspectors,2352,2351,p,Education methods specialists,NA
+Other teaching professionals not elsewhere classified,2359,2353,p,Other language teachers,NA
+Other teaching professionals not elsewhere classified,2359,2354,NA,Other music teachers,NA
+Other teaching professionals not elsewhere classified,2359,2355,p,Other arts teachers,NA
+Other teaching professionals not elsewhere classified,2359,2356,p,Information technology trainers,NA
+Other teaching professionals not elsewhere classified,2359,2359,p,Teaching professionals not elsewhere classified,NA
+Accountants,2411,2411,p,Accountants,NA
+Accountants,2411,2412,p,Financial and investment advisers,NA
+Personnel and careers professionals,2412,2263,p,Environmental and occupational health and hygiene professionals,NA
+Personnel and careers professionals,2412,2423,NA,Personnel and careers professionals,NA
+Personnel and careers professionals,2412,2424,NA,Training and staff development professionals,NA
+Business professionals not elsewhere classified,2419,2412,p,Financial and investment advisers,NA
+Business professionals not elsewhere classified,2419,2413,NA,Financial analysts,NA
+Business professionals not elsewhere classified,2419,2421,NA,Management and organization analysts,NA
+Business professionals not elsewhere classified,2419,2422,NA,Policy administration professionals,NA
+Business professionals not elsewhere classified,2419,2431,NA,Advertising and marketing professionals,NA
+Business professionals not elsewhere classified,2419,2432,NA,Public relations professionals,NA
+Business professionals not elsewhere classified,2419,3339,p,Business services agents not elsewhere classified,Patent agents
+Lawyers,2421,2611,NA,Lawyers,NA
+Judges,2422,2612,NA,Judges,NA
+Legal professionals not elsewhere classified,2429,2619,NA,Legal professionals not elsewhere classified,NA
+Archivists and curators,2431,2621,NA,Archivists and curators,NA
+Librarians and related information professionals,2432,2622,NA,Librarians and related information professionals,NA
+Economists,2441,2631,NA,Economists,NA
+"Sociologists, anthropologists and related professionals",2442,2632,NA,"Sociologists, anthropologists and related professionals",NA
+"Philosophers, historians and political scientists",2443,2633,NA,"Philosophers, historians and political scientists",NA
+"Philologists, translators and interpreters",2444,2643,NA,"Translators, interpreters and other linguists",NA
+Psychologists,2445,2634,NA,Psychologists,NA
+Social work professionals,2446,2635,NA,Social work and counselling professionals,NA
+"Authors, journalists and other writers",2451,2431,NA,Advertising and marketing professionals,Advertising copy writers
+"Authors, journalists and other writers",2451,2432,NA,Public relations professionals,Public relations copy writers
+"Authors, journalists and other writers",2451,2641,NA,Authors and related writers,NA
+"Authors, journalists and other writers",2451,2642,p,Journalists,NA
+"Sculptors, painters and related artists",2452,2651,NA,Visual artists,NA
+"Composers, musicians and singers",2453,2652,p,"Musicians, singers and composers",NA
+Choreographers and dancers,2454,2653,p,Dancers and choreographers,NA
+"Film, stage and related actors and directors",2455,2654,p,"Film, stage and related directors and producers",NA
+"Film, stage and related actors and directors",2455,2655,NA,Actors,NA
+Religious professionals,2460,2636,NA,Religious professionals,NA
+Chemical and physical science technicians,3111,3111,NA,Chemical and physical science technicians,NA
+Civil engineering technicians,3112,3112,p,Civil engineering technicians,NA
+Electrical engineering technicians,3113,3113,p,Electrical engineering technicians,NA
+Electronics and telecommunications engineering technicians,3114,3114,p,Electronics engineering technicians,NA
+Electronics and telecommunications engineering technicians,3114,3522,NA,Telecommunications engineering technicians,NA
+Mechanical engineering technicians,3115,3115,p,Mechanical engineering technicians,NA
+Chemical engineering technicians,3116,3116,NA,Chemical engineering technicians,NA
+Mining and metallurgical technicians,3117,3117,p,Mining and metallurgical technicians,NA
+Draughtspersons,3118,3118,NA,Draughtspersons,NA
+Physical and engineering science technicians not elsewhere classified,3119,3119,NA,Physical and engineering science technicians not elsewhere classified,NA
+Computer assistants,3121,3512,NA,Information and communications technology user support technicians,NA
+Computer assistants,3121,3513,p,Computer network and systems technicians,NA
+Computer assistants,3121,3514,p,Web technicians,NA
+Computer equipment operators,3122,3511,NA,Information and communications technology operations technicians,NA
+Computer equipment operators,3122,3514,p,Web technicians,NA
+Industrial robot controllers,3123,3139,p,Process control technicians not elsewhere classified,NA
+Photographers and image and sound recording equipment operators,3131,3431,NA,Photographers,NA
+Photographers and image and sound recording equipment operators,3131,3521,p,Broadcasting and audio-visual technicians,NA
+Broadcasting and telecommunications equipment operators,3132,3521,p,Broadcasting and audio-visual technicians,NA
+Broadcasting and telecommunications equipment operators,3132,3522,NA,Telecommunications engineering technicians,Telecommunications equipment operators
+Medical equipment operators,3133,3211,NA,Medical imaging and therapeutic equipment technicians,NA
+Ships' engineers,3141,3151,NA,Ships' engineers,NA
+Ships' deck officers and pilots,3142,3152,NA,Ships' deck officers and pilots,NA
+Aircraft pilots and related associate professionals,3143,3153,p,Aircraft pilots and related associate professionals,NA
+Air traffic controllers,3144,3154,NA,Air traffic controllers,NA
+Air traffic safety technicians,3145,3155,NA,Air traffic safety electronics technicians,NA
+Building and fire inspectors,3151,3112,p,Civil engineering technicians,NA
+Building and fire inspectors,3151,3359,p,Regulatory government associate professionals not elsewhere classified,Fire investigators
+"Safety, health and quality inspectors",3152,2263,p,Environmental and occupational health and hygiene professionals,NA
+"Safety, health and quality inspectors",3152,3113,p,Electrical engineering technicians,Quality inspectors (electrical products)
+"Safety, health and quality inspectors",3152,3114,p,Electronics engineering technicians,Quality inspectors (electronic products)
+"Safety, health and quality inspectors",3152,3115,p,Mechanical engineering technicians,"Vehicle inspectors,  Mechanical products quality and safety inspectors"
+"Safety, health and quality inspectors",3152,3117,p,Mining and metallurgical technicians,Mine (safety) inspectors
+"Safety, health and quality inspectors",3152,3257,p,Environmental and occupational health inspectors and associates,NA
+"Safety, health and quality inspectors",3152,7543,NA,Product graders and testers (excluding foods and beverages),Product quality inspectors. Note that in ISCO-88 some product testers were classified in the same unit group as the workers producing the goods.
+Life science technicians,3211,3141,NA,Life science technicians (excluding medical),NA
+Life science technicians,3211,3212,NA,Medical and pathology laboratory technicians,NA
+Agronomy and forestry technicians,3212,3142,NA,Agricultural technicians,NA
+Agronomy and forestry technicians,3212,3143,NA,Forestry technicians,NA
+Farming and forestry advisers,3213,2132,p,"Farming, forestry and fisheries advisers",NA
+Medical assistants,3221,2240,NA,Paramedical practitioners,NA
+Medical assistants,3221,3253,NA,Community health workers,NA
+Medical assistants,3221,3256,NA,Medical assistants,NA
+Sanitarians,3222,2263,p,Environmental and occupational health and hygiene professionals,NA
+Sanitarians,3222,3257,p,Environmental and occupational health inspectors and associates,NA
+Dieticians and nutritionists,3223,2265,NA,Dieticians and nutritionists,NA
+Optometrists and opticians,3224,2267,NA,Optometrists and ophthalmic opticians,NA
+Optometrists and opticians,3224,3254,NA,Dispensing opticians,NA
+Dental assistants,3225,3251,NA,Dental assistants and therapists,NA
+Physiotherapists and related associate professionals,3226,2264,NA,Physiotherapists,NA
+Physiotherapists and related associate professionals,3226,2269,p,Health professionals not elsewhere classified,Podiatrists
+Physiotherapists and related associate professionals,3226,3255,NA,Physiotherapy technicians and assistants,NA
+Physiotherapists and related associate professionals,3226,3259,p,Health associate professionals not elsewhere classified,NA
+Veterinary assistants,3227,3240,NA,Veterinary technicians and assistants,NA
+Pharmaceutical assistants,3228,3213,NA,Pharmaceutical technicians and assistants,NA
+Modern health associate professionals (except nursing) not elsewhere classified,3229,2230,p,Traditional and complementary medicine professionals,Homeopaths
+Modern health associate professionals (except nursing) not elsewhere classified,3229,2266,NA,Audiologists and speech therapists,NA
+Modern health associate professionals (except nursing) not elsewhere classified,3229,2267,p,Optometrists and ophthalmic opticians,Orthoptists
+Modern health associate professionals (except nursing) not elsewhere classified,3229,2269,p,Health professionals not elsewhere classified,NA
+Modern health associate professionals (except nursing) not elsewhere classified,3229,3259,p,Health associate professionals not elsewhere classified,NA
+Nursing associate professionals,3231,3221,p,Nursing associate professionals,NA
+Midwifery associate professionals,3232,3222,p,Midwifery associate professionals,NA
+Traditional medicine practitioners,3241,2230,p,Traditional and complementary medicine professionals,NA
+Traditional medicine practitioners,3241,3230,p,Traditional and complementary medicine associate professionals,NA
+Faith healers,3242,3413,p,Religious associate professionals,"Changed from ISCO-08 5169, July 2009"
+Primary education teaching associate professionals,3310,2341,p,Primary school teachers,NA
+Pre-primary education teaching associate professionals,3320,2342,p,Early childhood educators,NA
+Special education teaching associate professionals,3330,2352,p,Special needs teachers,NA
+Other teaching associate professionals,3340,2353,p,Other language teachers,NA
+Other teaching associate professionals,3340,2355,p,Other arts teachers,NA
+Other teaching associate professionals,3340,2356,p,Information technology trainers,NA
+Other teaching associate professionals,3340,2359,p,Teaching professionals not elsewhere classified,NA
+Other teaching associate professionals,3340,3153,p,Aircraft pilots and related associate professionals,Flying instuctors
+Other teaching associate professionals,3340,3423,p,Fitness and recreation instructors and program leaders,Sailing instructors
+Other teaching associate professionals,3340,3435,p,Other artistic and cultural associate professionals,NA
+Other teaching associate professionals,3340,5165,NA,Driving instructors,NA
+Securities and finance dealers and brokers,3411,2412,p,Financial and investment advisers,NA
+Securities and finance dealers and brokers,3411,3311,NA,Securities and finance dealers and brokers,NA
+Insurance representatives,3412,3321,NA,Insurance representatives,NA
+Estate agents,3413,3334,NA,Real estate agents and property managers,NA
+Travel consultants and organisers,3414,4221,p,Travel consultants and clerks,NA
+Technical and commercial sales representatives,3415,2433,NA,Technical and medical sales professionals (excluding ICT),NA
+Technical and commercial sales representatives,3415,2434,NA,Information and communications technology sales professionals,NA
+Technical and commercial sales representatives,3415,3322,NA,Commercial sales representatives,NA
+Buyers,3416,3323,NA,Buyers,NA
+"Appraisers, valuers and auctioneers",3417,3315,NA,Valuers and loss assessors,NA
+"Appraisers, valuers and auctioneers",3417,3339,p,Business services agents not elsewhere classified,Auctioneers
+Finance and sales associate professionals not elsewhere classified,3419,3312,NA,Credit and loans officers,"Although  ISCO-08 3312 is the only correspondence listed for ISCO-88 3419, other possibilities such as 2413 may be considered, as 3419 is a residual group."
+Trade brokers,3421,3324,NA,Trade brokers,NA
+Clearing and forwarding agents,3422,3331,NA,Clearing and forwarding agents,NA
+Employment agents and labour contractors,3423,3333,p,Employment agents and contractors,NA
+Business services agents and trade brokers not elsewhere classified,3429,3339,p,Business services agents not elsewhere classified,"Literary, musical, sports and theatrical agents"
+Administrative secretaries and related associate professionals,3431,3341,p,Office supervisors,NA
+Administrative secretaries and related associate professionals,3431,3342,p,Legal secretaries,NA
+Administrative secretaries and related associate professionals,3431,3343,p,Administrative and executive secretaries,NA
+Administrative secretaries and related associate professionals,3431,3344,p,Medical secretaries,NA
+Legal and related business associate professionals,3432,3411,NA,Legal and related associate professionals,NA
+Bookkeepers,3433,3313,p,Accounting associate professionals,NA
+"Statistical, mathematical and related associate professionals",3434,3313,p,Accounting associate professionals,Accounting assistants
+"Statistical, mathematical and related associate professionals",3434,3314,NA,"Statistical, mathematical and related associate professionals",NA
+Administrative associate professionals not elsewhere classified,3439,3332,NA,Conference and event planners,NA
+Administrative associate professionals not elsewhere classified,3439,3343,p,Administrative and executive secretaries,Executive secretaries to government department heads and official committees
+Administrative associate professionals not elsewhere classified,3439,3359,p,Regulatory government associate professionals not elsewhere classified,Administrative consular officials
+Administrative associate professionals not elsewhere classified,3439,3433,p,"Gallery, museum and library technicians",Library technicians
+Customs and border inspectors,3441,3351,NA,Customs and border inspectors,NA
+Government tax and excise officials,3442,3352,NA,Government tax and excise officials,NA
+Government social benefits officials,3443,3353,NA,Government social benefits officials,NA
+Government licensing officials,3444,3354,NA,Government licensing officials,NA
+"Customs, tax and related government associate professionals not elsewhere classified",3449,3359,p,Regulatory government associate professionals not elsewhere classified,NA
+Police inspectors and detectives,3450,3355,NA,Police inspectors and detectives,NA
+Police inspectors and detectives,3450,3411,NA,Legal and related associate professionals,"Private invetigators and detectives, store detectives"
+Social work associate professionals,3460,3412,NA,Social work associate professionals,NA
+Decorators and commercial designers,3471,2163,NA,Product and garment designers,NA
+Decorators and commercial designers,3471,2166,NA,Graphic and multimedia designers,NA
+Decorators and commercial designers,3471,3432,NA,Interior designers and decorators,NA
+Decorators and commercial designers,3471,3433,p,"Gallery, museum and library technicians",Museum and gallery technicians
+Decorators and commercial designers,3471,3435,p,Other artistic and cultural associate professionals,"Tattooists, Body artists"
+"Radio, television and other announcers",3472,2642,p,Journalists,Media interviewers
+"Radio, television and other announcers",3472,2656,NA,"Announcers on radio, television and other media",NA
+"Street, night-club and related musicians, singers and dancers",3473,2652,p,"Musicians, singers and composers",NA
+"Street, night-club and related musicians, singers and dancers",3473,2653,p,Dancers and choreographers,NA
+"Clowns, magicians, acrobats and related associate professionals",3474,2659,NA,Creative and performing artists not elsewhere classified,NA
+"Athletes, sportspersons and related associate professionals",3475,3421,NA,Athletes and sports players,NA
+"Athletes, sportspersons and related associate professionals",3475,3422,NA,"Sports coaches, instructors and officials",NA
+"Athletes, sportspersons and related associate professionals",3475,3423,p,Fitness and recreation instructors and program leaders,NA
+Religious associate professionals,3480,3413,p,Religious associate professionals,NA
+Stenographers and typists,4111,3341,p,Office supervisors,NA
+Stenographers and typists,4111,4131,p,Typists and word processing operators,NA
+Word-processor and related operators,4112,3341,p,Office supervisors,NA
+Word-processor and related operators,4112,4131,p,Typists and word processing operators,NA
+Data entry operators,4113,4132,p,Data entry clerks,NA
+Calculating-machine operators,4114,3341,p,Office supervisors,NA
+Calculating-machine operators,4114,4132,p,Data entry clerks,NA
+Secretaries,4115,3341,p,Office supervisors,NA
+Secretaries,4115,3342,p,Legal secretaries,NA
+Secretaries,4115,3344,p,Medical secretaries,NA
+Secretaries,4115,4120,NA,Secretaries (general),NA
+Accounting and bookkeeping clerks,4121,3341,p,Office supervisors,NA
+Accounting and bookkeeping clerks,4121,4311,NA,Accounting and bookkeeping clerks,NA
+Accounting and bookkeeping clerks,4121,4313,NA,Payroll clerks,NA
+Statistical and finance clerks,4122,3341,p,Office supervisors,NA
+Statistical and finance clerks,4122,4312,NA,"Statistical, finance and insurance clerks","Consider ISCO-88 3432 in national contexts. ISCO-88 index included broker's assistants and insurance claims, adjustment and policy assistants there."
+Stock clerks,4131,3341,p,Office supervisors,NA
+Stock clerks,4131,4321,NA,Stock clerks,NA
+Production clerks,4132,3341,p,Office supervisors,NA
+Production clerks,4132,4322,NA,Production clerks,NA
+Transport clerks,4133,3341,p,Office supervisors,NA
+Transport clerks,4133,4323,NA,Transport clerks,NA
+Library and filing clerks,4141,3341,p,Office supervisors,NA
+Library and filing clerks,4141,4411,NA,Library clerks,NA
+Library and filing clerks,4141,4415,NA,Filing and copying clerks,NA
+Mail carriers and sorting clerks,4142,3341,p,Office supervisors,NA
+Mail carriers and sorting clerks,4142,4412,NA,Mail carriers and sorting clerks,NA
+"Coding, proof-reading and related clerks",4143,3252,NA,Medical records and health information technicians,NA
+"Coding, proof-reading and related clerks",4143,3341,p,Office supervisors,NA
+"Coding, proof-reading and related clerks",4143,4413,NA,"Coding, proof-reading and related clerks",NA
+Scribes and related workers,4144,3341,p,Office supervisors,NA
+Scribes and related workers,4144,4414,NA,Scribes and related workers,NA
+Other office clerks,4190,3341,p,Office supervisors,NA
+Other office clerks,4190,4110,NA,General office clerks,NA
+Other office clerks,4190,4227,NA,Survey and market research interviewers,NA
+Other office clerks,4190,4416,NA,Personnel clerks,NA
+Other office clerks,4190,4419,NA,Clerical support workers not elsewhere classified,NA
+Cashiers and ticket clerks,4211,4211,p,Bank tellers and related clerks,Bank cashiers
+Cashiers and ticket clerks,4211,4212,p,"Bookmakers, croupiers and related gaming workers","Clerk, bookmaking coded to 4211 in ISCO-88 index"
+Cashiers and ticket clerks,4211,5230,NA,Cashiers and ticket clerks,NA
+Tellers and other counter clerks,4212,4211,p,Bank tellers and related clerks,"Note that ISCO-88 index coded 'Assistant, bank' to 3432, Legal and related associate professionals"
+Bookmakers and croupiers,4213,4212,p,"Bookmakers, croupiers and related gaming workers",NA
+Pawnbrokers and money-lenders,4214,4213,NA,Pawnbrokers and money-lenders,NA
+Debt-collectors and related workers,4215,4214,NA,Debt-collectors and related workers,NA
+Travel agency and related clerks,4221,4221,p,Travel consultants and clerks,NA
+Receptionists and information clerks,4222,3341,p,Office supervisors,NA
+Receptionists and information clerks,4222,4222,NA,Contact centre information clerks,NA
+Receptionists and information clerks,4222,4224,NA,Hotel receptionists,NA
+Receptionists and information clerks,4222,4225,NA,Enquiry clerks,NA
+Receptionists and information clerks,4222,4226,NA,Receptionists (general),NA
+Receptionists and information clerks,4222,4229,NA,Client information workers not elsewhere classified,NA
+Telephone switchboard operators,4223,3341,p,Office supervisors,NA
+Telephone switchboard operators,4223,4223,NA,Telephone switchboard operators,NA
+Travel attendants and travel stewards,5111,5111,NA,Travel attendants and travel stewards,NA
+Transport conductors,5112,5112,NA,Transport conductors,NA
+Travel guides,5113,5113,NA,Travel guides,NA
+Housekeepers and related workers,5121,5151,NA,"Cleaning and housekeeping supervisors in offices, hotels and other establishments",NA
+Housekeepers and related workers,5121,5152,NA,Domestic housekeepers,NA
+Cooks,5122,3434,NA,Chefs,NA
+Cooks,5122,5120,NA,Cooks,NA
+Cooks,5122,9411,NA,Fast food preparers,NA
+"Waiters, waitresses and bartenders",5123,5131,NA,Waiters,NA
+"Waiters, waitresses and bartenders",5123,5132,NA,Bartenders,NA
+Child-care workers,5131,5311,NA,Child care workers,NA
+Child-care workers,5131,5312,NA,Teachers' aides,NA
+Institution-based personal care workers,5132,3258,NA,Ambulance workers,NA
+Institution-based personal care workers,5132,5321,NA,Health care assistants,NA
+Institution-based personal care workers,5132,5329,NA,Personal care workers in health services not elsewhere classified,"Hospital orderlies, medical imaging assistants, dental aids"
+Home-based personal care workers,5133,5322,NA,Home-based personal care workers,NA
+Personal care and related workers not elsewhere classified,5139,5164,NA,Pet groomers and animal care workers,Veterinary aids
+Personal care and related workers not elsewhere classified,5139,5329,NA,Personal care workers in health services not elsewhere classified,NA
+"Hairdressers, barbers, beauticians and related workers",5141,5141,NA,Hairdressers,NA
+"Hairdressers, barbers, beauticians and related workers",5141,5142,NA,Beauticians and related workers,NA
+Companions and valets,5142,5162,NA,Companions and valets,NA
+Undertakers and embalmers,5143,5163,NA,Undertakers and embalmers,NA
+Other personal services workers not elsewhere classified,5149,5169,p,Personal services workers not elsewhere classified,NA
+Astrologers and related workers,5151,5161,p,"Astrologers, fortune-tellers and related workers",NA
+"Fortune-tellers, palmists and related workers",5152,5161,p,"Astrologers, fortune-tellers and related workers",NA
+Fire-fighters,5161,5411,NA,Fire fighters,NA
+Police officers,5162,5412,NA,Police officers,NA
+Prison guards,5163,5413,NA,Prison guards,NA
+Protective services workers not elsewhere classified,5169,5414,p,Security guards,NA
+Protective services workers not elsewhere classified,5169,5419,NA,Protective services workers not elsewhere classified,NA
+Fashion and other models,5210,5241,NA,Fashion and other models,NA
+Shop salespersons and demonstrators,5220,5222,NA,Shop supervisors,NA
+Shop salespersons and demonstrators,5220,5223,NA,Shop sales assistants,NA
+Shop salespersons and demonstrators,5220,5242,NA,Sales demonstrators,NA
+Shop salespersons and demonstrators,5220,5245,NA,Service station attendants,NA
+Shop salespersons and demonstrators,5220,5246,p,Food service counter attendants,NA
+Shop salespersons and demonstrators,5220,5249,NA,Sales workers not elsewhere classified,"Car salespersons, boat salespersons"
+Stall and market salespersons,5230,5211,NA,Stall and market salespersons,NA
+Stall and market salespersons,5230,5246,p,Food service counter attendants,NA
+Field crop and vegetable growers,6111,6111,p,Field crop and vegetable growers,NA
+Tree and shrub crop growers,6112,6112,p,Tree and shrub crop growers,NA
+"Gardeners, horticultural and nursery growers",6113,6113,p,"Gardeners, horticultural and nursery growers",NA
+"Gardeners, horticultural and nursery growers",6113,9214,NA,Garden and horticultural labourers,"Although garden labourers should logically be classified in ISCO-88 Unit group 9211,  they were not specifically mentioned in the definition or the index.  It is likely  that some garden and horticultural workers classified in ISCO-08 9214 were classified in certain national contexts in ISCO-88 6113."
+Mixed-crop growers,6114,6114,p,Mixed crop growers,NA
+Dairy and livestock producers,6121,6121,p,Livestock and dairy producers,NA
+Poultry producers,6122,6122,p,Poultry producers,NA
+Apiarists and sericulturists,6123,6123,p,Apiarists and sericulturists,NA
+Mixed-animal producers,6124,6121,p,Livestock and dairy producers,NA
+Mixed-animal producers,6124,6122,p,Poultry producers,NA
+Mixed-animal producers,6124,6123,p,Apiarists and sericulturists,NA
+Market-oriented animal producers and related workers not elsewhere classified,6129,5164,NA,Pet groomers and animal care workers,NA
+Market-oriented animal producers and related workers not elsewhere classified,6129,6129,NA,Animal producers not elsewhere classified,NA
+Market-oriented crop and animal producers,6130,6130,p,Mixed crop and animal producers,NA
+Forestry workers and loggers,6141,6210,p,Forestry and related workers,NA
+Charcoal burners and related workers,6142,6210,p,Forestry and related workers,NA
+Aquatic-life cultivation workers,6151,6221,p,Aquaculture workers,NA
+Inland and coastal waters fishery workers,6152,6222,p,Inland and coastal waters fishery workers,NA
+Inland and coastal waters fishery workers,6152,7541,p,Underwater divers,"Divers for sponges,  pearls and other aquatic products"
+Deep-sea fishery workers,6153,6223,p,Deep-sea fishery workers,NA
+Hunters and trappers,6154,6224,NA,Hunters and trappers,NA
+Subsistence agricultural and fishery workers,6210,6310,NA,Subsistence crop farmers,NA
+Subsistence agricultural and fishery workers,6210,6320,NA,Subsistence livestock farmers,NA
+Subsistence agricultural and fishery workers,6210,6330,NA,Subsistence mixed crop and livestock farmers,NA
+Subsistence agricultural and fishery workers,6210,6340,NA,"Subsistence fishers, hunters, trappers and gatherers",NA
+Miners and quarry workers,7111,3121,NA,Mining supervisors,NA
+Miners and quarry workers,7111,8111,p,Miners and quarriers,NA
+Shotfirers and blasters,7112,7542,NA,Shotfirers and blasters,NA
+"Stone splitters, cutters and carvers",7113,7113,p,"Stonemasons, stone cutters, splitters and carvers",NA
+"Builders, traditional materials",7121,7111,p,House builders,NA
+Bricklayers and stonemasons,7122,7112,NA,Bricklayers and related workers,NA
+Bricklayers and stonemasons,7122,7113,p,"Stonemasons, stone cutters, splitters and carvers",NA
+"Concrete placers, concrete finishers and related workers",7123,7114,NA,"Concrete placers, concrete finishers and related workers",NA
+Carpenters and joiners,7124,7115,NA,Carpenters and joiners,NA
+Building frame and related trades workers not elsewhere classified,7129,3123,p,Construction supervisors,NA
+Building frame and related trades workers not elsewhere classified,7129,7111,p,House builders,Housebuilders not using traditional materials
+Building frame and related trades workers not elsewhere classified,7129,7119,NA,Building frame and related trades workers not elsewhere classified,NA
+Roofers,7131,7121,NA,Roofers,NA
+Floor layers and tile setters,7132,7122,NA,Floor layers and tile setters,NA
+Plasterers,7133,7123,NA,Plasterers,NA
+Insulation workers,7134,7124,NA,Insulation workers,NA
+Glaziers,7135,7125,NA,Glaziers,NA
+Plumbers and pipe fitters,7136,7126,NA,Plumbers and pipe fitters,NA
+Building and related electricians,7137,7411,NA,Building and related electricians,NA
+Painters and related workers,7141,7131,NA,Painters and related workers,NA
+Varnishers and related painters,7142,7132,NA,Spray painters and varnishers,NA
+Building structure cleaners,7143,7133,NA,Building structure cleaners,NA
+Building structure cleaners,7143,7544,NA,Fumigators and other pest and weed controllers,NA
+Metal moulders and coremakers,7211,7211,NA,Metal moulders and coremakers,NA
+Welders and flamecutters,7212,7212,NA,Welders and flamecutters,NA
+Sheet-metal workers,7213,7213,NA,Sheet-metal workers,NA
+Structural-metal preparers and erectors,7214,7214,NA,Structural-metal preparers and erectors,NA
+Riggers and cable splicers,7215,7215,NA,Riggers and cable splicers,NA
+Underwater workers,7216,7541,p,Underwater divers,NA
+"Blacksmiths, hammer-smiths and forging-press workers",7221,7221,NA,"Blacksmiths, hammersmiths and forging press workers",NA
+Tool-makers and related workers,7222,7222,NA,Toolmakers and related workers,NA
+Machine-tool setters and setter-operators,7223,7223,p,Metal working machine tool setters and operators,NA
+"Metal wheel-grinders, polishers and tool sharpeners",7224,7224,NA,"Metal polishers, wheel grinders and tool sharpeners",NA
+Motor vehicle mechanics and fitters,7231,7231,NA,Motor vehicle mechanics and repairers,NA
+Motor vehicle mechanics and fitters,7231,7234,NA,Bicycle and related repairers,NA
+Aircraft engine mechanics and fitters,7232,7232,NA,Aircraft engine mechanics and repairers,NA
+Agricultural- or industrial-machinery mechanics and fitters,7233,7127,NA,Air conditioning and refrigeration mechanics,NA
+Agricultural- or industrial-machinery mechanics and fitters,7233,7233,NA,Agricultural and industrial machinery mechanics and repairers,NA
+Electrical mechanics and fitters,7241,7412,NA,Electrical mechanics and fitters,NA
+Electronics fitters,7242,7421,p,Electronics mechanics and servicers,NA
+Electronics fitters,7242,7422,p,Information and communications technology installers and servicers,NA
+Electronics mechanics and servicers,7243,7421,p,Electronics mechanics and servicers,NA
+Electronics mechanics and servicers,7243,7422,p,Information and communications technology installers and servicers,NA
+Telegraph and telephone installers and servicers,7244,7422,p,Information and communications technology installers and servicers,NA
+"Electrical line installers, repairers and cable jointers",7245,7413,NA,Electrical line installers and repairers,NA
+"Electrical line installers, repairers and cable jointers",7245,7422,p,Information and communications technology installers and servicers,NA
+Precision-instrument makers and repairers,7311,3214,NA,Medical and dental prosthetic technicians,NA
+Precision-instrument makers and repairers,7311,7311,NA,Precision-instrument makers and repairers,NA
+Musical instrument makers and tuners,7312,7312,NA,Musical instrument makers and tuners,NA
+Jewellery and precious-metal workers,7313,7313,NA,Jewellery and precious-metal workers,NA
+"Abrasive wheel formers, potters and related workers",7321,7314,NA,Potters and related workers,NA
+"Glass-makers, cutters, grinders and finishers",7322,7315,NA,"Glass makers, cutters, grinders and finishers",NA
+"Glass-makers, cutters, grinders and finishers",7322,7549,NA,Craft and related workers not elsewhere classified,"Lens polishers, grinders, moulders and slicers"
+Glass engravers and etchers,7323,7316,p,"Sign writers, decorative painters, engravers and etchers",NA
+"Glass, ceramics and related decorative painters",7324,7316,p,"Sign writers, decorative painters, engravers and etchers",NA
+Handicraft workers in wood and related materials,7331,7317,p,"Handicraft workers in wood, basketry and related materials",NA
+Handicraft workers in wood and related materials,7331,7319,p,Handicraft workers not elsewhere classified,NA
+"Handicraft workers in textile, leather and related materials",7332,7318,p,"Handicraft workers in textile, leather and related materials",NA
+"Compositors, typesetters and related workers",7341,7321,p,Pre-press technicians,NA
+"Compositors, typesetters and related workers",7341,7322,p,Printers,"Printers, printing machine setters, takers-off"
+Stereotypers and electrotypers,7342,7321,p,Pre-press technicians,NA
+Printing engravers and etchers,7343,7321,p,Pre-press technicians,NA
+Photographic and related workers,7344,8132,p,Photographic products machine operators,NA
+Bookbinders and related workers,7345,7323,p,Print finishing and binding workers,NA
+"Silk-screen, block and textile printers",7346,7322,p,Printers,NA
+"Butchers, fishmongers and related food preparers",7411,7511,NA,"Butchers, fishmongers and related food preparers",NA
+"Bakers, pastry-cooks and confectionery makers",7412,7512,NA,"Bakers, pastry-cooks and confectionery makers",NA
+Dairy-products makers,7413,7513,NA,Dairy-products makers,NA
+"Fruit, vegetable and related preservers",7414,7514,NA,"Fruit, vegetable and related preservers",NA
+Food and beverage tasters and graders,7415,7515,NA,Food and beverage tasters and graders,NA
+Tobacco preparers and tobacco products makers,7416,7516,NA,Tobacco preparers and tobacco products makers,NA
+Wood treaters,7421,7521,NA,Wood treaters,NA
+Cabinet-makers and related workers,7422,7522,NA,Cabinet-makers and related workers,NA
+Woodworking-machine setters and setter-operators,7423,7523,p,Woodworking-machine tool setters and operators,NA
+"Basketry weavers, brush makers and related workers",7424,7317,p,"Handicraft workers in wood, basketry and related materials",NA
+Fibre preparers,7431,7318,p,"Handicraft workers in textile, leather and related materials",NA
+"Weavers, knitters and related workers",7432,7318,p,"Handicraft workers in textile, leather and related materials",NA
+"Weavers, knitters and related workers",7432,8152,p,Weaving and knitting machine operators,Weaving and knitting machine setters
+"Tailors, dressmakers and hatters",7433,7531,p,"Tailors, dressmakers, furriers and hatters",NA
+Furriers and related workers,7434,7531,p,"Tailors, dressmakers, furriers and hatters",NA
+"Textile, leather and related pattern-makers and cutters",7435,7532,NA,Garment and related pattern-makers and cutters,NA
+"Sewers, embroiderers and related workers",7436,7533,NA,"Sewing, embroidery and related workers",NA
+Upholsterers and related workers,7437,7534,NA,Upholsterers and related workers,NA
+"Pelt dressers, tanners and fellmongers",7441,7535,NA,"Pelt dressers, tanners and fellmongers",NA
+Shoe-makers and related workers,7442,7536,NA,Shoemakers and related workers,NA
+Mining-plant operators,8111,3121,NA,Mining supervisors,NA
+Mining-plant operators,8111,8111,p,Miners and quarriers,NA
+Mineral-ore- and stone-processing-plant operators,8112,8112,NA,Mineral and stone processing plant operators,NA
+Well drillers and borers and related workers,8113,8113,NA,Well drillers and borers and related workers,NA
+Ore and metal furnace operators,8121,3135,p,Metal production process controllers,NA
+Ore and metal furnace operators,8121,8121,p,Metal processing plant operators,NA
+"Metal melters, casters and rolling-mill operators",8122,3135,p,Metal production process controllers,NA
+"Metal melters, casters and rolling-mill operators",8122,8121,p,Metal processing plant operators,NA
+Metal-heat-treating-plant operators,8123,3135,p,Metal production process controllers,NA
+Metal-heat-treating-plant operators,8123,8121,p,Metal processing plant operators,NA
+Metal drawers and extruders,8124,3135,p,Metal production process controllers,NA
+Metal drawers and extruders,8124,8121,p,Metal processing plant operators,NA
+Glass and ceramics kiln and related machine operators,8131,8181,p,Glass and ceramics plant operators,NA
+"Glass, ceramics and related plant operators not elsewhere classified",8139,8181,p,Glass and ceramics plant operators,NA
+Wood-processing-plant operators,8141,8172,NA,Wood processing plant operators,NA
+Paper-pulp plant operators,8142,3139,p,Process control technicians not elsewhere classified,NA
+Paper-pulp plant operators,8142,8171,p,Pulp and papermaking plant operators,NA
+Papermaking-plant operators,8143,3139,p,Process control technicians not elsewhere classified,NA
+Papermaking-plant operators,8143,8171,p,Pulp and papermaking plant operators,NA
+"Crushing-, grinding- and chemical-mixing machinery operators",8151,8131,p,Chemical products plant and machine operators,NA
+Chemical-heat-treating-plant operators,8152,3133,p,Chemical processing plant controllers,NA
+Chemical-heat-treating-plant operators,8152,8131,p,Chemical products plant and machine operators,NA
+Chemical-filtering- and separating-equipment operators,8153,3133,p,Chemical processing plant controllers,NA
+Chemical-filtering- and separating-equipment operators,8153,8131,p,Chemical products plant and machine operators,NA
+Chemical-still and reactor operators (except petroleum and natural gas),8154,3133,p,Chemical processing plant controllers,NA
+Chemical-still and reactor operators (except petroleum and natural gas),8154,8131,p,Chemical products plant and machine operators,NA
+Petroleum- and natural-gas-refining-plant operators,8155,3134,NA,Petroleum and natural gas refining plant operators,NA
+Petroleum- and natural-gas-refining-plant operators,8155,8131,p,Chemical products plant and machine operators,Operators of compounders and other single process plant and machinery in petrolem and gas refineries
+Chemical-processing-plant operators not elsewhere classified,8159,3133,p,Chemical processing plant controllers,NA
+Chemical-processing-plant operators not elsewhere classified,8159,8131,p,Chemical products plant and machine operators,NA
+Power-production plant operators,8161,3131,NA,Power production plant operators,NA
+Steam-engine and boiler operators,8162,8182,NA,Steam engine and boiler operators,NA
+"Incinerator, water-treatment and related plant operators",8163,3132,NA,Incinerator and water treatment plant operators,NA
+Automated-assembly-line operators,8171,3122,p,Manufacturing supervisors,NA
+Automated-assembly-line operators,8171,3139,p,Process control technicians not elsewhere classified,NA
+Industrial-robot operators,8172,3122,p,Manufacturing supervisors,NA
+Industrial-robot operators,8172,3139,p,Process control technicians not elsewhere classified,NA
+Machine-tool operators,8211,3122,p,Manufacturing supervisors,NA
+Machine-tool operators,8211,7223,p,Metal working machine tool setters and operators,NA
+Cement and other mineral products machine operators,8212,8114,NA,"Cement, stone and other mineral products machine operators",NA
+Pharmaceutical- and toiletry-products machine operators,8221,3122,p,Manufacturing supervisors,NA
+Pharmaceutical- and toiletry-products machine operators,8221,8131,p,Chemical products plant and machine operators,NA
+Ammunition- and explosive-products machine operators,8222,3122,p,Manufacturing supervisors,NA
+Ammunition- and explosive-products machine operators,8222,8131,p,Chemical products plant and machine operators,NA
+"Metal finishing-, plating- and coating-machine operators",8223,3122,p,Manufacturing supervisors,NA
+"Metal finishing-, plating- and coating-machine operators",8223,8122,NA,"Metal finishing, plating and coating machine operators",NA
+Photographic-products machine operators,8224,3122,p,Manufacturing supervisors,NA
+Photographic-products machine operators,8224,8132,p,Photographic products machine operators,NA
+Chemical-products machine operators not elsewhere classified,8229,3122,p,Manufacturing supervisors,NA
+Chemical-products machine operators not elsewhere classified,8229,8131,p,Chemical products plant and machine operators,NA
+Rubber-products machine operators,8231,3122,p,Manufacturing supervisors,NA
+Rubber-products machine operators,8231,8141,NA,Rubber products machine operators,NA
+Plastic-products machine operators,8232,3122,p,Manufacturing supervisors,NA
+Plastic-products machine operators,8232,8142,NA,Plastic products machine operators,NA
+Wood-products machine operators,8240,3122,p,Manufacturing supervisors,NA
+Wood-products machine operators,8240,7523,p,Woodworking-machine tool setters and operators,NA
+Printing-machine operators,8251,3122,p,Manufacturing supervisors,NA
+Printing-machine operators,8251,7322,p,Printers,NA
+Bookbinding-machine operators,8252,3122,p,Manufacturing supervisors,NA
+Bookbinding-machine operators,8252,7323,p,Print finishing and binding workers,NA
+Paper-products machine operators,8253,3122,p,Manufacturing supervisors,NA
+Paper-products machine operators,8253,8143,NA,Paper products machine operators,NA
+"Fibre-preparing-, spinning- and winding-machine operators",8261,3122,p,Manufacturing supervisors,NA
+"Fibre-preparing-, spinning- and winding-machine operators",8261,8151,NA,"Fibre preparing, spinning and winding machine operators",NA
+Weaving- and knitting-machine operators,8262,3122,p,Manufacturing supervisors,NA
+Weaving- and knitting-machine operators,8262,8152,p,Weaving and knitting machine operators,NA
+Sewing-machine operators,8263,3122,p,Manufacturing supervisors,NA
+Sewing-machine operators,8263,8153,NA,Sewing machine operators,NA
+"Bleaching-, dyeing- and cleaning-machine operators",8264,3122,p,Manufacturing supervisors,NA
+"Bleaching-, dyeing- and cleaning-machine operators",8264,8154,NA,"Bleaching, dyeing and fabric cleaning machine operators",NA
+"Bleaching-, dyeing- and cleaning-machine operators",8264,8157,NA,Laundry machine operators,NA
+Fur- and leather-preparing-machine operators,8265,3122,p,Manufacturing supervisors,NA
+Fur- and leather-preparing-machine operators,8265,8155,NA,Fur and leather preparing machine operators,NA
+Shoemaking- and related machine operators,8266,3122,p,Manufacturing supervisors,NA
+Shoemaking- and related machine operators,8266,8156,NA,Shoemaking and related machine operators,NA
+"Textile-, fur- and leather-products machine operators not elsewhere classified",8269,3122,p,Manufacturing supervisors,NA
+"Textile-, fur- and leather-products machine operators not elsewhere classified",8269,8159,NA,"Textile, fur and leather products machine operators not elsewhere classified",NA
+Meat- and fish-processing-machine operators,8271,3122,p,Manufacturing supervisors,NA
+Meat- and fish-processing-machine operators,8271,8160,p,Food and related products machine operators,NA
+Dairy-products machine operators,8272,3122,p,Manufacturing supervisors,NA
+Dairy-products machine operators,8272,8160,p,Food and related products machine operators,NA
+Grain- and spice-milling-machine operators,8273,3122,p,Manufacturing supervisors,NA
+Grain- and spice-milling-machine operators,8273,8160,p,Food and related products machine operators,NA
+"Baked-goods, cereal and chocolate-products machine operators",8274,3122,p,Manufacturing supervisors,NA
+"Baked-goods, cereal and chocolate-products machine operators",8274,8160,p,Food and related products machine operators,NA
+"Fruit-, vegetable- and nut-processing-machine operators",8275,3122,p,Manufacturing supervisors,NA
+"Fruit-, vegetable- and nut-processing-machine operators",8275,8160,p,Food and related products machine operators,NA
+Sugar production machine operators,8276,3122,p,Manufacturing supervisors,NA
+Sugar production machine operators,8276,8160,p,Food and related products machine operators,NA
+"Tea-, coffee-, and cocoa-processing-machine operators",8277,3122,p,Manufacturing supervisors,NA
+"Tea-, coffee-, and cocoa-processing-machine operators",8277,8160,p,Food and related products machine operators,NA
+"Brewers-, wine and other beverage machine operators",8278,3122,p,Manufacturing supervisors,NA
+"Brewers-, wine and other beverage machine operators",8278,8160,p,Food and related products machine operators,NA
+Tobacco production machine operators,8279,3122,p,Manufacturing supervisors,NA
+Tobacco production machine operators,8279,8160,p,Food and related products machine operators,NA
+Mechanical-machinery assemblers,8281,3122,p,Manufacturing supervisors,NA
+Mechanical-machinery assemblers,8281,8211,NA,Mechanical machinery assemblers,NA
+Electrical-equipment assemblers,8282,3122,p,Manufacturing supervisors,NA
+Electrical-equipment assemblers,8282,8212,p,Electrical and electronic equipment assemblers,NA
+Electronic-equipment assemblers,8283,3122,p,Manufacturing supervisors,NA
+Electronic-equipment assemblers,8283,8212,p,Electrical and electronic equipment assemblers,NA
+"Metal-, rubber- and plastic-products assemblers",8284,3122,p,Manufacturing supervisors,NA
+"Metal-, rubber- and plastic-products assemblers",8284,8219,p,Assemblers not elsewhere classified,NA
+Wood and related products assemblers,8285,3122,p,Manufacturing supervisors,NA
+Wood and related products assemblers,8285,8219,p,Assemblers not elsewhere classified,NA
+"Paperboard, textile and related products assemblers",8286,3122,p,Manufacturing supervisors,NA
+"Paperboard, textile and related products assemblers",8286,8219,p,Assemblers not elsewhere classified,NA
+Other machine operators and assemblers,8290,3122,p,Manufacturing supervisors,NA
+Other machine operators and assemblers,8290,8183,NA,"Packing, bottling and labelling machine operators",NA
+Other machine operators and assemblers,8290,8189,NA,Stationary plant and machine operators not elsewhere classified,NA
+Other machine operators and assemblers,8290,8219,p,Assemblers not elsewhere classified,NA
+Locomotive-engine drivers,8311,8311,NA,Locomotive engine drivers,NA
+"Railway brakers, signallers and shunters",8312,8312,NA,"Railway brake, signal and switch operators",NA
+Motor-cycle drivers,8321,8321,NA,Motorcycle drivers,NA
+"Car, taxi and van drivers",8322,8322,NA,"Car, taxi and van drivers",NA
+Bus and tram drivers,8323,8331,NA,Bus and tram drivers,NA
+Heavy truck and lorry drivers,8324,8332,NA,Heavy truck and lorry drivers,NA
+Motorised farm and forestry plant operators,8331,8341,NA,Mobile farm and forestry plant operators,NA
+Earth-moving- and related plant operators,8332,8342,NA,Earthmoving and related plant operators,NA
+"Crane, hoist and related plant operators",8333,8343,NA,"Crane, hoist and related plant operators",NA
+Lifting-truck operators,8334,8344,NA,Lifting truck operators,NA
+Ships' deck crews and related workers,8340,8350,NA,Ships' deck crews and related workers,NA
+Street food vendors,9111,5212,NA,Street food salespersons,NA
+"Street vendors, non-food products",9112,9520,NA,Street vendors (excluding food),NA
+Door-to-door and telephone salespersons,9113,5243,NA,Door to door salespersons,NA
+Door-to-door and telephone salespersons,9113,5244,NA,Contact centre salespersons,NA
+Shoe cleaning and other street services elementary occupations,9120,9510,NA,Street and related service workers,NA
+Domestic helpers and cleaners,9131,9111,NA,Domestic cleaners and helpers,NA
+"Helpers and cleaners in offices, hotels and other establishments",9132,9112,NA,"Cleaners and helpers in offices, hotels and other establishments",NA
+"Helpers and cleaners in offices, hotels and other establishments",9132,9412,NA,Kitchen helpers,NA
+Hand-launderers and pressers,9133,9121,NA,Hand launderers and pressers,NA
+Building caretakers,9141,5153,NA,Building caretakers,NA
+"Vehicle, window and related cleaners",9142,9122,NA,Vehicle cleaners,NA
+"Vehicle, window and related cleaners",9142,9123,NA,Window cleaners,NA
+"Vehicle, window and related cleaners",9142,9129,NA,Other cleaning workers,NA
+"Messengers, package and luggage porters and deliverers",9151,9621,p,"Messengers, package deliverers and luggage porters",NA
+"Doorkeepers, watchpersons and related workers",9152,5414,p,Security guards,NA
+"Doorkeepers, watchpersons and related workers",9152,9621,p,"Messengers, package deliverers and luggage porters",Hotel porters
+"Doorkeepers, watchpersons and related workers",9152,9629,NA,Elementary workers not elsewhere classified,NA
+"Vending-machine money collectors, meter readers and related workers",9153,9623,NA,Meter readers and vending-machine collectors,NA
+Garbage collectors,9161,9611,NA,Garbage and recycling collectors,NA
+Garbage collectors,9161,9612,p,Refuse sorters,NA
+Sweepers and related labourers,9162,9613,NA,Sweepers and related labourers,NA
+Sweepers and related labourers,9162,9622,NA,Odd job persons,NA
+Sweepers and related labourers,9162,9624,NA,Water and firewood collectors,NA
+Farm-hands and labourers,9211,9211,NA,Crop farm labourers,NA
+Farm-hands and labourers,9211,9212,NA,Livestock farm labourers,NA
+Farm-hands and labourers,9211,9213,NA,Mixed crop and livestock farm labourers,NA
+Farm-hands and labourers,9211,9214,NA,Garden and horticultural labourers,NA
+Forestry labourers,9212,9215,NA,Forestry labourers,NA
+"Fishery, hunting and trapping labourers",9213,9216,NA,Fishery and aquaculture labourers,NA
+Mining and quarrying labourers,9311,9311,NA,Mining and quarrying labourers,NA
+"Construction and maintenance labourers: roads, dams and similar constructions",9312,9312,NA,Civil engineering labourers,NA
+Building construction labourers,9313,9313,NA,Building construction labourers,NA
+Assembling labourers,9321,9329,p,Manufacturing labourers not elsewhere classified,NA
+Assembling labourers,9321,9612,p,Refuse sorters,Bottle sorters
+Hand packers and other manufacturing labourers,9322,9321,NA,Hand packers,NA
+Hand packers and other manufacturing labourers,9322,9329,p,Manufacturing labourers not elsewhere classified,NA
+Hand or pedal vehicle drivers,9331,9331,NA,Hand and pedal vehicle drivers,NA
+Drivers of animal-drawn vehicles and machinery,9332,9332,NA,Drivers of animal-drawn vehicles and machinery,NA
+Freight handlers,9333,9333,NA,Freight handlers,NA
+Freight handlers,9333,9334,NA,Shelf fillers,NA
+Armed forces,0110,0110,NA,Commissioned armed forces officers,NA
+Armed forces,0110,0210,NA,Non-commissioned armed forces officers,NA
+Armed forces,0110,0310,NA,"Armed forces occupations, other ranks",NA
